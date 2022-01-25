@@ -18,7 +18,7 @@
     ></v-img>
     <div
     class="solgon rounded-pill d-flex justify-end align-center ms-n16">
-    <v-toolbar-title class="ctext1 me-5">接案、發包，不煩惱。</v-toolbar-title>
+    <v-toolbar-title class="ctext1 me-10">接案 ､ 發包 , 真好用</v-toolbar-title>
     </div>
     <v-spacer></v-spacer>
     <!-- 導覽連結 -->
@@ -66,79 +66,26 @@
                       </template>
                       <v-card>
                         <v-card-title>
-                          <span class="text-h5">User Profile</span>
+                          <span class="text-h5 py-5">接案會員 , 請登入</span>
                         </v-card-title>
                         <v-card-text>
                           <v-container>
                             <v-row>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
+                              <v-col cols="12" class="px-16">
                                 <v-text-field
-                                  label="Legal first name*"
+                                  label="Account*"
                                   required
                                 ></v-text-field>
                               </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
-                                <v-text-field
-                                  label="Legal middle name"
-                                  hint="example of helper text only on focus"
-                                ></v-text-field>
-                              </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
-                                <v-text-field
-                                  label="Legal last name*"
-                                  hint="example of persistent helper text"
-                                  persistent-hint
-                                  required
-                                ></v-text-field>
-                              </v-col>
-                              <v-col cols="12">
-                                <v-text-field
-                                  label="Email*"
-                                  required
-                                ></v-text-field>
-                              </v-col>
-                              <v-col cols="12">
+                              <v-col cols="12" class="px-16">
                                 <v-text-field
                                   label="Password*"
                                   type="password"
                                   required
                                 ></v-text-field>
                               </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                              >
-                                <v-select
-                                  :items="['0-17', '18-29', '30-54', '54+']"
-                                  label="Age*"
-                                  required
-                                ></v-select>
-                              </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                              >
-                                <v-autocomplete
-                                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                                  label="Interests"
-                                  multiple
-                                ></v-autocomplete>
-                              </v-col>
                             </v-row>
                           </v-container>
-                          <small>*indicates required field</small>
                         </v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
@@ -154,13 +101,13 @@
                             text
                             @click="dialog2 = false"
                           >
-                            Save
+                            Login
                           </v-btn>
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
                     <v-dialog
-                      v-model="dialog2"
+                      v-model="dialog3"
                       persistent
                       max-width="600px"
                     >
@@ -178,95 +125,42 @@
                       </template>
                       <v-card>
                         <v-card-title>
-                          <span class="text-h5">User Profile</span>
+                          <span class="text-h5 py-5">發案會員 , 請登入</span>
                         </v-card-title>
                         <v-card-text>
                           <v-container>
                             <v-row>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
+                              <v-col cols="12" class="px-16">
                                 <v-text-field
-                                  label="Legal first name*"
+                                  label="Account*"
                                   required
                                 ></v-text-field>
                               </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
-                                <v-text-field
-                                  label="Legal middle name"
-                                  hint="example of helper text only on focus"
-                                ></v-text-field>
-                              </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                                md="4"
-                              >
-                                <v-text-field
-                                  label="Legal last name*"
-                                  hint="example of persistent helper text"
-                                  persistent-hint
-                                  required
-                                ></v-text-field>
-                              </v-col>
-                              <v-col cols="12">
-                                <v-text-field
-                                  label="Email*"
-                                  required
-                                ></v-text-field>
-                              </v-col>
-                              <v-col cols="12">
+                              <v-col cols="12" class="px-16">
                                 <v-text-field
                                   label="Password*"
                                   type="password"
                                   required
                                 ></v-text-field>
                               </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                              >
-                                <v-select
-                                  :items="['0-17', '18-29', '30-54', '54+']"
-                                  label="Age*"
-                                  required
-                                ></v-select>
-                              </v-col>
-                              <v-col
-                                cols="12"
-                                sm="6"
-                              >
-                                <v-autocomplete
-                                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                                  label="Interests"
-                                  multiple
-                                ></v-autocomplete>
-                              </v-col>
                             </v-row>
                           </v-container>
-                          <small>*indicates required field</small>
                         </v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn
                             color="blue darken-1"
                             text
-                            @click="dialog2 = false"
+                            @click="dialog3 = false"
                           >
                             Close
                           </v-btn>
                           <v-btn
                             color="blue darken-1"
                             text
-                            @click="dialog2 = false"
+                            @click="dialog3 = false"
                           >
-                            Save
+                            Login
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -274,9 +168,9 @@
                   </v-row>
                 </div>
               </v-card-text>
-                <v-row justify="center">
-                    <v-dialog class="overflowY"
-                      v-model="dialog3"
+              <div class="d-flex justify-center">
+                    <v-dialog
+                      v-model="dialog4"
                       fullscreen
                       hide-overlay
                       transition="dialog-bottom-transition"
@@ -296,84 +190,151 @@
                       </template>
                       <v-card>
                         <v-toolbar
-                          dark
-                          color="primary"
+                          color="var(--color-blue)"
+                          style="color: var(--color-white);"
                         >
                           <v-btn
                             icon
-                            dark
-                            @click="dialog3 = false"
+                            color="var(--color-white)"
+                            @click="dialog4 = false"
                           >
                             <v-icon>mdi-close</v-icon>
                           </v-btn>
-                          <v-toolbar-title>Settings</v-toolbar-title>
+                          <v-toolbar-title>加入 goodjob !</v-toolbar-title>
                           <v-spacer></v-spacer>
                           <v-toolbar-items>
-                            <v-btn
-                              dark
-                              text
-                              @click="dialog3 = false"
+                            <v-btn class="savebtn"
+                              color="var(--color-white)"
                             >
-                              Save
+                              Join Us
                             </v-btn>
                           </v-toolbar-items>
                         </v-toolbar>
-                        <v-list
-                          three-line
-                          subheader
-                        >
-                          <v-subheader>User Controls</v-subheader>
-                          <v-list-item>
-                            <v-list-item-content>
-                              <v-list-item-title>Content filtering</v-list-item-title>
-                              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <v-list-item>
-                            <v-list-item-content>
-                              <v-list-item-title>Password</v-list-item-title>
-                              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-list>
-                        <v-divider></v-divider>
-                        <v-list
-                          three-line
-                          subheader
-                        >
-                          <v-subheader>General</v-subheader>
-                          <v-list-item>
-                            <v-list-item-action>
-                              <v-checkbox v-model="notifications"></v-checkbox>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                              <v-list-item-title>Notifications</v-list-item-title>
-                              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <v-list-item>
-                            <v-list-item-action>
-                              <v-checkbox v-model="sound"></v-checkbox>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                              <v-list-item-title>Sound</v-list-item-title>
-                              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
-                          <v-list-item>
-                            <v-list-item-action>
-                              <v-checkbox v-model="widgets"></v-checkbox>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                              <v-list-item-title>Auto-add widgets</v-list-item-title>
-                              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-                            </v-list-item-content>
-                          </v-list-item>
+                        <v-list class="list">
+                        <v-card-title>
+                          <span class="text-h5">請填寫詳細資料</span>
+                          </v-card-title>
+                          <v-card-text>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12">
+                                  <v-text-field
+                                    label="Name*"
+                                    required
+                                    hint="名稱"
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-text-field
+                                    label="Account"
+                                    hint="帳號"
+                                    required
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                 <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-text-field
+                                    label="Password*"
+                                    type="password"
+                                    required
+                                    hint="密碼"
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-text-field
+                                    label="Email*"
+                                    hint="信箱"
+                                    required
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-text-field
+                                    label="State"
+                                    hint="接案狀況 ex：全職"
+                                    required
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-text-field
+                                    label="Workingday*"
+                                    hint="工作時段 ex：週一 ~ 週五 8:00am ~ 18:00pm"
+                                    required
+                                    height="50"
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col
+                                  cols="12"
+                                  sm="6"
+                                >
+                                  <v-select
+                                    :items="['平面設計師', '攝影師', '室內設計師', '插畫家', '創作者', '藝術家', '其他']"
+                                    label="Position*"
+                                    required
+                                    height="50"
+                                  ></v-select>
+                                </v-col>
+                                 <v-col cols="12">
+                                  <v-autocomplete
+                                    :items="['Illustrator', 'Photoshop', 'Indesign', 'PowerPoint', 'Word', 'Figma', 'JS', 'CSS', 'JQ', 'HTML', 'SCSS', 'Vue', 'Node', 'Premiere', 'After Effects', 'Lightroom', 'Final Cut ProX', 'Sketch Up', 'AutoCAD', 'Rhino', 'V-ray', '3D MAX', 'Revit', 'Lumion', '其他']"
+                                    label="Technology"
+                                    multiple
+                                    height="50"
+                                  ></v-autocomplete>
+                                </v-col>
+                                <v-col cols="12">
+                                <div>
+                                  <v-text-field
+                                  label="About me"
+                                  height="50"
+                                  >
+                                  </v-text-field>
+                                </div>
+                              </v-col>
+                              </v-row>
+                            </v-container>
+                            <small>*還缺報價表</small>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="blue darken-1"
+                              text
+                              @click="dialog4 = false"
+                            >
+                              Close
+                            </v-btn>
+                            <v-btn
+                              color="blue darken-1"
+                              text
+                              @click="dialog4 = false"
+                            >
+                              Send
+                            </v-btn>
+                          </v-card-actions>
                         </v-list>
                       </v-card>
                     </v-dialog>
-                  </v-row>
-              <v-card-actions class="justify-end">
+                  </div>
+                <v-card-actions class="justify-end">
                 <v-btn
                   text
                   @click="dialog.value = false"
@@ -395,6 +356,7 @@ export default {
   data: () => ({
     dialog2: false,
     dialog3: false,
+    dialog4: false,
     notifications: false,
     sound: true,
     widgets: false
