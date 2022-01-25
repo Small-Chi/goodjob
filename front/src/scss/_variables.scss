@@ -1,15 +1,30 @@
 :root {
   --color-blue: #282F42;
   --color-white: #CDC6BC;
+  --color-lightY: #FFBD5E;
+  --color-deepY: #F08D00;
+  --color-red: #FF4757;
 }
 
-body {
+* {
+  transition: .5s;
+}
+
+body {  
   .ctext1 {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500;
   }
 }
 
 a {
   text-decoration: none;
+}
+
+.textWhite {
+  color: var(--color-white) !important;
+}
+
+.textBlue {
+  color: var(--color-blue) !important;
 }
