@@ -1,0 +1,28 @@
+#app {  
+  background-color: var(--color-blue) !important;
+
+  v-app-bar {
+    border-bottom: 1px solid var(--color-white);    
+  }
+
+  a {
+    width: 128px;
+    background: red;
+  }
+
+  .textWhite {
+    color: var(--color-white) !important;
+  }
+  
+  .logo1 {
+    position: relative;
+    top: -3px;
+  }
+
+  .titile {
+    border: 1px solid var(--color-white);
+    width: 400px;
+    height: 68px;
+  }   
+}
+
