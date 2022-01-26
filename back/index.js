@@ -11,7 +11,7 @@ mongoose.connect(process.env.DB_URL, () => {
 })
 
 const app = express()
-
+// step.1 處理前端的請求
 app.use(cors({
   origin (origin, callback) {
     if (origin === undefined || origin.includes('github') || origin.includes('localhost')) {

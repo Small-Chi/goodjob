@@ -1,26 +1,38 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Front from '../views/Front.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Front',
+    component: Front,
     meta: {
       title: 'goodjob外包網'
-    }
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
-    meta: {
-      title: '註冊 | goodjob'
-    }
+    },
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理 | 購物網'
+        }
+      }
+    ]
   }
+  // {
+  //   path: '/register',
+  //   name: 'Register',
+  //   component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
+  //   meta: {
+  //     title: '註冊 | goodjob'
+  //   }
+  // }
 ]
 
 const router = new VueRouter({
