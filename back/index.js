@@ -3,6 +3,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import usersRouter from './routes/users.js'
+import ownersRouter from './routes/owners.js'
 // import productsRouter from './routes/products.js'
 // import ordersRouter from './routes/orders.js'
 
@@ -31,6 +32,7 @@ app.use((_, req, res, next) => {
 })
 
 app.use('/users', usersRouter)
+app.use('/owners', ownersRouter)
 // app.use('/products', productsRouter)
 // app.use('/orders', ordersRouter)
 

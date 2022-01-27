@@ -7,20 +7,20 @@ import {
   login,
   logout,
   extend,
-  getUserInfo,
+  getownerInfo,
   // addCart,
   // getCart,
   // updateCart
-} from '../controllers/users.js'
+} from '../controllers/owners.js'
 
 const router = express.Router()
 
 router.post('/', register)
 router.post('/', content('application/json'), register)
-router.post('/userlogin', content('application/json'), login)
+router.post('/login', content('application/json'), login)
 router.post('/extend', auth, extend)
 router.delete('/logout', auth, logout)
-router.get('/me', auth, getUserInfo)
+router.get('/me', auth, getownerInfo)
 // router.post('/me/cart', auth, addCart)
 // router.get('/me/cart', auth, getCart)
 // router.patch('/me/cart', auth, updateCart)

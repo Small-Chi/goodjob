@@ -20,7 +20,27 @@ const routes = [
         meta: {
           login: true,
           admin: true,
-          title: '管理 | 購物網'
+          title: 'goodjob | 首頁'
+        }
+      },
+      {
+        path: '/userlogin',
+        name: 'Userlogin',
+        component: () => import(/* webpackChunkName: "userlogin" */ '../views/Userlogin.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: 'goodjob | 接案者登入'
+        }
+      },
+      {
+        path: '/ownerlogin',
+        name: 'Ownerlogin',
+        component: () => import(/* webpackChunkName: "ownerlogin" */ '../views/Ownerlogin.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: 'goodjob | 發案者登入'
         }
       }
     ]

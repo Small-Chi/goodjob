@@ -37,42 +37,30 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   position: {
-    type: String,
-    enum: {
-      values: ['平面設計師', '攝影師', '室內設計師', '插畫家', '創作者', '藝術家', '其他'],
-      message: '請選擇職業類別'
-    }
+    type: String
   },
   state: {
     type: String,
-    required: [true, '接案狀況為必填']
   },
   technology: {
-    type: String,
-    enum: {
-      values: ['Illustrator', 'Photoshop', 'Indesign', 'PowerPoint', 'Word', 'Figma', 'JS', 'CSS', 'JQ', 'HTML', 'SCSS', 'Vue', 'Node', 'Premiere', 'After Effects', 'Lightroom', 'Final Cut ProX', 'Sketch Up', 'AutoCAD', 'Rhino', 'V-ray', '3D MAX', 'Revit', 'Lumion', '其他'],
-      message: '請選擇擅長工具'
-    }
+    type: [String]
   },
   workingday: {
     type: String,
-    required: [true, '工作時段為必填']
   },
   prices: {
     type: [
       {
         item: {
-          type: String,
-          required: [true, '產品項目必填'],
+          type: String
         },
         price: {
-          type: String,
-          required: [true, '產品報價必填'],
+          type: String
         }
       }
     ]
   },
-  description: {
+  about: {
     type: String
   },
   favorite: {

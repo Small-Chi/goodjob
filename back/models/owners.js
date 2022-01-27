@@ -37,42 +37,30 @@ const ownerSchema = new mongoose.Schema({
     type: String
   },
   position: {
-    type: String,
-    enum: {
-      values: ['教育', '科技', '廣告媒體', '設計', '餐旅', '新創', '寵物', '食品', '建築', '政府單位', '傳產', '攤販', '其他'],
-      message: '請選擇產業類別'
-    }
+    type: String
   },
   state: {
     type: String,
-    required: [true, '發案狀況為必填']
   },
   technology: {
-    type: String,
-    enum: {
-      values: ['Illustrator', 'Photoshop', 'Indesign', 'PowerPoint', 'Word', 'Figma', 'JS', 'CSS', 'JQ', 'HTML', 'SCSS', 'Vue', 'Node', 'Premiere', 'After Effects', 'Lightroom', 'Final Cut ProX', 'Sketch Up', 'AutoCAD', 'Rhino', 'V-ray', '3D MAX', 'Revit', 'Lumion', '其他'],
-      message: '請選擇需求工具'
-    }
+    type: [String]
   },
   workingday: {
     type: String,
-    required: [true, '工作時段為必填']
   },
   prices: {
     type: [
       {
         item: {
-          type: String,
-          required: [true, '需求項目必填'],
+          type: String
         },
         price: {
-          type: String,
-          required: [true, '預算價格必填'],
+          type: String
         }
       }
     ]
   },
-  description: {
+  about: {
     type: String
   },
   favorite: {
@@ -88,7 +76,7 @@ const ownerSchema = new mongoose.Schema({
   }
 }, { versionKey: false })
 
-userSchema.pre('save', function (next) {
+ownerSchema.pre('save', function (next) {
   const user = this
   if (user.isModified('password')) {
     if (user.password.length >= 4 && user.password.length <= 20) {
@@ -103,7 +91,7 @@ userSchema.pre('save', function (next) {
   next()
 })
 
-userSchema.pre('findOneAndUpdate', function (next) {
+ownerSchema.pre('findOneAndUpdate', function (next) {
   const user = this._update
   if (user.password) {
     if (user.password.length >= 4 && user.password.length <= 20) {

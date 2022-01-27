@@ -33,6 +33,12 @@ const adminSchema = new mongoose.Schema({
       message: '信箱格式不正確'
     }
   },
+  role: {
+    // 0 = 一般會員
+    // 1 = 管理員
+    type: Number,
+    default: 1
+  },
   image: {
     type: String
   },
