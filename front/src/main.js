@@ -7,8 +7,10 @@ import './scss/styles.scss'
 import './plugins/axios.js'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import VAnimateCss from 'v-animate-css'
 
 Vue.use(VueSweetalert2)
+Vue.use(VAnimateCss)
 
 Vue.config.productionTip = false
 
