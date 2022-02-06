@@ -23,7 +23,7 @@ export default {
           src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81.jpg'
         },
         {
-          src: ''
+          src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/%E5%B0%81%E9%9D%A2.jpg'
         }
       ]
     }
