@@ -17,7 +17,7 @@ export default {
           src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81_220206.jpg'
         },
         {
-          src: ''
+          src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81_220206_1.jpg'
         },
         {
           src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81.jpg'
