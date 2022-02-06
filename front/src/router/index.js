@@ -24,23 +24,23 @@ const routes = [
         }
       },
       {
-        path: '/userlogin',
-        name: 'Userlogin',
-        component: () => import(/* webpackChunkName: "userlogin" */ '../views/Userlogin.vue'),
+        path: 'portfoliosList',
+        name: 'PortfoliosList',
+        component: () => import(/* webpackChunkName: "userlogin" */ '../views/PortfoliosList.vue'),
         meta: {
           login: true,
           admin: true,
-          title: 'goodjob | 接案者登入'
+          title: 'goodjob | 找專業'
         }
       },
       {
-        path: '/ownerlogin',
-        name: 'Ownerlogin',
-        component: () => import(/* webpackChunkName: "ownerlogin" */ '../views/Ownerlogin.vue'),
+        path: 'caseList',
+        name: 'CaseList',
+        component: () => import(/* webpackChunkName: "ownerlogin" */ '../views/CaseList.vue'),
         meta: {
           login: true,
           admin: true,
-          title: 'goodjob | 發案者登入'
+          title: 'goodjob | 找案件'
         }
       }
     ]

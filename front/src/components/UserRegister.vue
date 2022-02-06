@@ -2,7 +2,7 @@
     <div class="ms-6">
     <v-dialog max-width="600">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="rgba(0,0,0,0)" v-bind="attrs" v-on="on" width="110" class="textWhite login me-8" plain>
+        <v-btn color="rgba(0,0,0,0)" v-bind="attrs" v-on="on" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && !owner.isownerLogin">
           <v-icon class="me-2">mdi-login-variant</v-icon>登入
         </v-btn>
       </template>
@@ -18,33 +18,33 @@
                       接案
                     </v-btn>
                   </template>
-                  <!-- 接案會員表單 -->
+                  <!-- 接案會員登入 -->
                   <v-card>
                     <v-form @submit.prevent="userlogin">
-                    <v-card-title>
-                      <span class="text-h5 py-5">接案會員 , 請登入</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-container>
-                        <v-row>
-                          <v-col cols="12" class="px-16">
-                            <v-text-field label="帳號"></v-text-field>
-                          </v-col>
-                          <v-col cols="12" class="px-16">
-                            <v-text-field label="密碼" type="password"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-container>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="dialog2 = false">
-                        Close
-                      </v-btn>
-                      <v-btn color="blue darken-1" text @click="dialog,dialog.value = false" to="/userlogin">
-                        Login
-                      </v-btn>
-                    </v-card-actions>
+                      <v-card-title>
+                        <span class="text-h5 py-5 mx-auto">接案會員 , 請登入</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-container>
+                          <v-row>
+                            <v-col cols="12" class="px-16">
+                              <v-text-field label="帳號" :state="state.account" v-model="form.account"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" class="px-16">
+                              <v-text-field label="密碼" :state="state.password" v-model="form.password" type="password"></v-text-field>
+                            </v-col>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="dialog2 = false">
+                          Close
+                        </v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog,dialog.value = false" type="submit">
+                          Login
+                        </v-btn>
+                      </v-card-actions>
                     </v-form>
                   </v-card>
                 </v-dialog>
@@ -55,32 +55,34 @@
                       發案
                     </v-btn>
                   </template>
-                  <!-- 發案會員登入表單 -->
+                  <!-- 發案會員登入 -->
                   <v-card>
-                    <v-card-title>
-                      <span class="text-h5 py-5">發案會員 , 請登入</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-container>
-                        <v-row>
-                          <v-col cols="12" class="px-16">
-                            <v-text-field label="帳號"></v-text-field>
-                          </v-col>
-                          <v-col cols="12" class="px-16">
-                            <v-text-field label="密碼" type="password"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-container>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="dialog3 = false">
-                        Close
-                      </v-btn>
-                      <v-btn color="blue darken-1" text @click="dialog3,dialog.value = false" to="/ownerlogin">
-                        Login
-                      </v-btn>
-                    </v-card-actions>
+                    <v-form @submit.prevent="ownerlogin">
+                      <v-card-title>
+                        <span class="text-h5 py-5 mx-auto">發案會員 , 請登入</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-container>
+                          <v-row>
+                            <v-col cols="12" class="px-16">
+                              <v-text-field label="帳號" :state="state.account" v-model="form.account"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" class="px-16">
+                              <v-text-field label="密碼" :state="state.password" v-model="form.password" type="password"></v-text-field>
+                            </v-col>
+                          </v-row>
+                        </v-container>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="dialog3 = false">
+                          Close
+                        </v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog3,dialog.value = false" type="submit">
+                          Login
+                        </v-btn>
+                      </v-card-actions>
+                    </v-form>
                   </v-card>
                 </v-dialog>
               </v-row>
@@ -256,7 +258,8 @@ export default {
       inputRules4: [
         value => !!value || '必填',
         value => (value && value.length >= 4) || '最少 4 個字'
-      ]
+      ],
+      newitem: ''
     }
   },
   computed: {
@@ -267,6 +270,12 @@ export default {
         password: this.form.password.length === 0 ? null : this.form.password.length >= 4 && this.form.password.length <= 20,
         email: this.form.email.length === 0 ? null : validator.isEmail(this.form.email)
       }
+    },
+    user () {
+      return this.$store.getters['user/user']
+    },
+    owner () {
+      return this.$store.getters['owner/owner']
     }
   },
   methods: {
@@ -287,10 +296,15 @@ export default {
         })
       }
     },
-    additem () {
-    },
-    async userlogin () {
+    userlogin () {
       this.$store.dispatch('user/userlogin', this.form)
+    },
+    ownerlogin () {
+      this.$store.dispatch('owner/ownerlogin', this.form)
+    },
+    additem () {
+      this.$store.commit('additem', this.newitem)
+      this.newitem = ''
     }
   },
   components: { OwnerRegisters }

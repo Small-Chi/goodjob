@@ -22,7 +22,7 @@
               <v-list class="list">
                 <v-form @submit.prevent="register">
                 <v-card-title>
-                  <span class="text-h5">請填寫詳細資料 , 成為發案者</span>
+                  <span class="text-h5 mx-auto">請填寫詳細資料 , 成為發案者</span>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
@@ -85,7 +85,7 @@
                                 </v-col>
                                 <v-col cols="6" class="d-flex align-center">
                                   <v-text-field v-model="form.prices[1].price" prefix="$"></v-text-field>
-                                  <v-btn fab text @click="additem"><v-icon>mdi-plus</v-icon></v-btn>
+                                  <v-btn fab text><v-icon>mdi-plus</v-icon></v-btn>
                                 </v-col>
                               </v-row>
                             </v-expansion-panel-content>
@@ -105,7 +105,7 @@
                   <v-btn color="blue darken-1" text @click="dialog5 = false">
                     Close
                   </v-btn>
-                  <v-btn color="blue darken-1" text type="submit" @click="dialog.value = false">
+                  <v-btn color="blue darken-1" text type="submit">
                     Send
                   </v-btn>
                 </v-card-actions>
@@ -187,6 +187,9 @@ export default {
           text: error.response.data.message
         })
       }
+    },
+    ownerlogin () {
+      this.$store.dispatch('user/userlogin', this.form)
     }
   }
 }

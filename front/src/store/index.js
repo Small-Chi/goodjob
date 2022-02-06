@@ -12,9 +12,9 @@ export default new Vuex.Store({
   mutations: {
     additem (state, data) {
       state.items.push({
-        name: data,
-        edit: false,
-        model: data
+        item: data,
+        price: data,
+        edit: false
       })
     }
   },

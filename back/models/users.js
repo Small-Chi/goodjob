@@ -56,7 +56,11 @@ const userSchema = new mongoose.Schema({
         },
         price: {
           type: String
-        }
+        },
+        // index: {
+        //   type: Number,
+        //   default: 0
+        // }
       }
     ]
   },
