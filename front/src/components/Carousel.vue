@@ -14,16 +14,16 @@ export default {
     return {
       items: [
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+          src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81_220206.jpg'
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+          src: ''
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+          src: 'https://raw.githubusercontent.com/Small-Chi/goodjob/master/front/src/assets/images/LINE_ALBUM_%E5%AE%A4%E5%85%A7%E4%BD%9C%E5%93%81.jpg'
         },
         {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+          src: ''
         }
       ]
     }
