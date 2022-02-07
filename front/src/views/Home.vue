@@ -13,7 +13,8 @@
     >
       <v-img class="logo1 me-n2 ms-8" max-width="115" src="../assets/images/logo.png"></v-img>
       <div class="solgon rounded-pill ms-n5">
-      <div class="ctext1 me-7 d-flex justify-end align-center" style="height: 100%;">接案 ､ 發包 , 超好用</div></div>
+        <div class="ctext1 me-7 d-flex justify-end align-center" style="height: 100%;">接案 ､ 發包 , 超好用</div>
+      </div>
       <v-spacer></v-spacer>
     <!-- 導覽連結 -->
       <router-link to="/portfoliosList">
@@ -38,7 +39,7 @@
             </v-btn>
           </li>
           <li>
-            <v-btn depressed color="var(--color-blue)" class="memBtn">
+            <v-btn depressed color="var(--color-blue)" class="memBtn" to="/user/userfile">
               <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
               <a class="textWhite ctext1">我的作品</a>
             </v-btn>

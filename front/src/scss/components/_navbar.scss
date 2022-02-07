@@ -80,9 +80,33 @@ cursor: pointer;
 color: var(--color-lightY) !important;
 }
 
+.userList {
+  position: absolute;
+  padding: 15px;
+  top: 35px;
+  right: -50px;
+  background-color: var(--color-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: .3s;
+  filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+  .memBtn:hover .memIcon {
+    color: var(--color-lightY) !important;
+  }
+  .memBtn:hover a {
+    color: var(--color-lightY) !important;
+  }
+  .mg {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
 #user:hover .userList {
-  display: block;
-  animation: divAnimation .2s linear forwards;
+  opacity: 1;  
+  transform: translateY(10px);
 }
 
 #user {
@@ -98,8 +122,8 @@ color: var(--color-lightY) !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  display: none;
-  transition: .5s;
+  opacity: 0;
+  transition: .3s;
   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
   .memBtn:hover .memIcon {
     color: var(--color-lightY) !important;
@@ -114,8 +138,8 @@ color: var(--color-lightY) !important;
 }
 
 #owner:hover .ownerList {
-  display: block;
-  animation: divAnimation .2s linear forwards;
+  opacity: 1;  
+  transform: translateY(10px);
 }
 
 #owner {

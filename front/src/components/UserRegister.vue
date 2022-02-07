@@ -111,7 +111,7 @@
               <v-list class="list">
                 <v-form @submit.prevent="register">
                 <v-card-title>
-                  <span class="text-h5">請填寫詳細資料 , 成為接案者</span>
+                  <span class="text-h5 mx-auto">請填寫詳細資料 , 成為接案者</span>
                 </v-card-title>
                 <v-card-text>
                   <v-container>

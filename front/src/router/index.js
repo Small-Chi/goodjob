@@ -70,7 +70,7 @@ const routes = [
             meta: {
               login: true,
               admin: true,
-              title: 'goodjob | 首頁'
+              title: 'goodjob | 我的作品'
             }
           }
         ]

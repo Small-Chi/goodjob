@@ -1,0 +1,37 @@
+.contentleft {
+  background-color: var(--color-deepblue);
+  width: 84%;
+  height: 95vh;
+  margin-left: 450px;
+  margin-top: -95vh;
+  padding: 5%;
+  overflow: auto;
+  .setRow {
+    width: 1500px;
+    position: relative;
+    top: -50px;
+    left: 5%;
+  }
+  
+  .cardLine {
+    width: 450px;
+    height: 450px;
+    border: 1px dashed var(--color-white);
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .addcard {
+    border: 1px dashed var(--color-white);
+  }  
+}
+
+.cardbody {  
+  width: 50%;
+  background: white;
+  padding: 40px;
+  filter: drop-shadow(0px 0px 5px rgb(0, 0, 0));
+}
