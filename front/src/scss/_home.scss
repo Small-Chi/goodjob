@@ -1,93 +1,15 @@
 #home {  
-  background-color: var(--color-blue) !important;
-  
-  .navA {
-    height: 24px;
-    border-right: 2px solid var(--color-white);
-    a:hover {
-      color: var(--color-lightY) !important;
-    }    
-  }
-    
-  .logo1 {
-    position: relative;
-    top: -2px;
-  }
-
-  .solgon {
-    border: 1px solid var(--color-white);
-    width: 250px;
-    height: 36px;
-  } 
-  
-  .login {
-    font-size: 20px;
-    font-weight: 500;
-    border: 1px solid var(--color-white) !important;
-  }
-
-  .login:hover {
-    color: var(--color-lightY) !important;
-    border: 1px solid var(--color-lightY) !important;
-  }
-  
-  .overflowY {
-    overflow-y: none !important;
-  }
+  background-color: var(--color-blue) !important;   
 }
-
-.btn1 {
-  font-size: 20px;
-  font-weight: 500;
-  background-color: var(--color-blue) !important;
-  border: 1px solid var(--color-blue) !important;
-}
-
-.btn1:hover {
-  color: var(--color-lightY) !important;
-  background-color: var(--color-deepblue) !important;
-  border: 1px solid var(--color-deepblue) !important;
-}
-
-.btn2 {
-  font-size: 17px !important;
-  font-weight: 700;
-  color: var(--color-blue) !important;
-  border-left: 1px solid var(--color-blue);
-  border-right: 1px solid var(--color-blue);
-}
-
-.btn2:hover {
-  color: var(--color-red) !important;
-}
-
-.savebtn {
-  pointer-events: none;
-}
-
-.savebtn:hover {
-  text-decoration: underline;
-}
-
-.avatars {
-  height: 30px;
-  position: relative;
-  top: -5px;
-  cursor: pointer;  
-}
-
-.avatars:hover .down{
-  color: var(--color-lightY) !important;
-}
-
 .swiper {
   width: 100%;
   height: 100vh;
+  position: relative;
   .centerLogo { 
     position: absolute;
     top: 0;
     margin-top: 120px; 
-    width: 400px;
+    width: 300px;
     z-index: 1;
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));    
   }
@@ -98,8 +20,8 @@
   
   .centerslogan {
     position: absolute;
-    top: 300px;
-    font-size: 65px;
+    top: 280px;
+    font-size: 60px;
     font-weight: 700;
     z-index: 1;
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
@@ -131,8 +53,8 @@
   
   .goodcard {
     position: absolute;
-    width: 60%;
-    height: 30%;
+    width: 70%;
+    height: 350px;
     top: 55%;
     z-index: 1;
     display: flex;
@@ -157,8 +79,8 @@
   }
 
   .circle {
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     position: absolute;
     top: 0;
@@ -176,7 +98,7 @@
   .gText {
     margin-top: 55px;
     margin-bottom: 10px;
-    font-size: 2.3rem;
+    font-size: 2rem;
     font-weight: 500;
     color: var(--color-lightY);
   }
@@ -185,5 +107,49 @@
     color: var(--color-white); 
     padding-left: 10%;   
     padding-right: 10%;
+  }  
+}
+
+.userList {
+  position: absolute;
+  padding: 15px;
+  top: 35px;
+  right: -50px;
+  background-color: var(--color-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  transition: .5s;
+  filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+  .memBtn:hover .memIcon {
+    color: var(--color-lightY) !important;
+  }
+  .memBtn:hover a {
+    color: var(--color-lightY) !important;
+  }
+  .mg {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@keyframes divAnimation {
+  100%{
+    transform: translateY(10px);
+  }
+}
+
+#section2 {  
+  height: 100vh;  
+  .header {
+    height: 80px;
+    border-bottom: 1px solid white;
+  }
+  .solgon2 {
+    border: 1px solid var(--color-white);
+    width: 140px;
+    height: 36px;
+    position: relative;
   }
 }

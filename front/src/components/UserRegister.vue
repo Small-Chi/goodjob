@@ -1,11 +1,9 @@
 <template>
     <div class="ms-6">
-    <v-dialog max-width="600">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="rgba(0,0,0,0)" v-bind="attrs" v-on="on" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && !owner.isownerLogin">
+      <v-btn color="rgba(0,0,0,0)" @click="dialog = true" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && !owner.isownerLogin">
           <v-icon class="me-2">mdi-login-variant</v-icon>登入
         </v-btn>
-      </template>
+    <v-dialog max-width="600" v-model="dialog">
       <template v-slot:default="dialog">
         <v-card color="var(--color-white)">
           <v-card-text>
@@ -170,13 +168,14 @@
                               </template>
                             </v-expansion-panel-header>
                             <v-expansion-panel-content id="addprice">
-                              <v-row>
+                              <v-row v-for="(prices, index) in form.prices" :key="'A'+index">
                                 <v-col cols="6">
-                                  <v-text-field v-model="form.prices[0].item" placeholder="產品類別 ex.海報類"></v-text-field>
+                                  <v-text-field v-model="prices.item" placeholder="產品類別 ex.海報類"></v-text-field>
                                 </v-col>
                                 <v-col cols="6" class="d-flex align-center">
-                                  <v-text-field v-model="form.prices[1].price" prefix="$"></v-text-field>
-                                  <v-btn fab text @click="additem"><v-icon>mdi-plus</v-icon></v-btn>
+                                  <v-text-field v-model="prices.price" prefix="$"></v-text-field>
+                                  <v-btn fab text v-if="index !== 0" @click="remove(index)"><v-icon>mdi-delete-forever</v-icon></v-btn>
+                                  <v-btn fab text v-else @click="additem"><v-icon>mdi-plus</v-icon></v-btn>
                                 </v-col>
                               </v-row>
                             </v-expansion-panel-content>
@@ -223,6 +222,7 @@ import OwnerRegisters from '../components/OwnerRegister.vue'
 export default {
   data () {
     return {
+      dialog: false,
       dialog2: false,
       dialog3: false,
       dialog4: false,
@@ -303,8 +303,10 @@ export default {
       this.$store.dispatch('owner/ownerlogin', this.form)
     },
     additem () {
-      this.$store.commit('additem', this.newitem)
-      this.newitem = ''
+      this.form.prices.push({ item: '' })
+    },
+    remove (index) {
+      this.form.prices.splice(index, 1)
     }
   },
   components: { OwnerRegisters }

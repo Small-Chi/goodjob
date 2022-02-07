@@ -79,13 +79,14 @@
                               </template>
                             </v-expansion-panel-header>
                             <v-expansion-panel-content>
-                              <v-row>
+                              <v-row v-for="(prices, index) in form.prices" :key="'A'+index">
                                 <v-col cols="6">
-                                  <v-text-field v-model="form.prices[0].item" placeholder="產品類別 ex.海報類"></v-text-field>
+                                  <v-text-field v-model="prices.item" placeholder="產品類別 ex.海報類"></v-text-field>
                                 </v-col>
                                 <v-col cols="6" class="d-flex align-center">
-                                  <v-text-field v-model="form.prices[1].price" prefix="$"></v-text-field>
-                                  <v-btn fab text><v-icon>mdi-plus</v-icon></v-btn>
+                                  <v-text-field v-model="prices.price" prefix="$"></v-text-field>
+                                  <v-btn fab text v-if="index !== 0" @click="remove(index)"><v-icon>mdi-delete-forever</v-icon></v-btn>
+                                  <v-btn fab text v-else @click="additem"><v-icon>mdi-plus</v-icon></v-btn>
                                 </v-col>
                               </v-row>
                             </v-expansion-panel-content>
@@ -190,6 +191,12 @@ export default {
     },
     ownerlogin () {
       this.$store.dispatch('user/userlogin', this.form)
+    },
+    additem () {
+      this.form.prices.push({ item: '' })
+    },
+    remove (index) {
+      this.form.prices.splice(index, 1)
     }
   }
 }

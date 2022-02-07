@@ -23,6 +23,14 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style: none;
+}
+
+.v-application ul {  
+  padding-left: 0;
+}
+
 .textWhite {
   color: var(--color-white) !important;
 }

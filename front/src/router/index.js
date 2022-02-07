@@ -42,6 +42,38 @@ const routes = [
           admin: true,
           title: 'goodjob | 找案件'
         }
+      },
+      {
+        path: 'news',
+        name: 'News',
+        component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: 'goodjob | 知識庫'
+        }
+      },
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: 'goodjob | 會員專區'
+        },
+        children: [
+          {
+            path: 'userfile',
+            name: 'Userfile',
+            component: () => import(/* webpackChunkName: "userfile" */ '../views/Userfile.vue'),
+            meta: {
+              login: true,
+              admin: true,
+              title: 'goodjob | 首頁'
+            }
+          }
+        ]
       }
     ]
   }
