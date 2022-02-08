@@ -18,13 +18,68 @@
     border-radius: 10px;
     margin: 20px;
     position: relative;
+    filter: drop-shadow(0px 3px 2px rgb(0, 0, 0));
+    transition: .3s;
+  }
+
+  .v-sheet.v-card {
+    border-radius: 10px;
+  }
+
+  .card:hover {
+    transform: translateY(-20px);
   }
 
   .cardBtn {
     position: absolute;
     top: 180px;
+    right: 60px;
+    z-index: 3;
+  }
+
+  .cardBtn2 {
+    position: absolute;
+    top: 180px;
     right: 10px;
     z-index: 3;
+  }
+
+  .cardBtn3 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+  }
+
+  .cardBtn:hover  .Btn1Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn:hover  .heartNum {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn2:hover  .Btn2Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn3:hover  .Btn3Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .v-chip__content {
+    font-weight: 900;
+  }
+
+  .v-chip {
+    margin-left: 10px;
+    height: 30px !important;
+  }
+
+  .hr {
+    width: 80%;
+    height: 1px;
+    background: var(--color-white);
   }
 
   .card-item {
@@ -41,10 +96,15 @@
     justify-content: center;
     align-items: center;
   }
-        
+
+  .heartNum {
+    color: white;
+    font-weight: 700;
+  }
+  
   .addcard {
     border: 1px dashed var(--color-white);
-  } 
+  }
   
   .addcard:hover {
     transform: scale(1.1);
@@ -52,7 +112,7 @@
   }
 }
 
-.cardbody {  
+.dialogbody {  
   width: 800px;
   background: white;
   padding-top: 40px;

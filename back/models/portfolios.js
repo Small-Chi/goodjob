@@ -97,7 +97,7 @@ const portfolioSchema = new mongoose.Schema({
   }
 }, { versionKey: false })
 
-caseSchema.pre('save', function (next) {
+portfolioSchema.pre('save', function (next) {
   const data = this
   if (data.isModified('category')) {
     if (!categories[data.category.big].includes(data.category.small)) {
@@ -110,7 +110,7 @@ caseSchema.pre('save', function (next) {
   next()
 })
 
-caseSchema.pre('findOneAndUpdate', function (next) {
+portfolioSchema.pre('findOneAndUpdate', function (next) {
   const data = this._update
   if (data.isModified('category')) {
     if (!categories[data.category.big].includes(data.category.small)) {

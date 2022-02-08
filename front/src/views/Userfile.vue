@@ -2,20 +2,33 @@
   <div class="contentleft">
     <div class="row setRow">
       <div class="col-4">
+        <div class="cardLine">
+          <!-- 新增卡片按鈕 -->
+          <v-btn depressed icon class="addcard" height="100" width="100">
+            <v-icon size="50" color="var(--color-white)" @click="dialog = true">mdi-plus</v-icon>
+          </v-btn>
+        </div>
+      </div>
+      <div class="col-4">
         <div>
+          <!-- 卡片呈現 -->
           <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
-            <v-btn class="cardBtn"><v-icon>mdi-plus</v-icon></v-btn>
-            <v-img src="https://picsum.photos/300/200/?random=10"
-              height="200px">
+            <v-btn class="cardBtn" min-width="50" min-height="20" style="padding:0;" color="var(--color-red)"><v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon><div class="heartNum">0</div></v-btn>
+            <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding:0;" color="var(--color-blue)"><v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon></v-btn>
+            <v-btn class="cardBtn3" min-width="40" min-height="20" style="padding:0;" color="var(--color-blue)" @click="editPortfolio"><v-icon size="18" color="white" class="justify-content-center; Btn3Icon">mdi-pencil-outline</v-icon></v-btn>
+            <v-img src=""
+              height="200px" style="border-radius: 10px; background-color:var(--color-white)">
             </v-img>
-            <v-card-title class="ctext1 textWhite">
+            <v-card-title class="ctext1 textWhite" style="margin-left:10px">
               Top western road trips
             </v-card-title>
-            <v-card-subtitle class="textWhite">
+            <v-card-subtitle class="textWhite" style="margin-left:10px">
               $ 1000 ~ 2000
             </v-card-subtitle>
-            <hr style="color:var(--color-white); width:80%;" class="mx-auto">
+            <div class="hr mx-auto"></div>
             <v-card-actions>
+              <v-chip>平面設計</v-chip>
+              <v-chip>平面設計</v-chip>
               <v-spacer></v-spacer>
               <v-btn icon @click="show = !show" color="var(--color-white)">
                 <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
@@ -32,41 +45,26 @@
           </v-card>
         </div>
       </div>
-      <div class="col-4">
-        <div class="cardLine">
-          <v-btn depressed icon class="addcard" height="100" width="100">
-            <v-icon size="50" color="var(--color-white)" @click="dialog = true">mdi-plus</v-icon>
-          </v-btn>
-        </div>
-      </div>
     </div>
     <!-- 新增卡片的表單 -->
     <v-row justify="center">
-    <v-dialog id="modal-card"
+    <v-dialog id="modal-portfolio"
       v-model="dialog"
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
       :title="form._id.length > 0 ? '編輯商品' : '新增商品'"
-      centered
-      ok-variant='success'
-      ok-title='送出'
-      cancel-variant='danger'
-      cancel-title='取消'
-      @ok="submitModal"
-      @hidden="resetForm"
-      :ok-disabled="dialogSubmitting"
-      :cancel-disabled="dialogSubmitting"
       >
       <v-card color="var(--color-deepblue)" class="d-flex justify-center align-center">
-        <div class="cardbody">
+        <div class="dialogbody">
           <v-form>
             <v-card-title>
               <span class="text-h5 mx-auto mb-6" style="font-weight:700;color:var(--color-blue);">新增作品</span>
             </v-card-title>
+            <v-btn icon style="position: absolute; top:0px; right:0;" @click="dialog = false"><v-icon>mdi-close</v-icon></v-btn>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field label="名稱" hint="中文字長度為 1 到 10 個字" :state='state.pname'
+                  <v-text-field label="名稱" hint="中文字長度為 1 到 10 個字" :rules='inputRules1' :state='state.pname'
                     v-model="form.pname"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
@@ -111,20 +109,22 @@
               </v-row>
               <v-col cols="12">
                 <div>
-                  <v-textarea fluid solo counter :rules="rules" name="input-7-4" filled v-model="form.about" label="作品介紹 100字 以內" auto-grow class="mt-2"></v-textarea>
+                  <v-textarea fluid solo counter :rules="rules" name="input-7-4"
+                  filled v-model="form.about" label="作品介紹 100字 以內"
+                  auto-grow class="mt-2"></v-textarea>
                 </div>
               </v-col>
-              <v-radio-group v-model="row" row>
+              <v-radio-group row>
                 <v-switch
                   v-model="form.sell"
                   :label="`是否公開 ${form.sell.toString()}`"
                 ></v-switch>
                 <v-spacer></v-spacer>
                 <v-card-actions>
-                  <v-btn color="blue darken-1" text @click="dialog = false">
+                  <v-btn color="blue darken-1" text @click="dialog = false" :ok-disabled="dialogSubmitting">
                   Close
                   </v-btn>
-                    <v-btn color="blue darken-1" text type="submit" @click="dialog = false">
+                    <v-btn color="blue darken-1" text type="submit" @click="submitModal" :cancel-disabled="dialogSubmitting">
                       Send
                   </v-btn>
                 </v-card-actions>
@@ -158,7 +158,8 @@ export default {
         sell: false,
         category: { big: '', small: '' },
         description: '',
-        _id: ''
+        _id: '',
+        index: -1
       },
       categories: {
         平面設計: ['海報/DM', '書籍/手冊', '創作', 'CIS/VIS/ICON', '攝影', '產品/包裝', '插畫/漫畫', '簡報', '織品服裝設計', '其他'],
@@ -168,6 +169,10 @@ export default {
       },
       rules: [
         v => v.length <= 100 || '字數最多100'
+      ],
+      inputRules1: [
+        value => !!value || '必填',
+        value => (value && value.length <= 10) || '最多 10 個字'
       ]
     }
   },
@@ -183,7 +188,6 @@ export default {
         return
       }
       this.dialogSubmitting = true
-
       const fd = new FormData()
       for (const key in this.form) {
         if (key !== '_id') {
@@ -236,7 +240,8 @@ export default {
         sell: false,
         category: { big: '', small: '' },
         description: '',
-        _id: ''
+        _id: '',
+        index: -1
       }
     },
     editportfolio (index) {

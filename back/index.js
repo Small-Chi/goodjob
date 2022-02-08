@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import usersRouter from './routes/users.js'
 import ownersRouter from './routes/owners.js'
-// import productsRouter from './routes/products.js'
+import portfoliosRouter from './routes/portfolios.js'
 // import ordersRouter from './routes/orders.js'
 
 mongoose.connect(process.env.DB_URL, () => {
@@ -33,7 +33,7 @@ app.use((_, req, res, next) => {
 
 app.use('/users', usersRouter)
 app.use('/owners', ownersRouter)
-// app.use('/products', productsRouter)
+app.use('/users', portfoliosRouter)
 // app.use('/orders', ordersRouter)
 
 app.all('*', (req, res) => {
