@@ -1,37 +1,64 @@
 .contentleft {
   background-color: var(--color-deepblue);
-  width: 84%;
+  width: 100%;
   height: 95vh;
   margin-left: 450px;
   margin-top: -95vh;
   padding: 5%;
-  overflow: auto;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
   .setRow {
-    width: 1500px;
+    width: 800px;
     position: relative;
-    top: -50px;
-    left: 5%;
   }
   
-  .cardLine {
-    width: 450px;
-    height: 450px;
-    border: 1px dashed var(--color-white);
+  .card {
+    width: 350px;
     border-radius: 10px;
+    margin: 20px;
+    position: relative;
+  }
+
+  .cardBtn {
+    position: absolute;
+    top: 180px;
+    right: 10px;
+    z-index: 3;
+  }
+
+  .card-item {
+    width: 100%;
+  }
+
+  .cardLine {
+    width: 350px;
+    height: 340px;
+    border: 1px dashed var(--color-white);
+    border-radius: 5px;
     margin: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+        
   .addcard {
     border: 1px dashed var(--color-white);
-  }  
+  } 
+  
+  .addcard:hover {
+    transform: scale(1.1);
+    transition: .5s;
+  }
 }
 
 .cardbody {  
-  width: 50%;
+  width: 800px;
   background: white;
-  padding: 40px;
+  padding-top: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 40px;
   filter: drop-shadow(0px 0px 5px rgb(0, 0, 0));
+  overflow-y: auto;
 }

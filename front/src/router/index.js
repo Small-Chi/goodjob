@@ -19,7 +19,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
         meta: {
           login: true,
-          admin: true,
           title: 'goodjob | 首頁'
         }
       },
@@ -29,7 +28,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "userlogin" */ '../views/PortfoliosList.vue'),
         meta: {
           login: true,
-          admin: true,
           title: 'goodjob | 找專業'
         }
       },
@@ -39,7 +37,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "ownerlogin" */ '../views/CaseList.vue'),
         meta: {
           login: true,
-          admin: true,
           title: 'goodjob | 找案件'
         }
       },
@@ -49,7 +46,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
         meta: {
           login: true,
-          admin: true,
           title: 'goodjob | 知識庫'
         }
       },
@@ -59,17 +55,24 @@ const routes = [
         component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
         meta: {
           login: true,
-          admin: true,
           title: 'goodjob | 會員專區'
         },
         children: [
+          {
+            path: 'userself',
+            name: 'Userself',
+            component: () => import(/* webpackChunkName: "userself" */ '../views/Userself.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 會員資料'
+            }
+          },
           {
             path: 'userfile',
             name: 'Userfile',
             component: () => import(/* webpackChunkName: "userfile" */ '../views/Userfile.vue'),
             meta: {
               login: true,
-              admin: true,
               title: 'goodjob | 我的作品'
             }
           }

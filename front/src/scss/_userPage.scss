@@ -1,4 +1,7 @@
-#userPage {  
+#userPage { 
+  body {
+    background-color: var(--color-blue);
+  } 
   background-color: var(--color-blue) !important;
   .Usersolgon {
     border: 1px solid var(--color-white);
@@ -8,16 +11,16 @@
     top: 8px;
   }
   .sidebar {
-    width: 445px;
+    width: 400px;
     height: 100vh;
     filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
     background: var(--color-blue);
     position: fixed;
   }
   .content {
-    width: 80%;
+    width: 77%;
     height: 100vh;
     background: var(--color-deepblue);
-    margin-left: 445px;
+    margin-left: 400px;
   }
 }

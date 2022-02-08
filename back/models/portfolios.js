@@ -13,8 +13,7 @@ const portfolioSchema = new mongoose.Schema({
     required: [true, '作品名為必填']
   },  
   size: {
-    type: String,
-    required: [true, '規格尺寸為必填']
+    type: String
   },
   sunit: {
     type: String,
@@ -31,13 +30,11 @@ const portfolioSchema = new mongoose.Schema({
     }
   },
   workingday: {
-    type: String,
-    required: [true, '製作天數為必填']
+    type: String
   },
   price: {
     type: Number,
-    min: [0, '價格格式不正確'],
-    required: [true, '作品價格為必填']
+    min: [0, '價格格式不正確']
   },
   image: {
     type: String

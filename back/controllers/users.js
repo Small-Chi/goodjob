@@ -69,7 +69,6 @@ export const getInfo = (req, res) => {
   try {
     const result = req.user.toObject()
     delete result.tokens
-    result.cart = result.cart.length
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })

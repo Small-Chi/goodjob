@@ -43,3 +43,17 @@ export const ownerlogout = async ({ commit, state }) => {
     })
   }
 }
+
+export const ownergetInfo = async ({ commit, state }) => {
+  if (state.token.length === 0) return
+  try {
+    const { data } = await api.get('/owners/me', {
+      headers: {
+        authorization: 'Bearer ' + state.token
+      }
+    })
+    commit('getInfo', data.result)
+  } catch (error) {
+    commit('logout')
+  }
+}

@@ -16,3 +16,14 @@ export const logout = (state, data) => {
   state.email = ''
   state.cart = 0
 }
+
+export const getInfo = (state, data) => {
+  state.account = data.account
+  state.role = data.role
+  state.email = data.email
+  state.cart = data.cart
+}
+
+export const extend = (state, data) => {
+  state.token = data
+}

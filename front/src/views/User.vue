@@ -36,7 +36,7 @@
         <div class="userList">
           <ul>
           <li>
-            <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user">
+            <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/userself">
               <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
               <a class="textWhite ctext1">會員資訊</a>
             </v-btn>

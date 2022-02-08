@@ -1,8 +1,8 @@
 <template>
     <div class="ms-6">
       <v-btn color="rgba(0,0,0,0)" @click="dialog = true" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && !owner.isownerLogin">
-          <v-icon class="me-2">mdi-login-variant</v-icon>登入
-        </v-btn>
+        <v-icon class="me-2">mdi-login-variant</v-icon>登入
+      </v-btn>
     <v-dialog max-width="600" v-model="dialog">
       <template v-slot:default="dialog">
         <v-card color="var(--color-white)">
