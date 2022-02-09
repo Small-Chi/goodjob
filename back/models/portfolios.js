@@ -16,25 +16,16 @@ const portfolioSchema = new mongoose.Schema({
     type: String
   },
   sunit: {
-    type: String,
-    enum: {
-      values: ['mm', 'cm', 'm', '平方公尺', '坪', '其他'],
-      message: '單位分類不存在，請選「其他」'
-    }
+    type: String
   },
   technology: {
     type: String,
-    enum: {
-      values: ['Illustrator', 'Photoshop', 'Indesign', 'PowerPoint', 'Word', 'Figma', 'JS', 'CSS', 'JQ', 'HTML', 'SCSS', 'Vue', 'Node', 'Premiere', 'After Effects', 'Lightroom', 'Final Cut ProX', 'Sketch Up', 'AutoCAD', 'Rhino', 'V-ray', '3D MAX', 'Revit', 'Lumion', '其他'],
-      message: '請選擇擅長工具'
-    }
   },
   workingday: {
     type: String
   },
   price: {
-    type: Number,
-    min: [0, '價格格式不正確']
+    type: Number
   },
   image: {
     type: String
@@ -44,17 +35,11 @@ const portfolioSchema = new mongoose.Schema({
     default: false
   },
   category: {
-    type: {
-      big: {
-        type: String,
-        enum: {
-          values: Object.keys(categories),
-          message: '作品分類不存在'
-        }
-      }, 
-      small: {
-        type: [String],
-      },
+    big: {
+      type: String
+    },
+    small: {
+      type: String
     }
   },   
   // bigcategory: {
@@ -93,7 +78,8 @@ const portfolioSchema = new mongoose.Schema({
   //   }
   // },
   description: {
-    type: String
+    type: String,
+    maxlength: [100, '作品介紹字數過多'],
   }
 }, { versionKey: false })
 

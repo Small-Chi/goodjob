@@ -9,36 +9,36 @@
           </v-btn>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4" v-for="( item, index ) in portfolios" :key="index">
         <div>
           <!-- 卡片呈現 -->
           <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
             <v-btn class="cardBtn" min-width="50" min-height="20" style="padding:0;" color="var(--color-red)"><v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon><div class="heartNum">0</div></v-btn>
             <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding:0;" color="var(--color-blue)"><v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon></v-btn>
-            <v-btn class="cardBtn3" min-width="40" min-height="20" style="padding:0;" color="var(--color-blue)" @click="editPortfolio"><v-icon size="18" color="white" class="justify-content-center; Btn3Icon">mdi-pencil-outline</v-icon></v-btn>
-            <v-img src=""
-              height="200px" style="border-radius: 10px; background-color:var(--color-white)">
-            </v-img>
+            <v-btn class="cardBtn3" min-width="40" min-height="20" style="padding:0;" color="var(--color-blue)" @click="editPortfolio(index)"><v-icon size="18" color="white" class="justify-content-center; Btn3Icon">mdi-pencil-outline</v-icon></v-btn>
+              <v-img :src="item.image"
+                height="200px" style="border-radius: 10px; background-color:var(--color-white)">
+              </v-img>
             <v-card-title class="ctext1 textWhite" style="margin-left:10px">
-              Top western road trips
+              {{ item.pname }}
             </v-card-title>
             <v-card-subtitle class="textWhite" style="margin-left:10px">
-              $ 1000 ~ 2000
+              $ {{ item.price }}
             </v-card-subtitle>
             <div class="hr mx-auto"></div>
             <v-card-actions>
-              <v-chip>平面設計</v-chip>
-              <v-chip>平面設計</v-chip>
+              <v-chip>{{ item.big }}</v-chip>
+              <v-chip>{{ item.small }}</v-chip>
               <v-spacer></v-spacer>
               <v-btn icon @click="show = !show" color="var(--color-white)">
                 <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
               </v-btn>
             </v-card-actions>
             <v-expand-transition>
-              <div v-show="show">
+              <div v-if="show">
                 <v-divider></v-divider>
                 <v-card-text class="textWhite">
-                  I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                  {{ item.description }}
                 </v-card-text>
               </div>
             </v-expand-transition>
@@ -64,7 +64,7 @@
             <v-btn icon style="position: absolute; top:0px; right:0;" @click="dialog = false"><v-icon>mdi-close</v-icon></v-btn>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field label="名稱" hint="中文字長度為 1 到 10 個字" :rules='inputRules1' :state='state.pname'
+                  <v-text-field label="名稱" hint="中文字長度為 1 到 10 個字" :rules='inputRules1'
                     v-model="form.pname"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
@@ -109,8 +109,8 @@
               </v-row>
               <v-col cols="12">
                 <div>
-                  <v-textarea fluid solo counter :rules="rules" name="input-7-4"
-                  filled v-model="form.about" label="作品介紹 100字 以內"
+                  <v-textarea fluid solo counter name="input-7-4" :rules="rules"
+                  filled v-model="form.description" label="作品介紹 100字 以內"
                   auto-grow class="mt-2"></v-textarea>
                 </div>
               </v-col>
@@ -121,10 +121,10 @@
                 ></v-switch>
                 <v-spacer></v-spacer>
                 <v-card-actions>
-                  <v-btn color="blue darken-1" text @click="dialog = false" :ok-disabled="dialogSubmitting">
+                  <v-btn color="blue darken-1" text @click="resetForm">
                   Close
                   </v-btn>
-                    <v-btn color="blue darken-1" text type="submit" @click="submitModal" :cancel-disabled="dialogSubmitting">
+                    <v-btn color="blue darken-1" text type="submit" @click="submitModal" :disabled="dialogSubmitting">
                       Send
                   </v-btn>
                 </v-card-actions>
@@ -143,17 +143,20 @@ export default {
     return {
       dialogSubmitting: false,
       dialog: false,
+      reset: false,
       notifications: false,
       sound: true,
       widgets: false,
       show: false,
+      valid: true,
+      portfolios: [],
       form: {
         pname: '',
         size: '',
         sunit: '',
         technology: '',
         workingday: '',
-        price: null,
+        price: '',
         image: null,
         sell: false,
         category: { big: '', small: '' },
@@ -168,7 +171,8 @@ export default {
         手作設計: ['紙藝', '皮件', '木質', '棉/麻', '花草植栽', '羊毛', '陶瓷', '編織', '其他']
       },
       rules: [
-        v => v.length <= 100 || '字數最多100'
+        v => !!v || '必填',
+        v => (v && v.length <= 100) || '字數最多100'
       ],
       inputRules1: [
         value => !!value || '必填',
@@ -178,31 +182,33 @@ export default {
   },
   methods: {
     async submitModal (event) {
+      this.dialogSubmitting = true
       event.preventDefault()
-      if (!this.state.pname) {
+      if (!this.form.pname) {
         this.$swal({
           icon: 'error',
           title: '錯誤',
-          text: '缺少必填欄位'
+          text: '缺少名稱或作品照片'
         })
         return
       }
-      this.dialogSubmitting = true
       const fd = new FormData()
       for (const key in this.form) {
         if (key !== '_id') {
           fd.append(key, this.form[key])
         }
       }
-
       try {
-        if (this.form._id.length === 0) {
+        if (!this.form._id) {
+          console.log('增加商品')
+          console.log(this.user.token)
           const { data } = await this.api.post('/portfolios', fd, {
             headers: {
               authorization: 'Bearer ' + this.user.token
             }
           })
           this.portfolios.push(data.result)
+          console.log(this.portfolios)
         } else {
           const { data } = await this.api.patch('/portfolios/' + this.form._id, fd, {
             headers: {
@@ -210,21 +216,25 @@ export default {
             }
           })
           this.portfolios[this.form.index] = { ...this.form, image: data.result.image }
-          this.$refs.table.refresh()
+          // this.$refs.table.refresh()
         }
-
-        this.$bvModal.hide('modal-portfolio')
+        this.$swal({
+          icon: 'success',
+          title: '成功',
+          text: '新增成功'
+        })
+        this.getPortfolio()
       } catch (error) {
+        console.log(error)
         this.$swal({
           icon: 'error',
           title: '錯誤',
           text: error.response.data.message
         })
       }
-
-      this.dialogSubmitting = false
     },
     resetForm (event) {
+      this.dialog = false
       if (this.dialogSubmitting) {
         event.preventDefault()
         return
@@ -235,7 +245,7 @@ export default {
         sunit: '',
         technology: '',
         workingday: '',
-        price: null,
+        price: '',
         image: null,
         sell: false,
         category: { big: '', small: '' },
@@ -247,13 +257,40 @@ export default {
     editportfolio (index) {
       this.form = { ...this.portfolios[index], image: null, index }
       this.$bvModal.show('modal-portfolio')
+    },
+    async getPortfolio () {
+      try {
+        const { data } = await this.api.get('/portfolios', {
+          headers: {
+            authorization: 'Bearer ' + this.user.token
+          }
+        })
+        this.portfolios = data.result
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: '取得商品失敗'
+        })
+      }
     }
   },
-  computed: {
-    state () {
-      return {
-        pname: this.form.pname.length === 0 ? null : true
-      }
+  async created () {
+    try {
+      const { data } = await this.api.get('/portfolios', {
+        headers: {
+          authorization: 'Bearer ' + this.user.token
+        }
+      })
+      this.portfolios = data.result
+      console.log(this.portfolios)
+    } catch (error) {
+      console.log(error)
+      this.$swal({
+        icon: 'error',
+        title: '錯誤',
+        text: '取得商品失敗'
+      })
     }
   }
 }

@@ -5,6 +5,7 @@ export const create = async (req, res) => {
     const result = await portfolios.create({ ...req.body, image: req.file.path })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
+    console.log(error)
     if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       res.status(400).send({ success: false, message: error.errors[key].message })
@@ -16,7 +17,7 @@ export const create = async (req, res) => {
 
 export const getPortfolios = async (req, res) => {
   try {
-    const result = await portfolios.find({ sell: true })
+    const result = await portfolios.find({})
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })

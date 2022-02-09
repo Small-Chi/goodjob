@@ -33,7 +33,7 @@ app.use((_, req, res, next) => {
 
 app.use('/users', usersRouter)
 app.use('/owners', ownersRouter)
-app.use('/users', portfoliosRouter)
+app.use('/portfolios', portfoliosRouter)
 // app.use('/orders', ordersRouter)
 
 app.all('*', (req, res) => {

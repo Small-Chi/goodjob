@@ -1,7 +1,7 @@
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
 import users from '../models/users.js'
-// import products from '../models/products.js'
+// import portfolios from '../models/portfolios.js'
 // 註冊
 export const register = async (req, res) => {
   try {
