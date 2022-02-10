@@ -21,10 +21,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await users.findOne(
-      { account: req.body.account, password: md5(req.body.password) },
-      '-password'
-    )
+    const user = await users.findOne({ account: req.body.account, password: md5(req.body.password) }, '-password')
     if (user) {
       const token = jwt.sign({ _id: user._id.toString() }, process.env.SECRET, { expiresIn: '7 days' })
       user.tokens.push(token)

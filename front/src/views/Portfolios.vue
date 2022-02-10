@@ -9,6 +9,7 @@
           </v-btn>
         </div>
       </div>
+      <!-- 要長出卡片的迴圈 -->
       <div class="col-4" v-for="(item, index) in portfolios" :key="index">
         <div>
           <!-- 卡片呈現 -->

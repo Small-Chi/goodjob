@@ -42,7 +42,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/userfile">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">我的作品</a>
                 </v-btn>

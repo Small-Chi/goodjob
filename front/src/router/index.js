@@ -68,9 +68,9 @@ const routes = [
             }
           },
           {
-            path: 'userfile',
-            name: 'Userfile',
-            component: () => import(/* webpackChunkName: "userfile" */ '../views/Userfile.vue'),
+            path: 'portfolios',
+            name: 'Portfolios',
+            component: () => import(/* webpackChunkName: "Portfolios" */ '../views/Portfolios.vue'),
             meta: {
               login: true,
               title: 'goodjob | 我的作品'

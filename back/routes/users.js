@@ -7,7 +7,7 @@ import {
   login,
   logout,
   extend,
-  getInfo,
+  getInfo
   // addCart,
   // getCart,
   // updateCart

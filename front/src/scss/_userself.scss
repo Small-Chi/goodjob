@@ -1,6 +1,6 @@
 #userself {
   background-color: var(--color-deepblue);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  // border: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   height: 95vh;
   margin-left: 450px;
@@ -11,8 +11,8 @@
   justify-content: start;
   color: var(--color-white);
   .username {
-    height: 150px;
-    font-size: 55px;
+    height: 100px;
+    font-size: 45px;
     font-weight: 600;
     // border: 1px solid white;
     margin-right: 80px;
@@ -22,7 +22,7 @@
   .username::after {
     content: '';
     width: 100%;
-    height: 75px;
+    height: 65px;
     border-bottom: 1px solid var(--color-white);
     margin-right: 30px;
     position: absolute;
@@ -45,7 +45,7 @@
     flex-wrap: wrap;
   }
   .num {
-    font-size: 55px;
+    font-size: 45px;
   }
   .numtitle {
     font-size: 24px;
@@ -55,14 +55,33 @@
     position: relative;
     top: 0;
     left: -400px;
-    width: 1200px;
+    width: 80%;
     height: 150px;
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
+    // background-color: rgb(182, 119, 119);
     .main {
-      width: 100%;
-      background-color: red;
+      width: 90%;
+      // background-color: rgb(116, 50, 75);
+      // 內文字級
+      font-size: 24px;
+      .pricesdiv {
+        border: 1px solid var(--color-white);
+        margin-left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+    .editBtn {
+      width: 60px !important;
+      height: 60px !important;
+    }
+
+    .editBtn:hover .editIcon {
+      color: var(--color-lightY) !important;
     }
   }
 }
