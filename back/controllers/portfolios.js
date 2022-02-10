@@ -42,11 +42,53 @@ export const getPortfolioById = async (req, res) => {
 }
 
 export const updatePortfolioById = async (req, res) => {
+  console.log(req.body)
   const data = {
-    name: req.body.name,
+    pname: req.body.pname,
+    size: req.body.size,
+    sunit: req.body.sunit,
+    technology: req.body.technology,
+    workingday: req.body.workingday,
     price: req.body.price,
-    description: req.body.description,
     sell: req.body.sell,
-    categoey: req.body.categoey
+    category: req.body.category,
+    description: req.body.description
+  }
+  console.log(data)
+  if (req.file) {
+    data.image = req.file.path
+  }
+  try {
+    const result = await portfolios.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    console.log(result)
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    if (error.name === 'CastError') {
+      console.log(error)
+      res.status(404).send({ success: false, message: '找不到' })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      res.status(400).send({ success: false, message: error.errors[key].message })
+    } else {
+      console.log(error)
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
+
+export const deletePortfolio = async (req, res) => {
+  console.log('刪除項目')
+  try {
+    await portfolios.findByIdAndDelete(req.params.id)
+    res.status(200).send({ success: true, message: '' })
+  } catch (error) {
+    console.log('刪除失敗錯誤')
+    if (error.name === 'CastError') {
+      console.log(error)
+      res.status(404).send({ success: false, message: '找不到項目' })
+    } else {
+      console.log(error)
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
   }
 }

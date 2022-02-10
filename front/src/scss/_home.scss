@@ -1,23 +1,23 @@
-#home {  
-  background-color: var(--color-blue) !important;   
+#home {
+  background-color: var(--color-blue) !important;
 }
 .swiper {
   width: 100%;
   height: 100vh;
   position: relative;
-  .centerLogo { 
+  .centerLogo {
     position: absolute;
     top: 0;
-    margin-top: 120px; 
+    margin-top: 120px;
     width: 300px;
     z-index: 1;
-    filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));    
+    filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
   }
 
   .centerLogo:hover {
     transform: rotate(-10deg);
   }
-  
+
   .centerslogan {
     position: absolute;
     top: 280px;
@@ -26,7 +26,7 @@
     z-index: 1;
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
   }
-  
+
   .centerslogan2 {
     position: absolute;
     top: 450px;
@@ -35,7 +35,7 @@
     z-index: 1;
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
   }
-  
+
   .dark {
     width: 100%;
     height: 100vh;
@@ -44,17 +44,17 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
-  
+
   .center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .goodcard {
     position: absolute;
     width: 70%;
-    height: 350px;
+    // height: 350px;
     top: 55%;
     z-index: 1;
     display: flex;
@@ -64,7 +64,7 @@
 
   .gCard {
     width: 25%;
-    height: 300px;
+    // height: 300px;
     background: var(--color-deepblue);
     position: relative;
     filter: drop-shadow(0px 0px 3px rgb(255, 255, 255));
@@ -73,7 +73,7 @@
     flex-wrap: wrap;
   }
 
-  .gCard:hover {    
+  .gCard:hover {
     transform: translateY(-25px);
     box-shadow: 0 20px 20px 1px rgba(0, 0, 0, 0.8);
   }
@@ -85,7 +85,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background: var(--color-white);
     z-index: 1;
     display: flex;
@@ -104,14 +104,14 @@
   }
   p {
     font-size: 24px;
-    color: var(--color-white); 
-    padding-left: 10%;   
+    color: var(--color-white);
+    padding-left: 10%;
     padding-right: 10%;
-  }  
+  }
 }
 
-#section2 {  
-  height: 100vh;  
+#section2 {
+  height: 100vh;
   .header {
     height: 80px;
     border-bottom: 1px solid white;

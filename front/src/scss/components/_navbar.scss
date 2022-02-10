@@ -4,9 +4,9 @@
   border-right: 2px solid var(--color-white);
   a:hover {
     color: var(--color-lightY) !important;
-  }    
+  }
 }
-  
+
 .logo1 {
   position: relative;
   top: 2px;
@@ -18,7 +18,7 @@
   height: 36px;
   position: relative;
   top: 8px;
-} 
+}
 
 .login {
   font-size: 20px;
@@ -37,47 +37,47 @@
 }
 
 .btn1 {
-font-size: 20px;
-font-weight: 500;
-background-color: var(--color-blue) !important;
-border: 1px solid var(--color-blue) !important;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: var(--color-blue) !important;
+  border: 1px solid var(--color-blue) !important;
 }
 
 .btn1:hover {
-color: var(--color-lightY) !important;
-background-color: var(--color-deepblue) !important;
-border: 1px solid var(--color-deepblue) !important;
+  color: var(--color-lightY) !important;
+  background-color: var(--color-deepblue) !important;
+  border: 1px solid var(--color-deepblue) !important;
 }
 
 .btn2 {
-font-size: 17px !important;
-font-weight: 700;
-color: var(--color-blue) !important;
-border-left: 1px solid var(--color-blue);
-border-right: 1px solid var(--color-blue);
+  font-size: 17px !important;
+  font-weight: 700;
+  color: var(--color-blue) !important;
+  border-left: 1px solid var(--color-blue);
+  border-right: 1px solid var(--color-blue);
 }
 
 .btn2:hover {
-color: var(--color-red) !important;
+  color: var(--color-red) !important;
 }
 
 .savebtn {
-pointer-events: none;
+  pointer-events: none;
 }
 
 .savebtn:hover {
-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .avatars {
-height: 30px;
-position: relative;
-top: 5px;
-cursor: pointer;  
+  height: 30px;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
 }
 
-.avatars:hover .down{
-color: var(--color-lightY) !important;
+.avatars:hover .down {
+  color: var(--color-lightY) !important;
 }
 
 .userList {
@@ -89,8 +89,7 @@ color: var(--color-lightY) !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: .3s;
+  display: none;
   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
   .memBtn:hover .memIcon {
     color: var(--color-lightY) !important;
@@ -105,12 +104,12 @@ color: var(--color-lightY) !important;
 }
 
 #user:hover .userList {
-  opacity: 1;  
-  transform: translateY(10px);
+  display: block;
+  animation: divAnimation 0.3s linear forwards;
 }
 
 #user {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 
 .ownerList {
@@ -122,8 +121,7 @@ color: var(--color-lightY) !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: .3s;
+  display: none;
   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
   .memBtn:hover .memIcon {
     color: var(--color-lightY) !important;
@@ -138,10 +136,16 @@ color: var(--color-lightY) !important;
 }
 
 #owner:hover .ownerList {
-  opacity: 1;  
-  transform: translateY(10px);
+  display: block;
+  animation: divAnimation 0.3s linear forwards;
 }
 
 #owner {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+}
+
+@keyframes divAnimation {
+  100% {
+    transform: translateY(10px);
+  }
 }

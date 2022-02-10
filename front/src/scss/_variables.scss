@@ -1,19 +1,19 @@
 :root {
-  --color-blue: #282F42;
-  --color-deepblue: #1F2431;
+  --color-blue: #282f42;
+  --color-deepblue: #1f2431;
   --color-lightblue: #374058;
-  --color-white: #CDC6BC;
-  --color-deepwhite: #B1AEA9;
-  --color-lightY: #FFBD5E;
-  --color-deepY: #F08D00;
-  --color-red: #FF4757;
+  --color-white: #cdc6bc;
+  --color-deepwhite: #b1aea9;
+  --color-lightY: #ffbd5e;
+  --color-deepY: #f08d00;
+  --color-red: #ff4757;
 }
 
 * {
-  transition: .5s;
+  transition: 0.5s;
 }
 
-body {  
+body {
   .ctext1 {
     font-size: 20px;
     font-weight: 500;
@@ -28,7 +28,7 @@ li {
   list-style: none;
 }
 
-.v-application ul {  
+.v-application ul {
   padding-left: 0;
 }
 
@@ -38,4 +38,21 @@ li {
 
 .textBlue {
   color: var(--color-blue) !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-blue);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-deepblue);
+  border-radius: 30px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-lightblue);
 }
