@@ -7,7 +7,7 @@
         hide-on-scroll
         prominent
         scroll-target="#scrolling-techniques-4"
-        max-height="60"
+        max-height="70"
         class="textWhite"
         style="border-bottom: 1px solid var(--color-white); z-index: 2"
       >
@@ -169,13 +169,13 @@
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>
-        <v-btn color="rgba(0,0,0,0)" width="110" class="textWhite login me-8" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
-          登出
+          <!-- 登出 -->
         </v-btn>
-        <v-btn color="rgba(0,0,0,0)" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
-          登出
+          <!-- 登出 -->
         </v-btn>
       </v-app-bar>
       <v-sheet id="scrolling-techniques-4" class="overflow-y-auto" max-height="100vh">

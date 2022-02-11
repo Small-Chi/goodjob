@@ -7,7 +7,7 @@
         hide-on-scroll
         prominent
         scroll-target="#scrolling-techniques-4"
-        max-height="60"
+        max-height="70"
         class="textWhite"
         style="border-bottom: 1px solid var(--color-white); z-index: 2"
       >
@@ -166,13 +166,13 @@
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>
-        <v-btn color="rgba(0,0,0,0)" width="110" class="textWhite login me-8" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
-          登出
+          <!-- 登出 -->
         </v-btn>
-        <v-btn color="rgba(0,0,0,0)" width="110" class="textWhite login me-8" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
-          登出
+          <!-- 登出 -->
         </v-btn>
       </v-app-bar>
       <v-sheet id="scrolling-techniques-4" class="overflow-y-auto" max-height="100vh">
@@ -197,7 +197,7 @@
                   <span class="gText">精準獵才</span>
                   <p>簡易操作的分類方式，促使需求一目了然，幫助您更快找到適合的人選及案件。</p>
                 </v-col>
-                <v-col class="gCard" style="margin-left: 10%; margin-right: 10%">
+                <v-col class="gCard">
                   <div class="circle">
                     <v-icon class="homeIcon" size="60">mdi-trending-up</v-icon>
                   </div>

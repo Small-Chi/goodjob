@@ -55,7 +55,7 @@
     position: absolute;
     width: 70%;
     // height: 350px;
-    top: 55%;
+    top: 58%;
     z-index: 1;
     display: flex;
     justify-content: space-around;
@@ -64,13 +64,15 @@
 
   .gCard {
     width: 25%;
-    // height: 300px;
+    min-height: 250px;
     background: var(--color-deepblue);
     position: relative;
     filter: drop-shadow(0px 0px 3px rgb(255, 255, 255));
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .gCard:hover {
@@ -86,7 +88,7 @@
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--color-white);
+    background: var(--color-lightY);
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -98,12 +100,13 @@
   .gText {
     margin-top: 55px;
     margin-bottom: 10px;
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: var(--color-lightY);
   }
   p {
-    font-size: 24px;
+    font-size: 16px;
+    line-height: 2rem;
     color: var(--color-white);
     padding-left: 10%;
     padding-right: 10%;

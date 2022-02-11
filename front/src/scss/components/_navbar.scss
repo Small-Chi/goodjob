@@ -1,6 +1,6 @@
 .navA {
   position: relative;
-  top: 10px;
+  top: 20px;
   border-right: 2px solid var(--color-white);
   a:hover {
     color: var(--color-lightY) !important;
@@ -9,27 +9,28 @@
 
 .logo1 {
   position: relative;
-  top: 2px;
-}
-
-.solgon {
-  border: 1px solid var(--color-white);
-  width: 250px;
-  height: 36px;
-  position: relative;
   top: 8px;
 }
 
+.solgon {
+  // border: 1px solid var(--color-white);
+  width: 210px;
+  height: 36px;
+  position: relative;
+  top: 13px;
+}
+
+// 登入紐
 .login {
   font-size: 20px;
   font-weight: 500;
-  border: 1px solid var(--color-white) !important;
-  margin-top: 8px;
+  // border: 1px solid var(--color-white) !important;
+  margin-top: 13px;
 }
 
 .login:hover {
   color: var(--color-lightY) !important;
-  border: 1px solid var(--color-lightY) !important;
+  // border: 1px solid var(--color-lightY) !important;
 }
 
 .overflowY {
@@ -72,7 +73,7 @@
 .avatars {
   height: 30px;
   position: relative;
-  top: 5px;
+  top: 11px;
   cursor: pointer;
 }
 

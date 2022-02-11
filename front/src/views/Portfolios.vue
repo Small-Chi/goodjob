@@ -37,8 +37,10 @@
             <v-card-subtitle class="textWhite" style="margin-left: 10px">$ {{ item.price }}</v-card-subtitle>
             <div class="hr mx-auto"></div>
             <v-card-actions>
-              <v-chip>{{ item.big }}</v-chip>
-              <v-chip>{{ item.small }}</v-chip>
+              <v-chip>{{ item.category.big }}</v-chip>
+              <v-chip style="color: var(--color-white); background: var(--color-lightblue); border: 1px solid var(--color-white)">
+                {{ item.category.small }}
+              </v-chip>
               <v-spacer></v-spacer>
               <v-btn icon @click="show = !show" color="var(--color-white)">
                 <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
@@ -240,6 +242,10 @@
             fd.append(key, this.form[key])
           }
         }
+        // 大類別裡有小類別的取法
+        for (const key in this.form.category) {
+          fd.append(`category[${key}]`, this.form.category[key])
+        }
         try {
           if (!this.form._id) {
             console.log('增加商品')
@@ -275,7 +281,6 @@
         }
       },
       editPortfolio(index) {
-        console.log('ssss')
         this.form = {
           // ...this.prtfolios[index], index
           pname: this.portfolios[index].pname,
