@@ -1,0 +1,165 @@
+.listswiper {
+  background: var(--color-deepbule);
+  width: 80%;
+  height: 400px;
+  margin-top: 50px;
+  border-radius: 10px;
+  position: relative;
+  .card {
+    width: 350px;
+    border-radius: 10px;
+    margin: 20px;
+    position: relative;
+    filter: drop-shadow(0px 3px 2px rgb(0, 0, 0));
+    transition: 0.3s;
+  }
+
+  .v-sheet.v-card {
+    border-radius: 10px;
+  }
+
+  .card:hover {
+    transform: translateY(-20px);
+  }
+
+  .cardBtn {
+    position: absolute;
+    top: 180px;
+    right: 60px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .cardBtn2 {
+    position: absolute;
+    top: 180px;
+    right: 10px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .cardBtn3 {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
+  }
+
+  .cardBtn4 {
+    position: absolute;
+    top: 215px;
+    right: 60px;
+    z-index: 3;
+  }
+
+  .sell {
+    height: 20px !important;
+    line-height: 20px;
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid var(--color-white);
+  }
+
+  .cardBtn:hover .Btn1Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn:hover .heartNum {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn2:hover .Btn2Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn3:hover .Btn3Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .cardBtn4:hover .Btn4Icon {
+    color: var(--color-lightY) !important;
+  }
+
+  .v-chip__content {
+    font-weight: 900;
+  }
+
+  .v-chip {
+    margin-left: 10px;
+    height: 30px !important;
+  }
+
+  .hr {
+    width: 80%;
+    height: 1px;
+    background: var(--color-white);
+  }
+
+  .card-item {
+    width: 100%;
+  }
+
+  .cardLine {
+    width: 350px;
+    height: 340px;
+    border: 1px dashed var(--color-white);
+    border-radius: 5px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardLine:hover {
+    border: 1px dashed var(--color-lightY);
+  }
+
+  .cardLine:hover .addcard {
+    border: 1px dashed var(--color-lightY);
+    transform: scale(1.1);
+    transition: 0.5s;
+  }
+
+  .cardLine:hover .addpuls {
+    color: var(--color-lightY) !important;
+  }
+
+  .heartNum {
+    color: white;
+    font-weight: 700;
+  }
+
+  .addcard {
+    border: 1px dashed var(--color-white);
+  }
+
+  .addpuls {
+    color: var(--color-white) !important;
+  }
+
+  .swiper-button-prev {
+    position: absolute;
+    top: 190px;
+    left: 110px;
+  }
+
+  .swiper-button-next {
+    position: absolute;
+    top: 190px;
+    right: 110px;
+  }
+}
+
+.dialogbody {
+  width: 800px;
+  background: white;
+  padding-top: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 40px;
+  filter: drop-shadow(0px 0px 5px rgb(0, 0, 0));
+  overflow-y: auto;
+}

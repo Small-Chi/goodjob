@@ -180,7 +180,12 @@
           <!-- 內容 -->
           <div class="psidebar"></div>
           <div class="content"></div>
-          <div class="main"></div>
+          <div class="main">
+            <v-avatar size="100" class="me-2 avatarSwipwer">
+              <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
+            </v-avatar>
+            <PListSwiper />
+          </div>
         </v-container>
       </v-sheet>
     </v-card>
@@ -192,8 +197,9 @@
 
 <script>
   import UserRegisters from '../components/UserRegister.vue'
+  import PListSwiper from '../components/PListSwiper.vue'
   export default {
-    components: { UserRegisters },
+    components: { UserRegisters, PListSwiper },
     computed: {
       user() {
         return this.$store.getters['user/user']
