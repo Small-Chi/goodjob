@@ -23,9 +23,6 @@
         <router-link to="/caseList">
           <div class="navA d-flex align-center"><a class="textWhite ctext1 px-5">找案件</a></div>
         </router-link>
-        <router-link to="/news">
-          <div class="navA d-flex align-center"><a class="textWhite ctext1 px-5">知識加值庫</a></div>
-        </router-link>
         <!-- 登入 -->
         <UserRegisters />
         <div class="avatars me-6" v-if="user.isuserLogin" id="user">
@@ -80,7 +77,7 @@
                   </a>
                 </v-btn>
               </li>
-              <li>
+              <!-- <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
                   <a class="textWhite ctext1">
@@ -89,7 +86,7 @@
                     曆
                   </a>
                 </v-btn>
-              </li>
+              </li> -->
             </ul>
           </div>
           <v-avatar size="40" class="me-2">
@@ -102,13 +99,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/cases">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">我的案件</a>
                 </v-btn>
@@ -149,7 +146,7 @@
                   </a>
                 </v-btn>
               </li>
-              <li>
+              <!-- <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
                   <a class="textWhite ctext1">
@@ -158,7 +155,7 @@
                     曆
                   </a>
                 </v-btn>
-              </li>
+              </li> -->
             </ul>
           </div>
           <v-avatar size="40" class="me-2">
@@ -166,11 +163,11 @@
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>
-        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>
-        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>
@@ -217,8 +214,8 @@
 
           <div id="section2">
             <div class="header d-flex align-center">
-              <v-img class="logo2 me-n2 ms-8" max-width="115" src="../assets/images/logo.png" style="z-index: 1"></v-img>
-              <div class="solgon2 rounded-pill d-flex justify-end align-center ms-n7">
+              <v-img class="logo2 ms-12" max-width="115" src="../assets/images/logo.png" style="z-index: 1"></v-img>
+              <div class="solgon2 rounded-pill d-flex justify-end align-center ms-n13">
                 <div class="ctext1 me-7 textWhite">找專業</div>
               </div>
               <v-spacer></v-spacer>

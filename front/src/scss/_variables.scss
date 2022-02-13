@@ -40,16 +40,20 @@ li {
   color: var(--color-blue) !important;
 }
 
+.textlightY {
+  color: var(--color-lightY) !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--color-blue);
+  background: var(--color-deepblue);
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--color-deepblue);
+  background: #2f3649;
   border-radius: 30px;
 }
 /* Handle on hover */

@@ -26,9 +26,6 @@
         <router-link to="/caseList">
           <div class="navA d-flex align-center"><a class="textWhite ctext1 px-5">找案件</a></div>
         </router-link>
-        <router-link to="/news">
-          <div class="navA d-flex align-center"><a class="textWhite ctext1 px-5">知識加值庫</a></div>
-        </router-link>
         <!-- 登入 -->
         <UserRegisters />
         <div class="avatars me-6" v-if="user.isuserLogin" id="user">
@@ -83,7 +80,7 @@
                   </a>
                 </v-btn>
               </li>
-              <li>
+              <!-- <li>
                 <v-btn depressed exact color="var(--color-blue)" class="memBtn">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
                   <a class="textWhite ctext1">
@@ -92,7 +89,7 @@
                     曆
                   </a>
                 </v-btn>
-              </li>
+              </li> -->
             </ul>
           </div>
           <v-avatar size="40" class="me-2 avatarBtn">
@@ -152,7 +149,7 @@
                   </a>
                 </v-btn>
               </li>
-              <li>
+              <!-- <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
                   <a class="textWhite ctext1">
@@ -161,7 +158,7 @@
                     曆
                   </a>
                 </v-btn>
-              </li>
+              </li> -->
             </ul>
           </div>
           <v-avatar size="40" class="me-2">
@@ -169,11 +166,11 @@
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>
-        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>
-        <v-btn color="rgba(0,0,0,0)" class="textWhite login me-8 ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textWhite login ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>

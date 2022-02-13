@@ -1,76 +1,39 @@
-#caseList {  
+#caseList {
+  body {
+    background-color: var(--color-blue);
+  }
   background-color: var(--color-blue) !important;
-  
-  .navA {
-    height: 24px;
-    border-right: 2px solid var(--color-white);
-    a:hover {
-      color: var(--color-lightY) !important;
-    }    
-  }
-    
-  .logo1 {
-    position: relative;
-    top: -2px;
-  }
-
-  .solgon {
-    border: 1px solid var(--color-white);
-    width: 135px;
+  .Usersolgon {
+    // border: 1px solid var(--color-white);
+    width: 120px;
     height: 36px;
-  } 
-  
-  .login {
-    font-size: 20px;
-    font-weight: 500;
-    border: 1px solid var(--color-white) !important;
+    position: relative;
+    top: 13px;
   }
-
-  .login:hover {
-    color: var(--color-lightY) !important;
-    border: 1px solid var(--color-lightY) !important;
+  .psidebar {
+    width: 400px;
+    height: 100vh;
+    filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+    background: var(--color-blue);
+    position: fixed;
   }
-  
-  .overflowY {
-    overflow-y: none !important;
+  .content {
+    width: 75%;
+    height: 100vh;
+    background: var(--color-deepblue);
+    margin-left: 400px;
+  }
+  .main {
+    background-color: var(--color-deepblue);
+    // border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 80%;
+    height: 100vh;
+    margin-left: 450px;
+    margin-top: -100vh;
+    padding: 3%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: start;
+    color: var(--color-white);
   }
 }
-
-.btn1 {
-  font-size: 20px;
-  font-weight: 500;
-  background-color: var(--color-blue) !important;
-  border: 1px solid var(--color-blue) !important;
-}
-
-.btn1:hover {
-  color: var(--color-lightY) !important;
-  background-color: var(--color-deepblue) !important;
-  border: 1px solid var(--color-deepblue) !important;
-}
-
-.btn2 {
-  font-size: 17px !important;
-  font-weight: 700;
-  color: var(--color-blue) !important;
-  border-left: 1px solid var(--color-blue);
-  border-right: 1px solid var(--color-blue);
-}
-
-.btn2:hover {
-  color: var(--color-red) !important;
-}
-
-.savebtn {
-  pointer-events: none;
-}
-
-.savebtn:hover {
-  text-decoration: underline;
-}
-
-.list {
-  padding-left: 15rem;
-  padding-right: 15rem;
-}
-

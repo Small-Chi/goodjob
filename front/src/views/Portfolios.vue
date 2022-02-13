@@ -28,13 +28,16 @@
               <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
             </v-btn>
             <v-img :src="item.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
-            <v-card-title class="ctext1 textWhite" style="margin-left: 10px">
-              {{ item.pname }}
+            <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
+              <h2>{{ item.pname }}</h2>
               <div class="textWhite sell">
                 {{ item.sell ? '公開' : '隱藏' }}
               </div>
             </v-card-title>
-            <v-card-subtitle class="textWhite" style="margin-left: 10px">$ {{ item.price }}</v-card-subtitle>
+            <v-card-subtitle class="textWhite d-flex" style="margin-left: 10px">
+              <h3>$</h3>
+              <h3 class="textlightY ms-2">{{ item.price }}</h3>
+            </v-card-subtitle>
             <div class="hr mx-auto"></div>
             <v-card-actions>
               <v-chip>{{ item.category.big }}</v-chip>
@@ -258,7 +261,7 @@
             this.portfolios.push(data.result)
             console.log(this.portfolios)
           } else {
-            console.log('編輯商品')
+            console.log('編輯作品')
             const { data } = await this.api.patch('/portfolios/' + this.form._id, fd, {
               headers: {
                 authorization: 'Bearer ' + this.user.token
@@ -310,7 +313,6 @@
             title: '成功',
             text: '刪除商品成功'
           })
-
           this.getPortfolio()
         } catch (error) {
           this.$swal({

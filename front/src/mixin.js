@@ -1,7 +1,10 @@
 export default {
   computed: {
-    user () {
+    user() {
       return this.$store.getters['user/user']
+    },
+    owner() {
+      return this.$store.getters['owner/owner']
     }
   }
 }

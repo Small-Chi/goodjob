@@ -21,10 +21,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const owner = await owners.findOne(
-      { account: req.body.account, password: md5(req.body.password) },
-      '-password'
-    )
+    const owner = await owners.findOne({ account: req.body.account, password: md5(req.body.password) }, '-password')
     if (owner) {
       const token = jwt.sign({ _id: owner._id.toString() }, process.env.SECRET, { expiresIn: '7 days' })
       owner.tokens.push(token)
@@ -72,5 +69,28 @@ export const getInfo = (req, res) => {
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const updateInfo = async (req, res) => {
+  console.log('updateInfo')
+  try {
+    const owner = await owners.findByIdAndUpdate({ _id: req.owner.id }, req.body, { new: true, runValidators: true })
+    if (owner) {
+      res.status(200).send({ success: false, message: '', owner })
+    } else {
+      res.status(404).send({ success: false, message: '找不到使用者' })
+    }
+  } catch (error) {
+    console.log('編輯個人資料錯誤')
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到' })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      console.log(error)
+      res.status(400).send({ sucess: false, message: error.errors[key].name })
+    } else {
+      res.status(500).send({ sucess: false, message: '伺服器錯誤' })
+    }
   }
 }

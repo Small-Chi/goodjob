@@ -1,5 +1,5 @@
 <template>
-  <v-app id="portfoliosList">
+  <v-app id="ownerPage">
     <v-card class="overflow-hidden">
       <v-app-bar
         absolute
@@ -13,7 +13,7 @@
       >
         <v-img class="logo1 me-n2 ms-8" max-width="115" src="../assets/images/logo.png"></v-img>
         <div class="Usersolgon rounded-pill ms-n5">
-          <div class="ctext1 me-7 d-flex justify-end align-center" style="height: 100%">找專業</div>
+          <div class="ctext1 me-7 d-flex justify-end align-center" style="height: 100%">會員中心</div>
         </div>
         <v-spacer></v-spacer>
         <!-- 導覽連結 -->
@@ -93,7 +93,7 @@
             </ul>
           </div>
           <v-avatar size="40" class="me-2 avatarBtn">
-            <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
+            <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>
@@ -102,13 +102,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/cases">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">我的案件</a>
                 </v-btn>
@@ -178,9 +178,12 @@
       <v-sheet id="scrolling-techniques-4" class="overflow-y-auto" max-height="100vh">
         <v-container fluid style="background-color: var(--color-blue); padding: 0px; height: 100vh">
           <!-- 內容 -->
-          <div class="psidebar"></div>
+          <div class="sidebar">
+            <v-avatar size="180" class="avatarSidebar">
+              <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
+            </v-avatar>
+          </div>
           <div class="content"></div>
-          <div class="main"></div>
         </v-container>
       </v-sheet>
     </v-card>

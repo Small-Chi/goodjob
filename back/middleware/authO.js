@@ -4,7 +4,7 @@ import owners from '../models/owners.js'
 export default async (req, res, next) => {
   try {
     const token = req.headers.authorization?.replace('Bearer ', '') || ''
-    if (token.length > 0) {
+    if (token.length > 1) {
       const decoded = jwt.decode(token)
       req.owner = await owners.findOne({ _id: decoded._id, tokens: token })
       req.token = token

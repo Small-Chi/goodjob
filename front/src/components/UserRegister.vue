@@ -1,6 +1,6 @@
 <template>
   <div class="ms-6">
-    <v-btn color="rgba(0,0,0,0)" @click="dialog = true" class="textWhite login me-8 ms-n6" plain v-if="!user.isuserLogin && !owner.isownerLogin">
+    <v-btn color="rgba(0,0,0,0)" @click="dialog = true" class="textWhite login ms-n6" plain v-if="!user.isuserLogin && !owner.isownerLogin">
       <v-icon>mdi-login-variant</v-icon>
       <!-- 登入 -->
     </v-btn>
@@ -34,8 +34,8 @@
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
-                        <v-btn color="blue darken-1" text @click="dialog, (dialog.value = false)" type="submit">Login</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog2 = false">關閉</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog, (dialog.value = false)" type="submit">登入</v-btn>
                       </v-card-actions>
                     </v-form>
                   </v-card>
@@ -64,8 +64,8 @@
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="dialog3 = false">Close</v-btn>
-                        <v-btn color="blue darken-1" text @click="dialog3, (dialog.value = false)" type="submit">Login</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog3 = false">關閉</v-btn>
+                        <v-btn color="blue darken-1" text @click="dialog3, (dialog.value = false)" type="submit">登入</v-btn>
                       </v-card-actions>
                     </v-form>
                   </v-card>
@@ -138,7 +138,7 @@
                           <v-col cols="12" sm="6">
                             <v-select
                               v-model="form.position"
-                              :items="['平面設計師', '攝影師', '室內設計師', '插畫家', '創作者', '藝術家', '其他']"
+                              :items="['平面設計師', '網頁設計師', '攝影師', '室內設計師', '插畫家', '創作者', '藝術家', '其他']"
                               label="職業類別"
                             ></v-select>
                           </v-col>
@@ -217,8 +217,8 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="dialog4 = false">Close</v-btn>
-                      <v-btn color="blue darken-1" text type="submit" @click="dialog.value = false">Send</v-btn>
+                      <v-btn color="blue darken-1" text @click="dialog4 = false">關閉</v-btn>
+                      <v-btn color="blue darken-1" text type="submit" @click="dialog.value = false">送出</v-btn>
                     </v-card-actions>
                   </v-form>
                 </v-list>
@@ -228,7 +228,7 @@
             <OwnerRegisters />
           </div>
           <v-card-actions d-actions class="justify-end">
-            <v-btn text @click="dialog.value = false">Close</v-btn>
+            <v-btn text @click="dialog.value = false">關閉</v-btn>
           </v-card-actions>
         </v-card>
       </template>

@@ -11,7 +11,7 @@ export default new Vuex.Store({
     items: []
   },
   mutations: {
-    additem (state, data) {
+    additem(state, data) {
       state.items.push({
         item: data,
         price: data,
@@ -19,14 +19,15 @@ export default new Vuex.Store({
       })
     }
   },
-  actions: {
-  },
+  actions: {},
   modules: {
     user,
     owner
   },
-  plugins: [createPersistedState({
-    key: 'goodjob',
-    paths: ['user.token', 'owner.token']
-  })]
+  plugins: [
+    createPersistedState({
+      key: 'goodjob',
+      paths: ['user.token', 'owner.token']
+    })
+  ]
 })

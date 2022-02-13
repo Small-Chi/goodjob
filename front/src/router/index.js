@@ -77,6 +77,35 @@ const routes = [
             }
           }
         ]
+      },
+      {
+        path: 'owner',
+        name: 'Owner',
+        component: () => import(/* webpackChunkName: "owner" */ '../views/Owner.vue'),
+        meta: {
+          login: true,
+          title: 'goodjob | 會員專區'
+        },
+        children: [
+          {
+            path: 'ownerself',
+            name: 'Ownerself',
+            component: () => import(/* webpackChunkName: "ownerself" */ '../views/Ownerself.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 會員資料'
+            }
+          },
+          {
+            path: 'cases',
+            name: 'Cases',
+            component: () => import(/* webpackChunkName: "cases" */ '../views/Cases.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 我的作品'
+            }
+          }
+        ]
       }
     ]
   }

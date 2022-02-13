@@ -5,6 +5,7 @@ import cors from 'cors'
 import usersRouter from './routes/users.js'
 import ownersRouter from './routes/owners.js'
 import portfoliosRouter from './routes/portfolios.js'
+import casesRouter from './routes/cases.js'
 // import ordersRouter from './routes/orders.js'
 
 mongoose.connect(process.env.DB_URL, () => {
@@ -13,15 +14,17 @@ mongoose.connect(process.env.DB_URL, () => {
 
 const app = express()
 // step.1 處理前端的請求
-app.use(cors({
-  origin (origin, callback) {
-    if (origin === undefined || origin.includes('github') || origin.includes('localhost')) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed'), false)
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (origin === undefined || origin.includes('github') || origin.includes('localhost')) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed'), false)
+      }
     }
-  }
-}))
+  })
+)
 app.use((_, req, res, next) => {
   res.status(403).send({ success: false, message: '請求被拒絕' })
 })
@@ -34,6 +37,7 @@ app.use((_, req, res, next) => {
 app.use('/users', usersRouter)
 app.use('/owners', ownersRouter)
 app.use('/portfolios', portfoliosRouter)
+app.use('/cases', casesRouter)
 // app.use('/orders', ordersRouter)
 
 app.all('*', (req, res) => {

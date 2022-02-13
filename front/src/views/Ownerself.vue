@@ -1,8 +1,8 @@
 <template>
-  <div id="userself">
+  <div id="ownerself">
     <div class="content row">
       <div class="col d-flex">
-        <span class="username">{{ form.username }}</span>
+        <span class="ownername">{{ form.ownername }}</span>
         <div class="score">
           <div class="scoreitems">
             <div class="scoreitem">
@@ -59,7 +59,7 @@
                     <v-container>
                       <v-row>
                         <v-col cols="12">
-                          <v-text-field label="名稱" hint="中文字長度為 1 到 4 個字" :rules="inputRules1" v-model="form.username"></v-text-field>
+                          <v-text-field label="名稱" hint="中文字長度為 1 到 4 個字" :rules="inputRules1" v-model="form.ownername"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field label="帳號" hint="長度為 4 到 20 個字" :rules="inputRules2" v-model="form.account" disabled></v-text-field>
@@ -71,15 +71,15 @@
                           <v-text-field label="信箱" hint="長度為 4 到 20 個字" :rules="inputRules4" v-model="form.email"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field label="接案狀況" hint="ex：全職" v-model="form.state"></v-text-field>
+                          <v-text-field label="發案狀況" hint="ex：全職" v-model="form.state"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field label="工作時段" hint="ex：週一 ~ 週五 8:00am ~ 18:00pm" v-model="form.workingday"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-select
-                            :items="['平面設計師', '網頁設計師', '攝影師', '室內設計師', '插畫家', '創作者', '藝術家', '其他']"
-                            label="職業類別"
+                            :items="['教育', '科技', '廣告媒體', '設計', '餐旅', '新創', '寵物', '食品', '建築', '政府單位', '傳產', '攤販', '其他']"
+                            label="行業類別"
                             v-model="form.position"
                           ></v-select>
                         </v-col>
@@ -113,7 +113,7 @@
                               'Lumion',
                               '其他'
                             ]"
-                            label="擅長工具"
+                            label="需求工具"
                             multiple
                           ></v-autocomplete>
                         </v-col>
@@ -123,7 +123,7 @@
                               <v-expansion-panel-header>
                                 <template v-slot:default="{ open }">
                                   <v-row no-gutters>
-                                    <v-col cols="3">產品報價單</v-col>
+                                    <v-col cols="3">產品預算單</v-col>
                                     <v-col cols="8">
                                       <v-fade-transition leave-absolute>
                                         <span v-if="open" key="0"></span>
@@ -171,19 +171,19 @@
       <!-- 顯示呈現不要動! -->
       <div class="main">
         <div class="row my-5">
-          <div class="col-2"><span class="main-title" style="font-weight: bold">- 職業類別</span></div>
+          <div class="col-2"><span class="main-title" style="font-weight: bold">- 行業類別</span></div>
           <div class="col-10">
             <span class="fw-300">{{ form.position }}</span>
           </div>
         </div>
         <div class="row my-5">
-          <div class="col-2"><span class="main-title" style="font-weight: bold">- 接案狀況</span></div>
+          <div class="col-2"><span class="main-title" style="font-weight: bold">- 發案狀況</span></div>
           <div class="col-10">
             <span class="fw-300">{{ form.state }}</span>
           </div>
         </div>
         <div class="row my-5 py-5" style="border-top: 1px solid rgba(205, 198, 188, 0.3); border-bottom: 1px solid rgba(205, 198, 188, 0.3)">
-          <div class="col-2"><span class="main-title" style="font-weight: bold">- 擅長工具</span></div>
+          <div class="col-2"><span class="main-title" style="font-weight: bold">- 需求工具</span></div>
           <div class="col-10">
             <span class="row">
               <span class="col-3 fw-300" v-for="(item, index) in form.technology" :key="'A' + index">{{ item }}</span>
@@ -197,7 +197,7 @@
           </div>
         </div>
         <div class="row my-5">
-          <div class="col-2"><span class="main-title" style="font-weight: bold">- 案件價格</span></div>
+          <div class="col-2"><span class="main-title" style="font-weight: bold">- 案件預算</span></div>
           <div class="col-10">
             <div class="row my-2">
               <div class="pricesdiv col-3 mb-5" v-for="(price, index) in form.prices" :key="'A' + index">
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="row my-5">
-          <div class="col-2"><span class="main-title" style="font-weight: bold">- 個人介紹</span></div>
+          <div class="col-2"><span class="main-title" style="font-weight: bold">- 公司介紹</span></div>
           <div class="col-10">
             <span class="fw-300">{{ form.about }}</span>
           </div>
@@ -224,7 +224,7 @@
       return {
         dialog: false,
         form: {
-          username: '',
+          ownername: '',
           account: '',
           password: '',
           email: '',
@@ -235,8 +235,8 @@
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
-        // users: {
-        //   username: '',
+        // owners: {
+        //   ownername: '',
         //   account: '',
         //   password: '',
         //   email: '',
@@ -259,9 +259,9 @@
       // 更新會員資料
       async updateInfo() {
         try {
-          await this.api.patch('/users/info', this.form, {
+          await this.api.patch('/owners/info', this.form, {
             headers: {
-              authorization: 'Bearer ' + this.user.token
+              authorization: 'Bearer ' + this.owner.token
             }
           })
           this.$swal({
@@ -288,9 +288,9 @@
     // 一進來抓資料
     async created() {
       try {
-        const { data } = await this.api.get('users/me', {
+        const { data } = await this.api.get('owners/me', {
           headers: {
-            authorization: 'Bearer ' + this.user.token
+            authorization: 'Bearer ' + this.owner.token
           }
         })
         this.form = data.result

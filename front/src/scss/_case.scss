@@ -1,4 +1,4 @@
-.contentleft {
+.contentleftC {
   background-color: var(--color-deepblue);
   width: 80%;
   height: 95vh;
@@ -55,7 +55,7 @@
 
   .cardBtn4 {
     position: absolute;
-    top: 215px;
+    top: 40px;
     right: 60px;
     z-index: 3;
   }
@@ -146,6 +146,15 @@
 
   .addpuls {
     color: var(--color-white) !important;
+  }
+  .card-title {
+    text-align: center;
+  }
+  .v-card__subtitle,
+  .v-card__text,
+  .v-card__title {
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 }
 

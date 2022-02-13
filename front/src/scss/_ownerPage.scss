@@ -1,16 +1,16 @@
-#portfoliosList {
+#ownerPage {
   body {
     background-color: var(--color-blue);
   }
   background-color: var(--color-blue) !important;
   .Usersolgon {
     // border: 1px solid var(--color-white);
-    width: 120px;
+    width: 135px;
     height: 36px;
     position: relative;
     top: 13px;
   }
-  .psidebar {
+  .sidebar {
     width: 400px;
     height: 100vh;
     filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
@@ -23,17 +23,9 @@
     background: var(--color-deepblue);
     margin-left: 400px;
   }
-  .main {
-    background-color: var(--color-deepblue);
-    // border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 80%;
-    height: 100vh;
-    margin-left: 450px;
-    margin-top: -100vh;
-    padding: 3%;
-    overflow-y: auto;
-    display: flex;
-    justify-content: start;
-    color: var(--color-white);
+  .avatarSidebar {
+    position: relative;
+    top: 100px;
+    left: 100px;
   }
 }

@@ -1,7 +1,7 @@
-export const owner = (state) => {
+export const owner = state => {
   return {
-    isownerLogin: state.token.length > 0,
-    isAdmin: state.role === 1,
+    isownerLogin: state.token.length > 1,
+    isAdmin: state.role === 2,
     ...state
   }
 }

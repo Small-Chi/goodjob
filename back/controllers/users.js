@@ -1,7 +1,7 @@
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
 import users from '../models/users.js'
-// import portfolios from '../models/portfolios.js'
+// import Users from '../models/Users.js'
 // 註冊
 export const register = async (req, res) => {
   try {
@@ -69,5 +69,28 @@ export const getInfo = (req, res) => {
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const updateInfo = async (req, res) => {
+  console.log('updateInfo')
+  try {
+    const user = await users.findByIdAndUpdate({ _id: req.user.id }, req.body, { new: true, runValidators: true })
+    if (user) {
+      res.status(200).send({ success: false, message: '', user })
+    } else {
+      res.status(404).send({ success: false, message: '找不到使用者' })
+    }
+  } catch (error) {
+    console.log('編輯個人資料錯誤')
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到' })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      console.log(error)
+      res.status(400).send({ sucess: false, message: error.errors[key].name })
+    } else {
+      res.status(500).send({ sucess: false, message: '伺服器錯誤' })
+    }
   }
 }
