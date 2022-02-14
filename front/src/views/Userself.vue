@@ -33,7 +33,7 @@
           </div>
         </div>
         <!-- 編輯紐 -->
-        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()">
+        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="dialog = true">
           <v-icon size="30" color="var(--color-white)" class="justify-content-center; editIcon">mdi-pencil-outline</v-icon>
         </v-btn>
         <!-- 表單 -->
