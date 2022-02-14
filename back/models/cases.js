@@ -63,10 +63,10 @@ const caseSchema = new mongoose.Schema(
       type: String
     },
     endingday: {
-      type: String
+      type: Date
     },
     takeday: {
-      type: String
+      type: Date
     },
     price: {
       type: String
@@ -98,11 +98,11 @@ const caseSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    username: {
+    user: {
       type: mongoose.ObjectId,
       ref: 'users'
     },
-    ownername: {
+    owner: {
       type: mongoose.ObjectId,
       ref: 'owners'
     },

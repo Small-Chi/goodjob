@@ -81,7 +81,7 @@ const portfolioSchema = new mongoose.Schema(
       type: String,
       maxlength: [100, '作品介紹字數過多']
     },
-    username: {
+    user: {
       type: mongoose.ObjectId,
       ref: 'users'
     }

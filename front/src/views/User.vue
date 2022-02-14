@@ -55,7 +55,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext1">
                     進
-                    <span class="mg">行</span>
+                    <span class="mx-1">行</span>
                     中
                   </a>
                 </v-btn>
@@ -65,7 +65,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext1">
                     已
-                    <span class="mg">結</span>
+                    <span class="mx-1">結</span>
                     案
                   </a>
                 </v-btn>
@@ -75,7 +75,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
-                    <span style="margin-left: 20px; margin-right: 20px"></span>
+                    <span style="margin-left: 15px; margin-right: 15px"></span>
                     息
                   </a>
                 </v-btn>
@@ -94,75 +94,6 @@
           </div>
           <v-avatar size="40" class="me-2 avatarBtn">
             <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
-          </v-avatar>
-          <v-icon class="textWhite down">mdi-chevron-down</v-icon>
-        </div>
-        <div class="avatars me-6" v-if="owner.isownerLogin" id="owner">
-          <!-- 業主會員資料 -->
-          <div class="ownerList">
-            <ul>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext1">會員資訊</a>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">我的案件</a>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
-                  <a class="textWhite ctext1">收藏作品</a>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
-                  <a class="textWhite ctext1">
-                    進
-                    <span class="mg">行</span>
-                    中
-                  </a>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
-                  <a class="textWhite ctext1">
-                    已
-                    <span class="mg">結</span>
-                    案
-                  </a>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
-                  <a class="textWhite ctext1">
-                    訊
-                    <span style="margin-left: 20px; margin-right: 20px"></span>
-                    息
-                  </a>
-                </v-btn>
-              </li>
-              <!-- <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
-                  <a class="textWhite ctext1">
-                    行
-                    <span class="mg">事</span>
-                    曆
-                  </a>
-                </v-btn>
-              </li> -->
-            </ul>
-          </div>
-          <v-avatar size="40" class="me-2">
-            <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>

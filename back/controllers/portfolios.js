@@ -2,7 +2,7 @@ import portfolios from '../models/portfolios.js'
 
 export const create = async (req, res) => {
   try {
-    const result = await portfolios.create({ ...req.body, image: req.file.path })
+    const result = await portfolios.create({ ...req.body, image: req.file.path, user: req.user._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)

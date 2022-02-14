@@ -102,7 +102,7 @@ const routes = [
             component: () => import(/* webpackChunkName: "cases" */ '../views/Cases.vue'),
             meta: {
               login: true,
-              title: 'goodjob | 我的作品'
+              title: 'goodjob | 我的案件'
             }
           }
         ]

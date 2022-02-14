@@ -4,12 +4,6 @@
       <div>
         <!-- 卡片呈現 -->
         <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
-          <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)">
-            <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
-          </v-btn>
-          <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)">
-            <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
-          </v-btn>
           <v-img
             src="https://miro.medium.com/max/1200/1*bsukUGpEQQQLwXqewNDRfw.jpeg"
             height="200px"
@@ -71,7 +65,7 @@
               slidesPerView: 3
             }
           },
-          spaceBetween: -150
+          spaceBetween: 0
           // Some Swiper option/callback...
         }
       }

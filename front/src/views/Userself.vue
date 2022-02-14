@@ -2,7 +2,7 @@
   <div id="userself">
     <div class="content row">
       <div class="col d-flex">
-        <span class="username">{{ form.username }}</span>
+        <span class="username">{{ userinfo.username }}</span>
         <div class="score">
           <div class="scoreitems">
             <div class="scoreitem">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <!-- 編輯紐 -->
-        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click.stop="dialog = true">
+        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()">
           <v-icon size="30" color="var(--color-white)" class="justify-content-center; editIcon">mdi-pencil-outline</v-icon>
         </v-btn>
         <!-- 表單 -->
@@ -173,34 +173,34 @@
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 職業類別</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.position }}</span>
+            <span class="fw-300">{{ userinfo.position }}</span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 接案狀況</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.state }}</span>
+            <span class="fw-300">{{ userinfo.state }}</span>
           </div>
         </div>
         <div class="row my-5 py-5" style="border-top: 1px solid rgba(205, 198, 188, 0.3); border-bottom: 1px solid rgba(205, 198, 188, 0.3)">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 擅長工具</span></div>
           <div class="col-10">
             <span class="row">
-              <span class="col-3 fw-300" v-for="(item, index) in form.technology" :key="'A' + index">{{ item }}</span>
+              <span class="col-3 fw-300" v-for="(item, index) in userinfo.technology" :key="'A' + index">{{ item }}</span>
             </span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 工作時段</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.workingday }}</span>
+            <span class="fw-300">{{ userinfo.workingday }}</span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 案件價格</span></div>
           <div class="col-10">
             <div class="row my-2">
-              <div class="pricesdiv col-3 mb-5" v-for="(price, index) in form.prices" :key="'A' + index">
+              <div class="pricesdiv col-3 mb-5" v-for="(price, index) in userinfo.prices" :key="'A' + index">
                 <span class="fw-300">{{ price.item }}</span>
                 <span class="fw-300">{{ price.price }}</span>
               </div>
@@ -210,7 +210,7 @@
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 個人介紹</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.about }}</span>
+            <span class="fw-300">{{ userinfo.about }}</span>
           </div>
         </div>
       </div>
@@ -235,18 +235,18 @@
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
-        // users: {
-        //   username: '',
-        //   account: '',
-        //   password: '',
-        //   email: '',
-        //   state: '',
-        //   workingday: '',
-        //   position: '',
-        //   technology: '',
-        //   about: '',
-        //   prices: [{ item: '' }, { price: '' }]
-        // },
+        userinfo: {
+          username: '',
+          account: '',
+          password: '',
+          email: '',
+          state: '',
+          workingday: '',
+          position: '',
+          technology: '',
+          about: '',
+          prices: [{ item: '' }, { price: '' }]
+        },
         inputRules1: [value => !!value || '必填', value => (value && value.length <= 10) || '最多 10 個字'],
         inputRules2: [value => !!value || '必填', value => (value && value.length >= 4) || '最少 4 個字'],
         inputRules3: [value => !!value || '必填', value => (value && value.length >= 4) || '最少 4 個字'],
@@ -258,25 +258,19 @@
     methods: {
       // 更新會員資料
       async updateInfo() {
-        try {
-          await this.api.patch('/users/info', this.form, {
-            headers: {
-              authorization: 'Bearer ' + this.user.token
-            }
-          })
-          this.$swal({
-            icon: 'success',
-            title: '成功',
-            text: '修改完成'
-          })
-        } catch (error) {
-          this.$swal({
-            icon: 'error',
-            title: '錯誤',
-            text: error.response.data.message
-          })
+        this.form = {
+          username: this.userinfo.username,
+          account: this.userinfo.account,
+          password: this.userinfo.password,
+          email: this.userinfo.email,
+          state: this.userinfo.state,
+          workingday: this.userinfo.workingday,
+          position: this.userinfo.position,
+          technology: this.userinfo.technology,
+          about: this.userinfo.about,
+          prices: this.userinfo.prices
         }
-        this.dialog = false
+        this.dialog = true
       },
       additem() {
         this.form.prices.push({ item: '' })
@@ -287,13 +281,24 @@
     },
     // 一進來抓資料
     async created() {
+      // this.form.username = this.user.username
+      // this.form.account = this.user.account
+      // this.form.password = this.user.password
+      // this.form.email = this.user.email
+      // this.form.state = this.user.state
+      // this.form.workingday = this.user.workingday
+      // this.form.position = this.user.position
+      // this.form.technology = this.user.technology
+      // this.form.about = this.user.about
+      // this.form.prices = this.user.prices
       try {
         const { data } = await this.api.get('users/me', {
           headers: {
             authorization: 'Bearer ' + this.user.token
           }
         })
-        this.form = data.result
+        this.userinfo = data.result
+        console.log(data.result)
       } catch (error) {
         this.$swal({
           icon: 'error',

@@ -2,7 +2,7 @@ import cases from '../models/cases.js'
 
 export const create = async (req, res) => {
   try {
-    const result = await cases.create({ ...req.body, image: req.file.path })
+    const result = await cases.create({ ...req.body, image: req.file.path, owner: req.owner._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)

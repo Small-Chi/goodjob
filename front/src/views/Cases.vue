@@ -30,7 +30,7 @@
             <!-- <v-img height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img> -->
             <v-card-title class="ctext1 mb-2" style="margin-left: 10px">
               <h3 class="textWhite ms-n1">{{ `◔` }}</h3>
-              <h3 class="textlightY ms-2">{{ item.endingday }}</h3>
+              <h3 class="textlightY ms-2">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
             </v-card-title>
             <v-card-subtitle class="ctext1 d-flex" style="margin-left: 10px">
               <h3 class="textWhite">{{ ` $ ` }}</h3>
@@ -147,18 +147,26 @@
                     ref="menu"
                     v-model="menu"
                     :close-on-content-click="false"
-                    :return-value.sync="date"
+                    :return-value.sync="form.endingday"
                     transition="scale-transition"
                     offset-y
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field v-model="date" label="結案日期" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                      <v-text-field
+                        v-model="form.endingday"
+                        label="結案日期"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        reactive
+                      ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date" no-title scrollable>
+                    <v-date-picker v-model="form.endingday" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu = false">取消</v-btn>
-                      <v-btn text color="primary" @click="$refs.menu.save(date)">確定</v-btn>
+                      <v-btn text color="primary" @click="$refs.menu.save(form.endingday)">確定</v-btn>
                     </v-date-picker>
                   </v-menu>
                 </v-col>
@@ -167,18 +175,18 @@
                     ref="menu2"
                     v-model="menu2"
                     :close-on-content-click="false"
-                    :return-value.sync="date2"
+                    :return-value.sync="form.takeday"
                     transition="scale-transition"
                     offset-y
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field v-model="date2" label="入賬日期" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                      <v-text-field v-model="form.takeday" label="入賬日期" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
                     </template>
-                    <v-date-picker v-model="date2" no-title scrollable>
+                    <v-date-picker v-model="form.takeday" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu2 = false">取消</v-btn>
-                      <v-btn text color="primary" @click="$refs.menu2.save(date2)">確定</v-btn>
+                      <v-btn text color="primary" @click="$refs.menu2.save(form.takeday)">確定</v-btn>
                     </v-date-picker>
                   </v-menu>
                 </v-col>
@@ -275,8 +283,6 @@
         },
         rules: [v => !!v || '必填', v => (v && v.length <= 140) || '字數最多200'],
         inputRules1: [value => !!value || '必填', value => (value && value.length <= 10) || '最多 10 個字'],
-        date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
-        date2: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
         menu: false,
         menu2: false
       }
@@ -346,8 +352,8 @@
           quantity: this.cases[index].quantity,
           qunit: this.cases[index].qunit,
           technology: this.cases[index].technology,
-          endingday: this.cases[index].endingday,
-          takeday: this.cases[index].takeday,
+          endingday: new Date(this.cases[index].endingday).toLocaleDateString().replace(/\//g, '-'),
+          takeday: new Date(this.cases[index].takeday).toLocaleDateString().replace(/\//g, '-'),
           price: this.cases[index].price,
           image: null,
           sell: this.cases[index].sell,
@@ -411,6 +417,7 @@
             }
           })
           this.cases = data.result
+          console.log(this.cases.endingday)
         } catch (error) {
           this.$swal({
             icon: 'error',
