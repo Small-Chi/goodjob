@@ -73,9 +73,25 @@ export const getInfo = (req, res) => {
 }
 
 export const updateInfo = async (req, res) => {
+  const data = {
+    ownername: req.body.ownername,
+    account: req.body.account,
+    password: req.body.password,
+    email: req.body.email,
+    state: req.body.state,
+    workingday: req.body.workingday,
+    position: req.body.position,
+    technology: req.body.technology,
+    about: req.body.about,
+    prices: req.body.prices
+  }
+  console.log(data)
+  if (req.file) {
+    data.image = req.file.path
+  }
   console.log('updateInfo')
   try {
-    const owner = await owners.findByIdAndUpdate({ _id: req.owner.id }, req.body, { new: true, runValidators: true })
+    const owner = await owners.findByIdAndUpdate(req.owner.id, data, { new: true, runValidators: true })
     if (owner) {
       res.status(200).send({ success: false, message: '', owner })
     } else {

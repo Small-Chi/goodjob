@@ -72,7 +72,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
-                    <span style="margin-left: 15px; margin-right: 15px"></span>
+                    <span class="ms-8"></span>
                     息
                   </a>
                 </v-btn>
@@ -141,7 +141,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
-                    <span style="margin-left: 15px; margin-right: 15px"></span>
+                    <span class="ms-8"></span>
                     息
                   </a>
                 </v-btn>

@@ -2,7 +2,10 @@
   <div id="ownerself">
     <div class="content row">
       <div class="col d-flex">
-        <span class="ownername">{{ form.ownername }}</span>
+        <span class="ownername">{{ ownerinfo.ownername }}</span>
+        <v-btn icon class="messageIcon" plain>
+          <v-icon size="40">mdi-message-outline</v-icon>
+        </v-btn>
         <div class="score">
           <div class="scoreitems">
             <div class="scoreitem">
@@ -33,7 +36,7 @@
           </div>
         </div>
         <!-- 編輯紐 -->
-        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click.stop="dialog = true">
+        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()">
           <v-icon size="30" color="var(--color-white)" class="justify-content-center; editIcon">mdi-pencil-outline</v-icon>
         </v-btn>
         <!-- 表單 -->
@@ -159,7 +162,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="dialog = false">關閉</v-btn>
-                    <v-btn color="blue darken-1" text @click="updateInfo()">儲存</v-btn>
+                    <v-btn color="blue darken-1" text @click="editsave()">儲存</v-btn>
                   </v-card-actions>
                 </v-form>
               </v-list>
@@ -173,34 +176,34 @@
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 行業類別</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.position }}</span>
+            <span class="fw-300">{{ ownerinfo.position }}</span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 發案狀況</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.state }}</span>
+            <span class="fw-300">{{ ownerinfo.state }}</span>
           </div>
         </div>
         <div class="row my-5 py-5" style="border-top: 1px solid rgba(205, 198, 188, 0.3); border-bottom: 1px solid rgba(205, 198, 188, 0.3)">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 需求工具</span></div>
           <div class="col-10">
             <span class="row">
-              <span class="col-3 fw-300" v-for="(item, index) in form.technology" :key="'A' + index">{{ item }}</span>
+              <span class="col-3 fw-300" v-for="(item, index) in ownerinfo.technology" :key="'A' + index">{{ item }}</span>
             </span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 工作時段</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.workingday }}</span>
+            <span class="fw-300">{{ ownerinfo.workingday }}</span>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 案件預算</span></div>
           <div class="col-10">
             <div class="row my-2">
-              <div class="pricesdiv col-3 mb-5" v-for="(price, index) in form.prices" :key="'A' + index">
+              <div class="pricesdiv col-3 mb-5" v-for="(price, index) in ownerinfo.prices" :key="'A' + index">
                 <span class="fw-300">{{ price.item }}</span>
                 <span class="fw-300">{{ price.price }}</span>
               </div>
@@ -210,7 +213,7 @@
         <div class="row my-5">
           <div class="col-2"><span class="main-title" style="font-weight: bold">- 公司介紹</span></div>
           <div class="col-10">
-            <span class="fw-300">{{ form.about }}</span>
+            <span class="fw-300">{{ ownerinfo.about }}</span>
           </div>
         </div>
       </div>
@@ -235,18 +238,18 @@
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
-        // owners: {
-        //   ownername: '',
-        //   account: '',
-        //   password: '',
-        //   email: '',
-        //   state: '',
-        //   workingday: '',
-        //   position: '',
-        //   technology: '',
-        //   about: '',
-        //   prices: [{ item: '' }, { price: '' }]
-        // },
+        ownerinfo: {
+          ownername: '',
+          account: '',
+          password: '',
+          email: '',
+          state: '',
+          workingday: '',
+          position: '',
+          technology: '',
+          about: '',
+          prices: [{ item: '' }, { price: '' }]
+        },
         inputRules1: [value => !!value || '必填', value => (value && value.length <= 10) || '最多 10 個字'],
         inputRules2: [value => !!value || '必填', value => (value && value.length >= 4) || '最少 4 個字'],
         inputRules3: [value => !!value || '必填', value => (value && value.length >= 4) || '最少 4 個字'],
@@ -258,6 +261,27 @@
     methods: {
       // 更新會員資料
       async updateInfo() {
+        this.form = {
+          ownername: this.ownerinfo.ownername,
+          account: this.ownerinfo.account,
+          password: this.ownerinfo.password,
+          email: this.ownerinfo.email,
+          state: this.ownerinfo.state,
+          workingday: this.ownerinfo.workingday,
+          position: this.ownerinfo.position,
+          technology: this.ownerinfo.technology,
+          about: this.ownerinfo.about,
+          prices: this.ownerinfo.prices
+        }
+        this.dialog = true
+      },
+      additem() {
+        this.form.prices.push({ item: '' })
+      },
+      remove(index) {
+        this.form.prices.splice(index, 1)
+      },
+      async editsave() {
         try {
           await this.api.patch('/owners/info', this.form, {
             headers: {
@@ -269,6 +293,7 @@
             title: '成功',
             text: '修改完成'
           })
+          this.getOwner()
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -278,11 +303,21 @@
         }
         this.dialog = false
       },
-      additem() {
-        this.form.prices.push({ item: '' })
-      },
-      remove(index) {
-        this.form.prices.splice(index, 1)
+      async getOwner() {
+        try {
+          const { data } = await this.api.get('owners/me', {
+            headers: {
+              authorization: 'Bearer ' + this.owner.token
+            }
+          })
+          this.ownerinfo = data.result
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '失敗',
+            text: '資料取得失敗'
+          })
+        }
       }
     },
     // 一進來抓資料
@@ -293,7 +328,7 @@
             authorization: 'Bearer ' + this.owner.token
           }
         })
-        this.form = data.result
+        this.ownerinfo = data.result
       } catch (error) {
         this.$swal({
           icon: 'error',

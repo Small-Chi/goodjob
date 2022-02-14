@@ -91,7 +91,7 @@ export const updateInfo = async (req, res) => {
   }
   console.log('updateInfo')
   try {
-    const user = await users.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    const user = await users.findByIdAndUpdate(req.user.id, data, { new: true, runValidators: true })
     if (user) {
       res.status(200).send({ success: false, message: '', user })
     } else {

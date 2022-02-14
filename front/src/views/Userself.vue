@@ -3,6 +3,9 @@
     <div class="content row">
       <div class="col d-flex">
         <span class="username">{{ userinfo.username }}</span>
+        <v-btn icon class="messageIcon" plain>
+          <v-icon size="40">mdi-message-outline</v-icon>
+        </v-btn>
         <div class="score">
           <div class="scoreitems">
             <div class="scoreitem">
@@ -33,7 +36,7 @@
           </div>
         </div>
         <!-- 編輯紐 -->
-        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="dialog = true">
+        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()">
           <v-icon size="30" color="var(--color-white)" class="justify-content-center; editIcon">mdi-pencil-outline</v-icon>
         </v-btn>
         <!-- 表單 -->
@@ -159,7 +162,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="dialog = false">關閉</v-btn>
-                    <v-btn color="blue darken-1" text @click="updateInfo()">儲存</v-btn>
+                    <v-btn color="blue darken-1" text @click="editsave()">儲存</v-btn>
                   </v-card-actions>
                 </v-form>
               </v-list>
@@ -277,6 +280,46 @@
       },
       remove(index) {
         this.form.prices.splice(index, 1)
+      },
+      async editsave() {
+        try {
+          await this.api.patch('/users/info', this.form, {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.$swal({
+            icon: 'success',
+            title: '成功',
+            text: '修改完成'
+          })
+          this.getUser()
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: error.response.data.message
+          })
+        }
+        this.dialog = false
+      },
+      // 完成一個事件時後面要加上 this.getUser() 才會馬上渲染更新畫面
+      async getUser() {
+        try {
+          const { data } = await this.api.get('users/me', {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.userinfo = data.result
+          console.log(data.result)
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: '資料取得失敗'
+          })
+        }
       }
     },
     // 一進來抓資料
@@ -298,7 +341,7 @@
           }
         })
         this.userinfo = data.result
-        console.log(data.result)
+        // console.log(data.result)
       } catch (error) {
         this.$swal({
           icon: 'error',

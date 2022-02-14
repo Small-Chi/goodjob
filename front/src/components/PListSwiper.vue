@@ -4,6 +4,10 @@
       <div>
         <!-- 卡片呈現 -->
         <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
+          <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
+            <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
+            <div class="heartNum">0</div>
+          </v-btn>
           <v-img
             src="https://miro.medium.com/max/1200/1*bsukUGpEQQQLwXqewNDRfw.jpeg"
             height="200px"

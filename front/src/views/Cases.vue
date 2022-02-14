@@ -14,11 +14,11 @@
         <div>
           <!-- 卡片呈現 -->
           <v-card class="card mx-auto card-item" max-width="350" min-width="350" color="var(--color-lightblue)">
-            <!-- <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
+            <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
               <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
               <div class="heartNum">0</div>
             </v-btn>
-            <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
+            <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>
             </v-btn> -->
             <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteCase(item._id)">
