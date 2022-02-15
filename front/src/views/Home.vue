@@ -3,13 +3,13 @@
     <v-card class="overflow-hidden">
       <v-app-bar
         absolute
-        color="var(--color-blue)"
+        color="rgba(0,0,0,0)"
         hide-on-scroll
         prominent
         scroll-target="#scrolling-techniques-4"
         max-height="70"
         class="textWhite"
-        style="border-bottom: 1px solid var(--color-white); z-index: 2"
+        style="z-index: 2"
       >
         <v-img class="logo1 me-n2 ms-8" max-width="115" src="../assets/images/logo.png"></v-img>
         <div class="solgon rounded-pill ms-n5">

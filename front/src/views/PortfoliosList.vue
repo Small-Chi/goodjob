@@ -210,6 +210,7 @@
           }
         })
         this.portfolios = data.result
+        console.log(data.result)
       } catch (error) {
         this.$swal({
           icon: 'error',

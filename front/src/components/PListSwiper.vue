@@ -91,11 +91,11 @@
             // 768: {
             //   slidesPerView: 3
             // },
-            992: {
-              slidesPerView: 3
-            }
+            // 992: {
+            //   slidesPerView: 3
+            // }
           },
-          spaceBetween: 0
+          spaceBetween: -850
           // Some Swiper option/callback...
         }
       }
