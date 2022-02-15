@@ -181,10 +181,7 @@
           <div class="psidebar"></div>
           <div class="content"></div>
           <div class="main">
-            <v-avatar size="100" class="me-2 avatarSwipwer">
-              <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
-            </v-avatar>
-            <PListSwiper />
+            <PListSwiper v-for="portfolio in portfolios" :key="portfolio._id" :portfolio="portfolio" />
           </div>
         </v-container>
       </v-sheet>
@@ -200,6 +197,27 @@
   import PListSwiper from '../components/PListSwiper.vue'
   export default {
     components: { UserRegisters, PListSwiper },
+    data() {
+      return {
+        portfolios: []
+      }
+    },
+    async created() {
+      try {
+        const { data } = await this.api.get('/users/visitor', {
+          headers: {
+            authorization: 'Bearer ' + this.user.token
+          }
+        })
+        this.portfolios = data.result
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: '商品取得失敗'
+        })
+      }
+    },
     computed: {
       user() {
         return this.$store.getters['user/user']

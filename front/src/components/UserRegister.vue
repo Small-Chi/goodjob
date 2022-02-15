@@ -260,7 +260,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },

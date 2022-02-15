@@ -234,7 +234,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
@@ -246,7 +246,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
@@ -341,6 +341,7 @@
           }
         })
         this.userinfo = data.result
+        this.userinfo.password = ''
         // console.log(data.result)
       } catch (error) {
         this.$swal({

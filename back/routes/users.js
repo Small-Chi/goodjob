@@ -8,7 +8,8 @@ import {
   logout,
   extend,
   getInfo,
-  updateInfo
+  updateInfo,
+  getPortfolios
   // addCart,
   // getCart,
   // updateCart
@@ -28,4 +29,8 @@ router.post('/extend', auth, extend)
 router.delete('/logout', auth, logout)
 // 拿取自己的資料
 router.get('/me', auth, getInfo)
+
+// 找專業的頁面
+router.get('/visitor', getPortfolios)
+
 export default router

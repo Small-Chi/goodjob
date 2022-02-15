@@ -162,7 +162,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           item: '',
           prices: [{ item: '' }, { price: '' }]

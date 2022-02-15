@@ -76,8 +76,9 @@ const userSchema = new mongoose.Schema(
       type: String
     },
     favorite: {
-      type: mongoose.ObjectId,
-      ref: 'cases'
+      type: [mongoose.ObjectId],
+      ref: 'cases',
+      default: []
     },
     purview: {
       // 0 = 正常

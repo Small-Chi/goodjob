@@ -5,6 +5,9 @@
   margin-top: 50px;
   border-radius: 10px;
   position: relative;
+  display: flex;
+  // background: red;
+  margin-bottom: -60px;
   .card {
     width: 350px;
     border-radius: 10px;
@@ -142,13 +145,13 @@
   .swiper-button-prev {
     position: absolute;
     top: 190px;
-    left: 12px;
+    left: 8px;
   }
 
   .swiper-button-next {
     position: absolute;
     top: 190px;
-    right: 12px;
+    right: 8px;
   }
 }
 

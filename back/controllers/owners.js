@@ -110,3 +110,94 @@ export const updateInfo = async (req, res) => {
     }
   }
 }
+
+export const getCases = async (req, res) => {
+  try {
+    const result = await owners.aggregate([
+      {
+        $lookup: {
+          from: 'portfolios',
+          localField: '_id',
+          foreignField: 'owner',
+          as: 'portfolios'
+        }
+      },
+      {
+        $addFields: {
+          good: {
+            $size: {
+              $filter: {
+                input: '$portfolios.assess',
+                as: 'assess',
+                cond: {
+                  $eq: ['$$assess', 1]
+                }
+              }
+            }
+          },
+          bad: {
+            $size: {
+              $filter: {
+                input: '$portfolios.assess',
+                as: 'assess',
+                cond: {
+                  $eq: ['$$assess', -1]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: 'cases',
+          localField: '_id',
+          foreignField: 'owner',
+          as: 'cases'
+        }
+      },
+      {
+        $unwind: {
+          path: '$cases',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'cases._id',
+          foreignField: 'favorite',
+          as: 'cases.favorite'
+        }
+      },
+      {
+        $addFields: {
+          'cases.favorite': {
+            $size: '$cases.favorite'
+          }
+        }
+      },
+      {
+        $group: {
+          _id: '$_id',
+          account: {
+            $first: '$account'
+          },
+          cases: {
+            $addToSet: '$cases'
+          },
+          good: {
+            $first: '$good'
+          },
+          bad: {
+            $first: '$bad'
+          },
+          ownername: {
+            $first: '$ownername'
+          }
+        }
+      }
+    ])
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {}
+}

@@ -234,7 +234,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
@@ -246,7 +246,7 @@
           state: '',
           workingday: '',
           position: '',
-          technology: '',
+          technology: [],
           about: '',
           prices: [{ item: '' }, { price: '' }]
         },
@@ -321,6 +321,7 @@
       }
     },
     // 一進來抓資料
+    // 設成抓路由+id 向商品頁的方式
     async created() {
       try {
         const { data } = await this.api.get('owners/me', {
@@ -329,6 +330,7 @@
           }
         })
         this.ownerinfo = data.result
+        this.ownerinfo.password = ''
       } catch (error) {
         this.$swal({
           icon: 'error',

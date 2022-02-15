@@ -110,3 +110,95 @@ export const updateInfo = async (req, res) => {
     }
   }
 }
+
+// 在 PortfoliosList 抓取的資料
+export const getPortfolios = async (req, res) => {
+  try {
+    const result = await users.aggregate([
+      {
+        $lookup: {
+          from: 'cases',
+          localField: '_id',
+          foreignField: 'user',
+          as: 'cases'
+        }
+      },
+      {
+        $addFields: {
+          good: {
+            $size: {
+              $filter: {
+                input: '$cases.assess',
+                as: 'assess',
+                cond: {
+                  $eq: ['$$assess', 1]
+                }
+              }
+            }
+          },
+          bad: {
+            $size: {
+              $filter: {
+                input: '$cases.assess',
+                as: 'assess',
+                cond: {
+                  $eq: ['$$assess', -1]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: 'portfolios',
+          localField: '_id',
+          foreignField: 'user',
+          as: 'portfolios'
+        }
+      },
+      {
+        $unwind: {
+          path: '$portfolios',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: 'owners',
+          localField: 'portfolios._id',
+          foreignField: 'favorite',
+          as: 'portfolios.favorite'
+        }
+      },
+      {
+        $addFields: {
+          'portfolios.favorite': {
+            $size: '$portfolios.favorite'
+          }
+        }
+      },
+      {
+        $group: {
+          _id: '$_id',
+          account: {
+            $first: '$account'
+          },
+          portfolios: {
+            $addToSet: '$portfolios'
+          },
+          good: {
+            $first: '$good'
+          },
+          bad: {
+            $first: '$bad'
+          },
+          username: {
+            $first: '$username'
+          }
+        }
+      }
+    ])
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {}
+}

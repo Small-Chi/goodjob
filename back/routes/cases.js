@@ -9,7 +9,7 @@ const router = express.Router()
 // 新增案件
 router.post('/', authO, content('multipart/form-data'), uploadC, create)
 // 一進畫面取得所有案件
-router.get('/', getCases)
+router.get('/', authO, getCases)
 // 編輯案件內容
 router.patch('/:id', authO, content('multipart/form-data'), uploadC, updateCaesById)
 // 刪除案件

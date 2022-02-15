@@ -180,7 +180,9 @@
           <!-- 內容 -->
           <div class="psidebar"></div>
           <div class="content"></div>
-          <div class="main"></div>
+          <div class="main">
+            <CaseListCard v-for="casedata in cases" :key="casedata._id" :casedata="casedata" />
+          </div>
         </v-container>
       </v-sheet>
     </v-card>
@@ -192,8 +194,25 @@
 
 <script>
   import UserRegisters from '../components/UserRegister.vue'
+  import CaseListCard from '../components/CaseListCard.vue'
   export default {
-    components: { UserRegisters },
+    components: { UserRegisters, CaseListCard },
+    async created() {
+      try {
+        const { data } = await this.api.get('/owners/visitor', {
+          headers: {
+            authorization: 'Bearer ' + this.owners.token
+          }
+        })
+        this.cases = data.result
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: '商品取得失敗'
+        })
+      }
+    },
     computed: {
       user() {
         return this.$store.getters['user/user']

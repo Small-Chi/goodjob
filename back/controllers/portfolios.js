@@ -17,9 +17,10 @@ export const create = async (req, res) => {
 
 export const getPortfolios = async (req, res) => {
   try {
-    const result = await portfolios.find({})
+    const result = await portfolios.find({ user: req.user._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
+    console.log(error)
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
@@ -92,3 +93,13 @@ export const deletePortfolio = async (req, res) => {
     }
   }
 }
+
+// export const getPortfolioToSwiper = async (req, res) => {
+//   try {
+//     const result = await portfolios.find({})
+//     res.status(200).send({ success: true, message: '', result })
+//   } catch (error) {
+//     console.log(error)
+//     res.status(500).send({ success: false, message: '伺服器錯誤' })
+//   }
+// }

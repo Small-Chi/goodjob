@@ -100,7 +100,8 @@ const caseSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.ObjectId,
-      ref: 'users'
+      ref: 'users',
+      default: ''
     },
     owner: {
       type: mongoose.ObjectId,
