@@ -102,13 +102,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/cases">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">我的案件</a>
                 </v-btn>
@@ -124,7 +124,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext1">
                     進
-                    <span class="mg">行</span>
+                    <span class="mx-1">行</span>
                     中
                   </a>
                 </v-btn>
@@ -134,7 +134,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext1">
                     已
-                    <span class="mg">結</span>
+                    <span class="mx-1">結</span>
                     案
                   </a>
                 </v-btn>
@@ -144,7 +144,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
-                    <span style="margin-left: 20px; margin-right: 20px"></span>
+                    <span class="ms-8"></span>
                     息
                   </a>
                 </v-btn>
@@ -197,15 +197,18 @@
   import CaseListCard from '../components/CaseListCard.vue'
   export default {
     components: { UserRegisters, CaseListCard },
+    data() {
+      return {
+        cases: []
+      }
+    },
     async created() {
       try {
-        const { data } = await this.api.get('/owners/visitor', {
-          headers: {
-            authorization: 'Bearer ' + this.owners.token
-          }
-        })
+        const { data } = await this.api.get('/owners/visitor')
         this.cases = data.result
+        console.log(data.result)
       } catch (error) {
+        console.log(error)
         this.$swal({
           icon: 'error',
           title: '錯誤',

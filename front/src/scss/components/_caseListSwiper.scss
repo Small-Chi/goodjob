@@ -1,21 +1,13 @@
-.v-toolbar__content {
-  height: 70px !important;
-}
-.contentleftC {
-  background-color: var(--color-deepblue);
-  width: 100%;
-  height: 95vh;
-  margin-left: 450px;
-  margin-top: -95vh;
-  padding: 2.5% 5%;
-  overflow-y: auto;
+.Clistswiper {
+  background: var(--color-deepbule);
+  width: 473px;
+  height: 425px;
+  margin-top: 50px;
+  border-radius: 10px;
+  position: relative;
   display: flex;
-  justify-content: center;
-  .setRow {
-    width: 800px;
-    position: relative;
-  }
-
+  // background: red;
+  margin-bottom: -60px;
   .card {
     width: 350px;
     border-radius: 10px;
@@ -37,29 +29,6 @@
     position: absolute;
     bottom: 8px;
     right: 10px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .cardBtn2 {
-    position: absolute;
-    top: 180px;
-    right: 10px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .cardBtn3 {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    z-index: 3;
-  }
-
-  .cardBtn4 {
-    position: absolute;
-    top: 40px;
-    right: 60px;
     z-index: 3;
   }
 
@@ -150,6 +119,18 @@
   .addpuls {
     color: var(--color-white) !important;
   }
+
+  .swiper-button-prev {
+    position: absolute;
+    top: 210px;
+    left: 8px;
+  }
+
+  .swiper-button-next {
+    position: absolute;
+    top: 210px;
+    right: 8px;
+  }
   .card-title {
     text-align: center;
   }
@@ -161,6 +142,12 @@
   }
   .v-card__actions {
     padding-bottom: 10px;
+  }
+
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0;
   }
 }
 

@@ -8,10 +8,10 @@
         <h3>{{ portfolio.username }}</h3>
       </div>
     </div>
-    <swiper ref="mySwiper" :options="swiperOptions" style="width: 88%; padding-bottom: 20px">
-      <swiper-slide v-for="(item, index) in portfolio.portfolios" :key="index">
+    <swiper ref="mySwiper" :options="swiperOptions" style="width: 88%; padding-bottom: 10px">
+      <swiper-slide v-for="(portfolio, index) in portfolio.portfolios" :key="index">
         <!-- 卡片呈現 -->
-        <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
+        <v-card class="card mx-auto card-portfolio" max-width="350" color="var(--color-lightblue)">
           <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
             <div class="heartNum">0</div>
@@ -20,45 +20,37 @@
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>
             </v-btn> -->
           <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)">
-                <v-icon size="10" color="white" class="justify-content-center; Btn3Icon" @click="deletePortfolio(item._id)">mdi-close</v-icon>
+                <v-icon size="10" color="white" class="justify-content-center; Btn3Icon" @click="deletePortfolio(portfolio._id)">mdi-close</v-icon>
               </v-btn>
               <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editPortfolio(index)">
                 <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
               </v-btn> -->
-          <v-img :src="item.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
+          <v-img :src="portfolio.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
           <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
-            <h2>{{ item.pname }}</h2>
+            <h2>{{ portfolio.pname }}</h2>
             <!-- <div class="textWhite sell">
-              {{ item.sell ? '公開' : '隱藏' }}
+              {{ portfolio.sell ? '公開' : '隱藏' }}
             </div> -->
           </v-card-title>
           <v-card-subtitle class="textWhite d-flex" style="margin-left: 10px">
             <h3>$</h3>
-            <h3 class="textlightY ms-2">{{ item.price }}</h3>
+            <h3 class="textlightY ms-2">{{ portfolio.price }}</h3>
           </v-card-subtitle>
           <div class="hr mx-auto"></div>
           <v-card-actions>
-            <v-chip>{{ item.category.big }}</v-chip>
+            <v-chip>{{ portfolio.category.big }}</v-chip>
             <v-chip style="color: var(--color-white); background: var(--color-lightblue); border: 1px solid var(--color-white)">
-              {{ item.category.small }}
+              {{ portfolio.category.small }}
             </v-chip>
             <!-- <v-spacer></v-spacer>
                 <v-btn icon @click="show = !show" color="var(--color-white)">
                   <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn> -->
           </v-card-actions>
-          <v-expand-transition>
-            <div v-if="show">
-              <v-divider></v-divider>
-              <v-card-text class="textWhite">
-                {{ item.description }}
-              </v-card-text>
-            </div>
-          </v-expand-transition>
         </v-card>
       </swiper-slide>
 
-      <div class="swiper-pagination" slot="pagination"></div>
+      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
       <div class="swiper-button-next" slot="button-next"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>
     </swiper>
@@ -91,6 +83,7 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           },
+          // freeMode: true,
           breakpoints: {
             // 576: {
             //   slidesPerView: 1
