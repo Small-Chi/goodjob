@@ -54,7 +54,7 @@ const portfolioSchema = new mongoose.Schema(
       type: String
     },
     technology: {
-      type: String
+      type: []
     },
     workingday: {
       type: String
@@ -71,10 +71,12 @@ const portfolioSchema = new mongoose.Schema(
     },
     category: {
       big: {
-        type: String
+        type: String,
+        default: ''
       },
       small: {
-        type: String
+        type: String,
+        default: ''
       }
     },
     description: {

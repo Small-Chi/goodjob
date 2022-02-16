@@ -28,7 +28,9 @@
             <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editPortfolio(index)">
               <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
             </v-btn>
-            <v-img :src="item.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
+            <router-link :to="'/user/portfolioPage/' + item._id">
+              <v-img :src="item.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
+            </router-link>
             <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
               <router-link :to="'/user/portfolioPage/' + item._id">
                 <h2 style="color: var(--color-lightY)">{{ item.pname }}</h2>
@@ -199,7 +201,7 @@
           pname: '',
           size: '',
           sunit: '',
-          technology: '',
+          technology: [],
           workingday: '',
           price: '',
           image: null,
@@ -245,13 +247,19 @@
         const fd = new FormData()
         for (const key in this.form) {
           if (key !== '_id') {
-            fd.append(key, this.form[key])
+            if (key === 'category') {
+              fd.append('category[big]', this.form.category.big)
+              fd.append('category[small]', this.form.category.small)
+            } else if (key === 'technology') {
+              for (const t of this.form.technology) {
+                fd.append('technology', t)
+              }
+            } else {
+              fd.append(key, this.form[key])
+            }
           }
         }
-        // 大類別裡有小類別的取法
-        for (const key in this.form.category) {
-          fd.append(`category[${key}]`, this.form.category[key])
-        }
+
         try {
           if (!this.form._id) {
             console.log('增加商品')
@@ -335,7 +343,7 @@
           pname: '',
           size: '',
           sunit: '',
-          technology: '',
+          technology: [],
           workingday: '',
           price: '',
           image: null,

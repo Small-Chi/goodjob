@@ -5,9 +5,9 @@ export const create = async (req, res) => {
     const result = await cases.create({ ...req.body, image: req.file.path, owner: req.owner._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
-    console.log(error)
     if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
+      console.log(error)
       res.status(400).send({ success: false, message: error.errors[key].message })
     } else {
       console.log(error)

@@ -74,7 +74,7 @@ const ownerSchema = new mongoose.Schema(
     favorite: {
       type: [mongoose.ObjectId],
       ref: 'portfolios',
-      default: null
+      default: []
     },
     purview: {
       // 0 = 正常

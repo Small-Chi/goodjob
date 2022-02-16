@@ -30,7 +30,7 @@
             <!-- <v-img height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img> -->
             <v-card-title class="ctext1 mb-2" style="margin-left: 10px">
               <h3 class="textWhite ms-n1">{{ `◔` }}</h3>
-              <h3 class="textlightY ms-2">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
+              <h3 class="textlightY ms-2">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</h3>
             </v-card-title>
             <v-card-subtitle class="ctext1 d-flex" style="margin-left: 10px">
               <h3 class="textWhite">{{ ` $ ` }}</h3>
@@ -41,10 +41,12 @@
             </v-card-subtitle>
             <v-card-actions style="background: white" class="flex-wrap">
               <v-card-text class="col-12 mt-n1">
-                <div class="text" style="height: 190px; background: white">
-                  <h2 class="card-title mb-1">{{ item.casename }}</h2>
-                  {{ item.description }}
-                </div>
+                <router-link :to="'/owner/casePage/' + item._id">
+                  <div class="text" style="height: 190px; background: white">
+                    <h2 style="color: var(--color-deepblue)" class="card-title mb-1">{{ item.casename }}</h2>
+                    <p style="color: var(--color-deepblue)">{{ item.description }}</p>
+                  </div>
+                </router-link>
                 <div class="hr mx-auto"></div>
               </v-card-text>
               <v-chip style="color: var(--color-white); background: var(--color-lightblue)">
@@ -254,7 +256,7 @@
           sunit: '',
           quantity: '',
           qunit: '',
-          technology: '',
+          technology: [],
           endingday: '',
           takeday: '',
           price: '',
@@ -281,7 +283,7 @@
           ],
           手作設計: ['紙藝', '皮件', '木質', '棉/麻', '花草植栽', '羊毛', '陶瓷', '編織', '其他']
         },
-        rules: [v => !!v || '必填', v => (v && v.length <= 140) || '字數最多200'],
+        rules: [v => !!v || '必填', v => (v && v.length <= 140) || '字數最多140'],
         inputRules1: [value => !!value || '必填', value => (value && value.length <= 10) || '最多 10 個字'],
         menu: false,
         menu2: false
@@ -302,13 +304,19 @@
         const fd = new FormData()
         for (const key in this.form) {
           if (key !== '_id') {
-            fd.append(key, this.form[key])
+            if (key === 'category') {
+              fd.append('category[big]', this.form.category.big)
+              fd.append('category[small]', this.form.category.small)
+            } else if (key === 'technology') {
+              for (const t of this.form.technology) {
+                fd.append('technology', t)
+              }
+            } else {
+              fd.append(key, this.form[key])
+            }
           }
         }
-        // 大類別裡有小類別的取法
-        for (const key in this.form.category) {
-          fd.append(`category[${key}]`, this.form.category[key])
-        }
+
         try {
           if (!this.form._id) {
             console.log('增加商品')
@@ -397,7 +405,7 @@
           sunit: '',
           quantity: '',
           qunit: '',
-          technology: '',
+          technology: [],
           endingday: '',
           takeday: '',
           price: '',

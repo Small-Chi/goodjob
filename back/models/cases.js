@@ -60,7 +60,7 @@ const caseSchema = new mongoose.Schema(
       type: String
     },
     technology: {
-      type: String
+      type: []
     },
     endingday: {
       type: Date
@@ -80,10 +80,12 @@ const caseSchema = new mongoose.Schema(
     },
     category: {
       big: {
-        type: String
+        type: String,
+        default: ''
       },
       small: {
-        type: String
+        type: String,
+        default: ''
       }
     },
     description: {
@@ -101,7 +103,7 @@ const caseSchema = new mongoose.Schema(
     user: {
       type: mongoose.ObjectId,
       ref: 'users',
-      default: ''
+      default: null
     },
     owner: {
       type: mongoose.ObjectId,

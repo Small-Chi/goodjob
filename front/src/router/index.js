@@ -113,6 +113,15 @@ const routes = [
               login: true,
               title: 'goodjob | 我的案件'
             }
+          },
+          {
+            path: 'casePage/:id',
+            name: 'CasePage',
+            component: () => import(/* webpackChunkName: "casePage" */ '../views/CasePage.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 指定作品'
+            }
           }
         ]
       }

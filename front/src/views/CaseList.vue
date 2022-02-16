@@ -149,16 +149,6 @@
                   </a>
                 </v-btn>
               </li>
-              <!-- <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
-                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
-                  <a class="textWhite ctext1">
-                    行
-                    <span class="mg">事</span>
-                    曆
-                  </a>
-                </v-btn>
-              </li> -->
             </ul>
           </div>
           <v-avatar size="40" class="me-2">

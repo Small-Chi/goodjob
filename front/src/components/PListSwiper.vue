@@ -17,47 +17,48 @@
     <swiper ref="mySwiper" :options="swiperOptions" style="width: 100%; padding-bottom: 10px">
       <swiper-slide v-for="(portfolio, index) in portfolio.portfolios" :key="index">
         <!-- 卡片呈現 -->
-        <router-link :to="'/user/portfolioPage/' + portfolio._id">
-          <v-card class="card mx-auto card-portfolio" max-width="350" color="var(--color-lightblue)">
-            <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
-              <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
-              <div class="heartNum">0</div>
-            </v-btn>
-            <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
+
+        <v-card class="card mx-auto card-portfolio" max-width="350" color="var(--color-lightblue)">
+          <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
+            <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
+            <div class="heartNum">0</div>
+          </v-btn>
+          <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>
             </v-btn> -->
-            <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)">
+          <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)">
                 <v-icon size="10" color="white" class="justify-content-center; Btn3Icon" @click="deletePortfolio(portfolio._id)">mdi-close</v-icon>
               </v-btn>
               <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editPortfolio(index)">
                 <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
               </v-btn> -->
-
+          <router-link :to="'/user/portfolioPage/' + portfolio._id">
             <v-img :src="portfolio.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
-
-            <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
-              <h2>{{ portfolio.pname }}</h2>
-              <!-- <div class="textWhite sell">
+          </router-link>
+          <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
+            <router-link :to="'/user/portfolioPage/' + portfolio._id">
+              <h2 style="color: var(--color-lightY)">{{ portfolio.pname }}</h2>
+            </router-link>
+            <!-- <div class="textWhite sell">
               {{ portfolio.sell ? '公開' : '隱藏' }}
             </div> -->
-            </v-card-title>
-            <v-card-subtitle class="textWhite d-flex" style="margin-left: 10px">
-              <h3>$</h3>
-              <h3 class="textlightY ms-2">{{ portfolio.price }}</h3>
-            </v-card-subtitle>
-            <div class="hr mx-auto"></div>
-            <v-card-actions>
-              <v-chip>{{ portfolio.category.big }}</v-chip>
-              <v-chip style="color: var(--color-white); background: var(--color-lightblue); border: 1px solid var(--color-white)">
-                {{ portfolio.category.small }}
-              </v-chip>
-              <!-- <v-spacer></v-spacer>
+          </v-card-title>
+          <v-card-subtitle class="textWhite d-flex" style="margin-left: 10px">
+            <h3>$</h3>
+            <h3 class="textlightY ms-2">{{ portfolio.price }}</h3>
+          </v-card-subtitle>
+          <div class="hr mx-auto"></div>
+          <v-card-actions>
+            <v-chip>{{ portfolio.category.big }}</v-chip>
+            <v-chip style="color: var(--color-white); background: var(--color-lightblue); border: 1px solid var(--color-white)">
+              {{ portfolio.category.small }}
+            </v-chip>
+            <!-- <v-spacer></v-spacer>
                 <v-btn icon @click="show = !show" color="var(--color-white)">
                   <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn> -->
-            </v-card-actions>
-          </v-card>
-        </router-link>
+          </v-card-actions>
+        </v-card>
       </swiper-slide>
 
       <!-- <div class="swiper-pagination" slot="pagination"></div> -->

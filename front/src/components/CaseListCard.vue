@@ -1,14 +1,14 @@
 <template>
   <div class="Clistswiper">
     <swiper ref="mySwiper" :options="swiperOptions" style="width: 88%; padding-bottom: 20px">
-      <swiper-slide v-for="(item, index) in casedata.cases" :key="index">
+      <swiper-slide v-for="(casedata, index) in casedata.cases" :key="index">
         <!-- 卡片呈現 -->
-        <v-card class="card mx-auto card-item" max-width="350" min-width="350" color="var(--color-lightblue)">
+        <v-card class="card mx-auto card-casedata" max-width="350" min-width="350" color="var(--color-lightblue)">
           <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
             <div class="heartNum">0</div>
           </v-btn>
-          <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteCase(item._id)">
+          <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteCase(casedata._id)">
             <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
           </v-btn> -->
           <!-- <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editCase(index)">
@@ -24,30 +24,32 @@
             <div class="col-10">
               <v-card-title class="ctext1 mb-1" style="margin-left: 10px; padding-top: 5px">
                 <h3 class="textWhite ms-n1">{{ `◔` }}</h3>
-                <h3 class="textlightY ms-2">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
+                <h3 class="textlightY ms-2">{{ new Date(casedata.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
               </v-card-title>
               <v-card-subtitle class="ctext1 d-flex" style="margin-left: 10px">
                 <h3 class="textWhite">{{ ` $ ` }}</h3>
-                <h3 class="textlightY ms-2">{{ item.price }}</h3>
+                <h3 class="textlightY ms-2">{{ casedata.price }}</h3>
                 <!-- <div class="textWhite sell">
-              {{ item.sell ? '公開' : '隱藏' }}
+              {{ casedata.sell ? '公開' : '隱藏' }}
             </div> -->
               </v-card-subtitle>
             </div>
           </dir>
           <v-card-actions style="background: white" class="flex-wrap">
             <v-card-text>
-              <div style="height: 215px">
-                <h2 class="card-title mt-n2 mb-2">{{ item.casename }}</h2>
-                <p style="font-size: 16px">{{ item.description }}</p>
-              </div>
+              <router-link :to="'/owner/casePage/' + casedata._id">
+                <div style="height: 215px">
+                  <h2 style="color: var(--color-deepblue)" class="card-title mt-n2 mb-2">{{ casedata.casename }}</h2>
+                  <p style="font-size: 16px; color: var(--color-deepblue)">{{ casedata.description }}</p>
+                </div>
+              </router-link>
               <div class="hr mx-auto"></div>
             </v-card-text>
             <v-chip style="color: var(--color-white); background: var(--color-lightblue)">
-              {{ item.category.big }}
+              {{ casedata.category.big }}
             </v-chip>
             <v-chip>
-              {{ item.category.small }}
+              {{ casedata.category.small }}
             </v-chip>
             <v-spacer></v-spacer>
             <!-- <v-btn icon @click="show = !show" color="var(--color-white)">
