@@ -14,7 +14,7 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "sweetalert2": "^11.3.6",
-    "swiper": "^5.4.5",
+    "swiper": "^5.0.0",
     "v-animate-css": "^0.0.5",
     "validator": "^13.7.0",
     "vue": "^2.6.11",

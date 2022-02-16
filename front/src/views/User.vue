@@ -41,7 +41,7 @@
               <li>
                 <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">我的作品</a>
+                  <a class="textWhite ctext1">會員作品</a>
                 </v-btn>
               </li>
               <li>
@@ -115,6 +115,58 @@
             </v-avatar>
           </div>
           <div class="content"></div>
+          <div class="selfmeanu">
+            <ul>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/userself">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
+                  <a class="textWhite ctext2">會員資訊</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
+                  <a class="textWhite ctext2">會員作品</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
+                  <a class="textWhite ctext2">收藏案件</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
+                  <a class="textWhite ctext2">
+                    進
+                    <span class="mx-1">行</span>
+                    中
+                  </a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
+                  <a class="textWhite ctext2">
+                    已
+                    <span class="mx-1">結</span>
+                    案
+                  </a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
+                  <a class="textWhite ctext2">
+                    訊
+                    <span class="ms-8"></span>
+                    息
+                  </a>
+                </v-btn>
+              </li>
+            </ul>
+          </div>
         </v-container>
       </v-sheet>
     </v-card>

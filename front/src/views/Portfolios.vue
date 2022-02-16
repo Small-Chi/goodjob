@@ -1,4 +1,5 @@
 <template>
+  <!-- 作品 Card 清單 -->
   <div class="contentleft">
     <div class="row setRow">
       <div class="col-4">
@@ -29,7 +30,9 @@
             </v-btn>
             <v-img :src="item.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
             <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
-              <h2>{{ item.pname }}</h2>
+              <router-link :to="'/user/portfolioPage/' + item._id">
+                <h2 style="color: var(--color-lightY)">{{ item.pname }}</h2>
+              </router-link>
               <div class="textWhite sell">
                 {{ item.sell ? '公開' : '隱藏' }}
               </div>
@@ -369,6 +372,7 @@
         })
         this.portfolios = data.result
         console.log(this.portfolios)
+        console.log(this.portfolios._id)
       } catch (error) {
         console.log(error)
         this.$swal({

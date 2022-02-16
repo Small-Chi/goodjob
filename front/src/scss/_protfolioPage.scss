@@ -1,0 +1,105 @@
+#protfolioPage {
+  background-color: var(--color-deepblue);
+  // border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 76.5%;
+  height: 95vh;
+  margin-left: 450px;
+  margin-top: -95vh;
+  padding-top: 3%;
+  padding-left: 2%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: start;
+  color: var(--color-white);
+  .username {
+    height: 100px;
+    font-size: 45px;
+    font-weight: 600;
+    // border: 1px solid white;
+    margin-right: 30px;
+    position: relative;
+    margin-top: 15px;
+    color: var(--color-lightY);
+  }
+  .username::after {
+    content: '';
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid var(--color-lightY);
+    margin-right: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .messageIcon {
+    color: var(--color-lightY) !important;
+    background-color: var(--color-lightblue);
+    position: relative;
+    margin-left: -70px;
+    width: 60px !important;
+    height: 60px !important;
+    box-shadow: (0px 5px 5px rgb(0, 0, 0));
+    transition: 0.3s;
+  }
+
+  .messageIcon:hover {
+    transform: translateY(-8px);
+  }
+
+  .score {
+    // border: 1px solid white;
+    // width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .scoreitem {
+    width: 250px;
+    // border: 1px solid wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .num {
+    font-size: 45px;
+    color: var(--color-lightY);
+  }
+  .numtitle {
+    font-size: 24px;
+    margin-top: -10px;
+    font-weight: bold;
+  }
+  .fw-300 {
+    font-weight: 300 !important;
+  }
+  .content {
+    position: relative;
+    top: 0;
+    left: -400px;
+    width: 70%;
+    height: 150px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    // background-color: rgb(182, 119, 119);
+    .main {
+      width: 120%;
+      // background-color: rgb(116, 50, 75);
+      // 內文字級
+      font-size: 24px;
+    }
+    .tag {
+      height: 20px;
+      font-size: 20px;
+      border: 1px solid var(--color-white);
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-right: 15px;
+      margin-top: 36px;
+    }
+  }
+}

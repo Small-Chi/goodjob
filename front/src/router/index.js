@@ -70,10 +70,19 @@ const routes = [
           {
             path: 'portfolios',
             name: 'Portfolios',
-            component: () => import(/* webpackChunkName: "Portfolios" */ '../views/Portfolios.vue'),
+            component: () => import(/* webpackChunkName: "portfolios" */ '../views/Portfolios.vue'),
             meta: {
               login: true,
               title: 'goodjob | 我的作品'
+            }
+          },
+          {
+            path: 'portfolioPage/:id',
+            name: 'PortfolioPage',
+            component: () => import(/* webpackChunkName: "portfolioPage" */ '../views/PortfolioPage.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 指定作品'
             }
           }
         ]

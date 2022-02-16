@@ -11,6 +11,7 @@ import VAnimateCss from 'v-animate-css'
 import ImgInputer from 'vue-img-inputer'
 import 'vue-img-inputer/dist/index.css'
 import mixin from './mixin.js'
+import 'swiper/css/swiper.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(VueAwesomeSwiper)

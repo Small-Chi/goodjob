@@ -30,7 +30,7 @@ router.delete('/logout', auth, logout)
 // 拿取自己的資料
 router.get('/me', auth, getInfo)
 
-// 找專業的頁面
+// 找專業的頁面使用 不需要登入就能看見
 router.get('/visitor', getPortfolios)
 
 export default router

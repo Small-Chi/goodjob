@@ -46,6 +46,23 @@
   .nametext {
     text-align: center;
     margin-top: 30px;
+    color: var(--color-lightY);
     // background: red;
+  }
+
+  .goodIcon {
+    text-align: left;
+    // background: red;
+    width: 60px;
+    margin-left: 20px;
+    h4 {
+      line-height: 25px;
+      position: relative;
+      span {
+        margin-left: 5px;
+        position: absolute;
+        top: 2px;
+      }
+    }
   }
 }
