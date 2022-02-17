@@ -30,13 +30,13 @@
           <div class="userList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/user/userself">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="'/user/portfolios/' + this.userId">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/portfolios/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員作品</a>
                 </v-btn>
@@ -105,7 +105,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/cases">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="'/owner/cases/' + this.ownerId">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員案件</a>
                 </v-btn>
@@ -237,15 +237,8 @@
     components: { UserRegisters, Carousels },
     data() {
       return {
-        userId: ''
-      }
-    },
-    computed: {
-      user() {
-        return this.$store.getters['user/user']
-      },
-      owner() {
-        return this.$store.getters['owner/owner']
+        userId: '',
+        ownerId: ''
       }
     },
     methods: {
@@ -255,15 +248,6 @@
       ownerlogout() {
         // 連到的是 actions 裡的 ownerlogout
         this.$store.dispatch('owner/ownerlogout')
-      }
-    },
-    // 進來要抓資料
-    async created() {
-      if (!this.user.token) {
-        const { data } = await this.api.get('/portfolios/' + this.$route.params.id)
-        this.userId = data.result.user
-      } else {
-        this.userId = this.user._id
       }
     }
   }

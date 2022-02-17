@@ -226,6 +226,7 @@
     data() {
       return {
         dialog: false,
+        me: false,
         form: {
           username: '',
           account: '',
@@ -324,15 +325,29 @@
     },
     // 一進來抓資料
     async created() {
+      // v-if = me 顯示按鈕
+      this.me = this.user._id === this.$route.params.id
       try {
-        const { data } = await this.api.get('users/me', {
-          headers: {
-            authorization: 'Bearer ' + this.user.token
-          }
-        })
-        this.userinfo = data.result
-        this.userinfo.password = ''
-        console.log(data.result)
+        if (this.me) {
+          const { data } = await this.api.get('users/me', {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.userinfo = data.result
+          this.userinfo.password = ''
+          console.log(data.result)
+        } else {
+          // 用 route.params.id 抓別人資料
+          const { data } = await this.api.get('users/' + this.$route.params.id, {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.userinfo = data.result
+          this.userinfo.password = ''
+          console.log(data.result)
+        }
       } catch (error) {
         this.$swal({
           icon: 'error',

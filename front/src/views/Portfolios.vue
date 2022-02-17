@@ -2,7 +2,7 @@
   <!-- 作品 Card 清單 -->
   <div class="contentleft">
     <div class="row setRow">
-      <div class="col-4">
+      <div class="col-4" v-if="user.isMeLogin">
         <div class="cardLine">
           <!-- 新增卡片按鈕 -->
           <v-btn depressed icon class="addcard" height="100" width="100">
@@ -22,7 +22,7 @@
             <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>
             </v-btn> -->
-            <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)">
+            <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" v-if="me">
               <v-icon size="10" color="white" class="justify-content-center; Btn3Icon" @click="deletePortfolio(item._id)">mdi-close</v-icon>
             </v-btn>
             <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editPortfolio(index)">
@@ -188,6 +188,7 @@
   export default {
     data() {
       return {
+        me: false,
         dialogSubmitting: false,
         dialog: false,
         reset: false,
@@ -386,7 +387,8 @@
       }
     },
     async created() {
-      if (this.user._id === this.$route.params.id) {
+      this.me = this.user._id === this.$route.params.id
+      if (this.me) {
         this.getPortfolios()
       } else {
         this.getPortfoliosOther()

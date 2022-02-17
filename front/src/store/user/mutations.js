@@ -7,6 +7,7 @@ export const login = (state, data) => {
   state.role = data.role
   state.email = data.email
   state.cart = data.cart
+  state._id = data._id
 }
 
 export const logout = (state, data) => {
@@ -15,6 +16,7 @@ export const logout = (state, data) => {
   state.role = 0
   state.email = ''
   state.cart = 0
+  state._id = ''
 }
 
 export const getInfo = (state, data) => {

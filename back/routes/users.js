@@ -9,7 +9,8 @@ import {
   extend,
   getInfo,
   updateInfo,
-  getPortfolios
+  getPortfolios,
+  userself
   // addCart,
   // getCart,
   // updateCart
@@ -29,8 +30,10 @@ router.post('/extend', auth, extend)
 router.delete('/logout', auth, logout)
 // 拿取自己的資料
 router.get('/me', auth, getInfo)
-
 // 找專業的頁面使用 不需要登入就能看見
 router.get('/visitor', getPortfolios)
+
+// 訪客
+router.get('/:id', userself)
 
 export default router

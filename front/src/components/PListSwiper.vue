@@ -32,11 +32,11 @@
               <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editPortfolio(index)">
                 <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
               </v-btn> -->
-          <router-link :to="'/user/portfolioPage/' + portfolio._id">
+          <router-link :to="`/user/${portfolio.user}/portfolioPage/` + portfolio._id">
             <v-img :src="portfolio.image" height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img>
           </router-link>
           <v-card-title class="ctext1 textlightY" style="margin-left: 10px">
-            <router-link :to="'/user/portfolioPage/' + portfolio._id">
+            <router-link :to="`/user/${portfolio.user}/portfolioPage/` + portfolio._id">
               <h2 style="color: var(--color-lightY)">{{ portfolio.pname }}</h2>
             </router-link>
             <!-- <div class="textWhite sell">

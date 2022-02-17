@@ -72,6 +72,16 @@ export const getInfo = (req, res) => {
   }
 }
 
+export const userself = async (req, res) => {
+  try {
+    const result = await users.findById(req.params.id, '-password -tokens')
+    delete result.tokens
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
 export const updateInfo = async (req, res) => {
   const data = {
     username: req.body.username,
@@ -169,6 +179,11 @@ export const getPortfolios = async (req, res) => {
           localField: 'portfolios._id',
           foreignField: 'favorite',
           as: 'portfolios.favorite'
+        }
+      },
+      {
+        $match: {
+          'portfolios.sell': true
         }
       },
       {

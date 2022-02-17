@@ -39,6 +39,7 @@ export const getPortfoliosOther = async (req, res) => {
 export const getPortfolioById = async (req, res) => {
   try {
     const result = await portfolios.findById(req.params.id)
+    console.log(result)
     if (result) {
       res.status(200).send({ success: true, message: '', result })
     } else {

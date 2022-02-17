@@ -16,6 +16,7 @@ export const create = async (req, res) => {
   }
 }
 
+// 本人
 export const getCases = async (req, res) => {
   try {
     const result = await cases.find({ owner: req.owner._id })
@@ -25,9 +26,20 @@ export const getCases = async (req, res) => {
   }
 }
 
+// 訪客
+export const getCasesOther = async (req, res) => {
+  try {
+    const result = await cases.find({ owner: req.query.owner, sell: true })
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
 export const getCaseById = async (req, res) => {
   try {
     const result = await cases.findById(req.params.id)
+    console.log(result)
     if (result) {
       res.status(200).send({ success: true, message: '', result })
     } else {

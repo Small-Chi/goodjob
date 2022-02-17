@@ -264,6 +264,7 @@
           sell: false,
           category: { big: '', small: '' },
           description: '',
+          _id: '',
           index: -1
         },
         categories: {
@@ -341,7 +342,7 @@
             icon: 'success',
             title: '完成'
           })
-          this.getCase()
+          this.getCases()
         } catch (error) {
           console.log(error)
           this.$swal({
@@ -384,7 +385,7 @@
             title: '成功',
             text: '刪除商品成功'
           })
-          this.getCase()
+          this.getCases()
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -413,44 +414,46 @@
           sell: false,
           category: { big: '', small: '' },
           description: '',
+          _id: '',
           index: -1
         }
       },
-      // 事件以後再拿取最新的資料
-      async getCase() {
+      // 本人
+      async getCases() {
         try {
-          const { data } = await this.api.get('/cases', {
+          const { data } = await this.api.get('/cases/me', {
             headers: {
               authorization: 'Bearer ' + this.owner.token
             }
           })
           this.cases = data.result
-          console.log(this.cases.endingday)
         } catch (error) {
           this.$swal({
             icon: 'error',
             title: '錯誤',
-            text: '取得商品失敗'
+            text: '取得案件失敗'
+          })
+        }
+      },
+      // 訪客
+      async getCasesOther() {
+        try {
+          const { data } = await this.api.get('/cases/visitor?owner=' + this.$route.params.id)
+          this.cases = data.result
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: '取得案件失敗'
           })
         }
       }
     },
     async created() {
-      try {
-        const { data } = await this.api.get('/cases', {
-          headers: {
-            authorization: 'Bearer ' + this.owner.token
-          }
-        })
-        this.cases = data.result
-        console.log(this.cases)
-      } catch (error) {
-        console.log(error)
-        this.$swal({
-          icon: 'error',
-          title: '錯誤',
-          text: '案件取得失敗'
-        })
+      if (this.owner._id === this.$route.params.id) {
+        this.getCases()
+      } else {
+        this.getCasesOther()
       }
     }
   }

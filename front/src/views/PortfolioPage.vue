@@ -73,7 +73,7 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/portfolios/' + this.$route.params.id)
+        const { data } = await this.api.get('/portfolios/' + this.$route.params.pid)
         this.pname = data.result.pname
         this.size = data.result.size
         this.sunit = data.result.sunit

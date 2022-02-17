@@ -50,7 +50,7 @@ const routes = [
         }
       },
       {
-        path: 'user',
+        path: 'user/:id',
         name: 'User',
         component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
         meta: {
@@ -68,7 +68,7 @@ const routes = [
             }
           },
           {
-            path: 'portfolios/:id',
+            path: 'portfolios',
             name: 'Portfolios',
             component: () => import(/* webpackChunkName: "portfolios" */ '../views/Portfolios.vue'),
             meta: {
@@ -77,7 +77,7 @@ const routes = [
             }
           },
           {
-            path: 'portfolioPage/:id',
+            path: 'portfolioPage/:pid',
             name: 'PortfolioPage',
             component: () => import(/* webpackChunkName: "portfolioPage" */ '../views/PortfolioPage.vue'),
             meta: {
@@ -106,7 +106,7 @@ const routes = [
             }
           },
           {
-            path: 'cases',
+            path: 'cases/:id',
             name: 'Cases',
             component: () => import(/* webpackChunkName: "cases" */ '../views/Cases.vue'),
             meta: {
