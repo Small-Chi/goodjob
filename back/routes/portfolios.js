@@ -7,14 +7,19 @@ import {
   getPortfolios,
   getPortfolioById,
   updatePortfolioById,
-  deletePortfolio
+  deletePortfolio,
+  getPortfoliosOther
   // getPortfolioToSwiper
 } from '../controllers/portfolios.js'
 
 const router = express.Router()
 
 router.post('/', auth, content('multipart/form-data'), uploadP, create)
-router.get('/', auth, getPortfolios)
+// 本人
+router.get('/me', auth, getPortfolios)
+// 訪客
+router.get('/visitor', getPortfoliosOther)
+
 // router.get('/swiper', getPortfolioToSwiper)
 router.get('/:id', getPortfolioById)
 router.patch('/:id', auth, content('multipart/form-data'), uploadP, updatePortfolioById)

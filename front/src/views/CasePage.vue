@@ -82,7 +82,8 @@
         image: '',
         sell: false,
         category: { big: '', small: '' },
-        description: ''
+        description: '',
+        ownerId: null
       }
     },
     async created() {
@@ -100,6 +101,7 @@
         this.sell = data.result.sell
         this.category = data.result.category
         this.description = data.result.description
+        this.ownerId = data.result.owner
         document.title = `${this.casename} | 作品`
         console.log(data)
       } catch (error) {

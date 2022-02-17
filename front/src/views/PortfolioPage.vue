@@ -67,6 +67,7 @@
         image: '',
         category: '',
         description: '',
+        userId: null,
         sell: false
       }
     },
@@ -83,8 +84,9 @@
         this.category = data.result.category
         this.description = data.result.description
         this.sell = data.result.sell
+        this.userId = data.result.user
         document.title = `${this.pname} | 作品`
-        console.log(data)
+        console.log(data.result.user)
       } catch (error) {
         this.$router.push('/')
       }

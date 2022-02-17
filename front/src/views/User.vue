@@ -39,7 +39,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="'/user/portfolios/' + this.userId">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員作品</a>
                 </v-btn>
@@ -124,7 +124,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="'/user/portfolios/' + this.userId">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext2">會員作品</a>
                 </v-btn>
@@ -180,6 +180,11 @@
   import UserRegisters from '../components/UserRegister.vue'
   export default {
     components: { UserRegisters },
+    data() {
+      return {
+        userId: ''
+      }
+    },
     computed: {
       user() {
         return this.$store.getters['user/user']
@@ -195,6 +200,16 @@
       ownerlogout() {
         // 連到的是 actions 裡的 ownerlogout
         this.$store.dispatch('owner/ownerlogout')
+      }
+    },
+    // 進來要抓資料
+    async created() {
+      console.log(this.user._id)
+      if (!this.user.token) {
+        const { data } = await this.api.get('/portfolios/' + this.$route.params.id)
+        this.userId = data.result.user
+      } else {
+        this.userId = this.user._id
       }
     }
   }

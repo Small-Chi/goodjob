@@ -284,7 +284,7 @@
             icon: 'success',
             title: '完成'
           })
-          this.getPortfolio()
+          this.getPortfolios()
         } catch (error) {
           console.log(error)
           this.$swal({
@@ -324,7 +324,7 @@
             title: '成功',
             text: '刪除商品成功'
           })
-          this.getPortfolio()
+          this.getPortfolios()
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -354,9 +354,10 @@
           index: -1
         }
       },
-      async getPortfolio() {
+      // 本人
+      async getPortfolios() {
         try {
-          const { data } = await this.api.get('/portfolios', {
+          const { data } = await this.api.get('/portfolios/me', {
             headers: {
               authorization: 'Bearer ' + this.user.token
             }
@@ -366,28 +367,29 @@
           this.$swal({
             icon: 'error',
             title: '錯誤',
-            text: '取得商品失敗'
+            text: '取得作品失敗'
+          })
+        }
+      },
+      // 訪客
+      async getPortfoliosOther() {
+        try {
+          const { data } = await this.api.get('/portfolios/visitor?user=' + this.$route.params.id)
+          this.portfolios = data.result
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: '取得作品失敗'
           })
         }
       }
     },
     async created() {
-      try {
-        const { data } = await this.api.get('/portfolios', {
-          headers: {
-            authorization: 'Bearer ' + this.user.token
-          }
-        })
-        this.portfolios = data.result
-        console.log(this.portfolios)
-        console.log(this.portfolios._id)
-      } catch (error) {
-        console.log(error)
-        this.$swal({
-          icon: 'error',
-          title: '錯誤',
-          text: '取得商品失敗'
-        })
+      if (this.user._id === this.$route.params.id) {
+        this.getPortfolios()
+      } else {
+        this.getPortfoliosOther()
       }
     }
   }

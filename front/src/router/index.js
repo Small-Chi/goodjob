@@ -68,7 +68,7 @@ const routes = [
             }
           },
           {
-            path: 'portfolios',
+            path: 'portfolios/:id',
             name: 'Portfolios',
             component: () => import(/* webpackChunkName: "portfolios" */ '../views/Portfolios.vue'),
             meta: {

@@ -324,16 +324,6 @@
     },
     // 一進來抓資料
     async created() {
-      // this.form.username = this.user.username
-      // this.form.account = this.user.account
-      // this.form.password = this.user.password
-      // this.form.email = this.user.email
-      // this.form.state = this.user.state
-      // this.form.workingday = this.user.workingday
-      // this.form.position = this.user.position
-      // this.form.technology = this.user.technology
-      // this.form.about = this.user.about
-      // this.form.prices = this.user.prices
       try {
         const { data } = await this.api.get('users/me', {
           headers: {

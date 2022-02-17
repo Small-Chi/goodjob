@@ -205,11 +205,7 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/users/visitor', {
-          headers: {
-            authorization: 'Bearer ' + this.user.token
-          }
-        })
+        const { data } = await this.api.get('/users/visitor')
         this.portfolios = data.result
         console.log(data.result)
       } catch (error) {
