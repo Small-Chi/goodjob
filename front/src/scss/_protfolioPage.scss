@@ -8,6 +8,7 @@
   padding-top: 3%;
   padding-left: 2%;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   justify-content: start;
   color: var(--color-white);
@@ -31,50 +32,12 @@
     top: 0;
     left: 0;
   }
-  .messageIcon {
-    color: var(--color-lightY) !important;
-    background-color: var(--color-lightblue);
-    position: relative;
-    margin-left: -70px;
-    width: 60px !important;
-    height: 60px !important;
-    box-shadow: (0px 5px 5px rgb(0, 0, 0));
-    transition: 0.3s;
-  }
-
-  .messageIcon:hover {
-    transform: translateY(-8px);
-  }
-
-  .score {
-    // border: 1px solid white;
-    // width: 900px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .scoreitem {
-    width: 250px;
-    // border: 1px solid wheat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  .num {
-    font-size: 45px;
-    color: var(--color-lightY);
-  }
-  .numtitle {
-    font-size: 24px;
-    margin-top: -10px;
-    font-weight: bold;
-  }
   .fw-300 {
     font-weight: 300 !important;
   }
   .content {
     position: relative;
+    width: 92%;
     top: 0;
     left: -400px;
     height: 150px;
@@ -82,6 +45,39 @@
     justify-content: start;
     flex-wrap: wrap;
     // background-color: rgb(182, 119, 119);
+    .tag {
+      height: 20px;
+      font-size: 20px;
+      border: 1px solid var(--color-white);
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-right: 15px;
+      margin-top: 36px;
+    }
+    .cardBtn {
+      position: relative;
+      top: 0px;
+      right: 10px;
+      margin-top: 38px;
+      margin-left: auto;
+    }
+    .heartNum {
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .cardBtn:hover .heartNum {
+      color: var(--color-lightY) !important;
+    }
+
+    .cardBtn:hover .Btn1Icon {
+      color: var(--color-lightY) !important;
+    }
+
     .main {
       // background-color: rgb(116, 50, 75);
       // 內文字級
@@ -96,18 +92,6 @@
         width: 500px;
         margin-right: 20px;
       }
-    }
-    .tag {
-      height: 20px;
-      font-size: 20px;
-      border: 1px solid var(--color-white);
-      border-radius: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      margin-right: 15px;
-      margin-top: 36px;
     }
   }
 }
