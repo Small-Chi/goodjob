@@ -88,7 +88,7 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/cases/' + this.$route.params.id)
+        const { data } = await this.api.get('/cases/' + this.$route.params.cid)
         this.casename = data.result.casename
         this.size = data.result.size
         this.quantity = data.result.quantity

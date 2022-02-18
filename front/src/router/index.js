@@ -88,7 +88,7 @@ const routes = [
         ]
       },
       {
-        path: 'owner',
+        path: 'owner/:id',
         name: 'Owner',
         component: () => import(/* webpackChunkName: "owner" */ '../views/Owner.vue'),
         meta: {
@@ -106,7 +106,7 @@ const routes = [
             }
           },
           {
-            path: 'cases/:id',
+            path: 'cases',
             name: 'Cases',
             component: () => import(/* webpackChunkName: "cases" */ '../views/Cases.vue'),
             meta: {
@@ -115,7 +115,7 @@ const routes = [
             }
           },
           {
-            path: 'casePage/:id',
+            path: 'casePage/:cid',
             name: 'CasePage',
             component: () => import(/* webpackChunkName: "casePage" */ '../views/CasePage.vue'),
             meta: {

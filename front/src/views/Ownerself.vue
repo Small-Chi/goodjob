@@ -226,6 +226,7 @@
     data() {
       return {
         dialog: false,
+        me: false,
         form: {
           ownername: '',
           account: '',
@@ -321,16 +322,30 @@
       }
     },
     // 一進來抓資料
-    // 設成抓路由+id 向商品頁的方式
     async created() {
+      console.log(this.owner._id)
+      this.me = this.owner._id === this.$route.params.id
+
       try {
-        const { data } = await this.api.get('owners/me', {
-          headers: {
-            authorization: 'Bearer ' + this.owner.token
-          }
-        })
-        this.ownerinfo = data.result
-        this.ownerinfo.password = ''
+        if (this.me) {
+          const { data } = await this.api.get('owners/me', {
+            headers: {
+              authorization: 'Bearer ' + this.owner.token
+            }
+          })
+          this.ownerinfo = data.result
+          this.ownerinfo.password = ''
+        } else {
+          // 用 route.params.id 抓別人資料
+          const { data } = await this.api.get('owners/' + this.$route.params.id, {
+            headers: {
+              authorization: 'Bearer ' + this.owner.token
+            }
+          })
+          this.ownerinfo = data.result
+          this.ownerinfo.password = ''
+          console.log(data.result)
+        }
       } catch (error) {
         this.$swal({
           icon: 'error',

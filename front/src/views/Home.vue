@@ -99,13 +99,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="'/owner/cases/' + this.ownerId">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員案件</a>
                 </v-btn>
@@ -178,10 +178,10 @@
             <div class="dark"></div>
             <Carousels />
             <div class="center">
-              <div class="centerLogo">
+              <div class="centerLogo" v-animate-css="'fadeInUp'">
                 <v-img src="../assets/images/logo.png"></v-img>
               </div>
-              <h1 class="centerslogan textWhite" v-animate-css="'tada'">
+              <h1 class="centerslogan textWhite" v-animate-css="'fadeInUp'">
                 專為
                 <span style="color: var(--color-lightY)">設計領域</span>
                 打造的外包網

@@ -323,7 +323,6 @@
         }
       }
     },
-    // 一進來抓資料
     async created() {
       // v-if = me 顯示按鈕
       this.me = this.user._id === this.$route.params.id
@@ -345,6 +344,7 @@
             }
           })
           this.userinfo = data.result
+          // this.$emit('showText', data)
           this.userinfo.password = ''
           console.log(data.result)
         }

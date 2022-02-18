@@ -72,6 +72,16 @@ export const getInfo = (req, res) => {
   }
 }
 
+export const ownerself = async (req, res) => {
+  try {
+    const result = await owners.findById(req.params.id, '-password -tokens')
+    delete result.tokens
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
 export const updateInfo = async (req, res) => {
   const data = {
     ownername: req.body.ownername,
@@ -168,6 +178,11 @@ export const getCases = async (req, res) => {
           localField: 'cases._id',
           foreignField: 'favorite',
           as: 'cases.favorite'
+        }
+      },
+      {
+        $match: {
+          'cases.sell': true
         }
       },
       {

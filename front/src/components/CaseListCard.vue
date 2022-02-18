@@ -8,18 +8,13 @@
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
             <div class="heartNum">0</div>
           </v-btn>
-          <!-- <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteCase(casedata._id)">
-            <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
-          </v-btn> -->
-          <!-- <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editCase(index)">
-            <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
-          </v-btn> -->
-          <!-- <v-img height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img> -->
           <dir class="d-flex">
             <div class="col-1 ms-1 me-2">
-              <v-avatar size="70" class="me-2 avatarSwipwer">
-                <v-img :src="'https://source.boringavatars.com/beam/120/' + casedata.account"></v-img>
-              </v-avatar>
+              <router-link :to="`/owner/${casedata.owner}/ownerself/`">
+                <v-avatar size="70" class="me-2 avatarSwipwer">
+                  <v-img :src="'https://source.boringavatars.com/beam/120/' + casedata.account"></v-img>
+                </v-avatar>
+              </router-link>
             </div>
             <div class="col-10">
               <v-card-title class="ctext1 mb-1" style="margin-left: 10px; padding-top: 5px">
@@ -37,7 +32,7 @@
           </dir>
           <v-card-actions style="background: white" class="flex-wrap">
             <v-card-text>
-              <router-link :to="'/owner/casePage/' + casedata._id">
+              <router-link :to="`/owner/${casedata.owner}/casePage/` + casedata._id">
                 <div style="height: 215px">
                   <h2 style="color: var(--color-deepblue)" class="card-title mt-n2 mb-2">{{ casedata.casename }}</h2>
                   <p style="font-size: 16px; color: var(--color-deepblue)">{{ casedata.description }}</p>
@@ -91,7 +86,7 @@
             el: '.swiper-pagination',
             clickable: true
           },
-          loop: true,
+          loop: false,
           autoplay: {
             delay: 5000,
             disableOnInteraction: true

@@ -33,13 +33,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="'/owner/cases/' + this.ownerId">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員案件</a>
                 </v-btn>
@@ -118,25 +118,25 @@
           <div class="selfmeanu">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${$route.params.id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext2">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="'/owner/cases/' + this.ownerId">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${$route.params.id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext2">會員案件</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext2">收藏作品</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext2">
                     進
@@ -146,7 +146,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext2">
                     已
@@ -156,11 +156,11 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext2">
                     訊
-                    <span style="margin-left: 15px; margin-right: 15px"></span>
+                    <span class="ms-8"></span>
                     息
                   </a>
                 </v-btn>
@@ -177,6 +177,7 @@
               </li> -->
             </ul>
           </div>
+          <div class="selfmeanu2" v-if="me"></div>
         </v-container>
       </v-sheet>
     </v-card>
@@ -192,7 +193,8 @@
     components: { UserRegisters },
     data() {
       return {
-        ownerId: ''
+        ownerId: '',
+        me: false
       }
     },
     computed: {
@@ -212,15 +214,9 @@
         this.$store.dispatch('owner/ownerlogout')
       }
     },
-    // 進來要抓資料
     async created() {
-      console.log(this.owner._id)
-      if (!this.owner.token) {
-        const { data } = await this.api.get('/cases/' + this.$route.params.id)
-        this.ownerId = data.result.owner
-      } else {
-        this.ownerId = this.owner._id
-      }
+      this.nome = this.owner._id === this.$route.params.id
+      this.me = this.owner._id !== this.$route.params.id
     }
   }
 </script>

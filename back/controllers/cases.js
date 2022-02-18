@@ -38,7 +38,7 @@ export const getCasesOther = async (req, res) => {
 
 export const getCaseById = async (req, res) => {
   try {
-    const result = await cases.findById(req.params.id)
+    const result = await cases.findById(req.params.id).populate('owner', 'account')
     console.log(result)
     if (result) {
       res.status(200).send({ success: true, message: '', result })

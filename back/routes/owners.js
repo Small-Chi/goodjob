@@ -9,7 +9,8 @@ import {
   extend,
   getInfo,
   updateInfo,
-  getCases
+  getCases,
+  ownerself
   // addCart,
   // getCart,
   // updateCart
@@ -29,12 +30,11 @@ router.post('/extend', authO, extend)
 router.delete('/logout', authO, logout)
 // 取自己的資料
 router.get('/me', authO, getInfo)
-// 取自己的資料
-router.get('/me', authO, getInfo)
-// 找專業的頁面
+
+// 找專業的頁面 不需要登入就能看見
 router.get('/visitor', getCases)
-// router.post('/me/cart', auth, addCart)
-// router.get('/me/cart', auth, getCart)
-// router.patch('/me/cart', auth, updateCart)
+
+// 訪客
+router.get('/:id', ownerself)
 
 export default router

@@ -58,6 +58,7 @@
   export default {
     data() {
       return {
+        account: '',
         pname: '',
         size: '',
         sunit: '',
@@ -74,6 +75,8 @@
     async created() {
       try {
         const { data } = await this.api.get('/portfolios/' + this.$route.params.pid)
+        // console.log(data.result.user.account)
+        this.Account = data.result.user.account
         this.pname = data.result.pname
         this.size = data.result.size
         this.sunit = data.result.sunit
@@ -86,7 +89,6 @@
         this.sell = data.result.sell
         this.userId = data.result.user
         document.title = `${this.pname} | 作品`
-        console.log(data.result.user)
       } catch (error) {
         this.$router.push('/')
       }

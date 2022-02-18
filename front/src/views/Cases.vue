@@ -1,7 +1,7 @@
 <template>
   <div class="contentleftC">
     <div class="row setRow">
-      <div class="col-4">
+      <div class="col-4" v-if="me">
         <div class="cardLine">
           <!-- 新增卡片按鈕 -->
           <v-btn depressed icon class="addcard" height="100" width="100">
@@ -21,10 +21,18 @@
             <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>
             </v-btn> -->
-            <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteCase(item._id)">
+            <v-btn
+              icon
+              class="cardBtn3"
+              max-width="20"
+              max-height="20"
+              style="padding: 0; background-color: var(--color-red)"
+              @click="deleteCase(item._id)"
+              v-if="me"
+            >
               <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
             </v-btn>
-            <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editCase(index)">
+            <v-btn icon class="cardBtn4" min-width="30" style="padding: 0; background-color: var(--color-blue)" @click="editCase(index)" v-if="me">
               <v-icon size="18" color="white" class="justify-content-center; Btn4Icon">mdi-pencil-outline</v-icon>
             </v-btn>
             <!-- <v-img height="200px" style="border-radius: 10px; background-color: var(--color-white)"></v-img> -->
@@ -41,7 +49,7 @@
             </v-card-subtitle>
             <v-card-actions style="background: white" class="flex-wrap">
               <v-card-text class="col-12 mt-n1">
-                <router-link :to="'/owner/casePage/' + item._id">
+                <router-link :to="`/owner/${$route.params.id}/casePage/` + item._id">
                   <div class="text" style="height: 190px; background: white">
                     <h2 style="color: var(--color-deepblue)" class="card-title mb-1">{{ item.casename }}</h2>
                     <p style="color: var(--color-deepblue)">{{ item.description }}</p>
@@ -242,6 +250,7 @@
   export default {
     data() {
       return {
+        me: false,
         dialogSubmitting: false,
         dialog: false,
         reset: false,
@@ -450,7 +459,8 @@
       }
     },
     async created() {
-      if (this.owner._id === this.$route.params.id) {
+      this.me = this.owner._id === this.$route.params.id
+      if (this.me) {
         this.getCases()
       } else {
         this.getCasesOther()

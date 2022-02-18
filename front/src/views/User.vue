@@ -130,13 +130,13 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext2">收藏案件</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext2">
                     進
@@ -146,7 +146,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext2">
                     已
@@ -156,7 +156,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext2">
                     訊
@@ -166,6 +166,47 @@
                 </v-btn>
               </li>
             </ul>
+          </div>
+          <div class="selfmeanu2" v-if="me">
+            <div class="name">
+              <span class="nameh2 textlightY">{{ userinfo.username }}</span>
+            </div>
+            <div class="meanu">
+              <div class="row mt-1">
+                <div class="col-8 fw-700">
+                  <v-icon class="itemIcon" color="var(--color-lightY)">mdi-charity</v-icon>
+                  成交案量
+                </div>
+                <div class="col-4 num">100</div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-8 fw-700">
+                  <v-icon class="itemIcon" color="var(--color-lightY)">mdi-thumb-up</v-icon>
+                  好
+                  <span class="ms-8"></span>
+                  評
+                </div>
+                <div class="col-4 num">100</div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-8 fw-700">
+                  <v-icon class="itemIcon" color="var(--color-lightY)">mdi-thumb-down</v-icon>
+                  差
+                  <span class="ms-8"></span>
+                  評
+                </div>
+                <div class="col-4 num">100</div>
+              </div>
+              <div class="row mt-5 pricetitle">
+                <div class="col-12" style="font-size: 20px">作品價格參考</div>
+              </div>
+              <div class="priceMenu">
+                <div class="row mt-1" v-for="(price, index) in userinfo.prices" :key="'A' + index">
+                  <div class="col-4">{{ price.item }}</div>
+                  <div class="col-8 num">{{ price.price }}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </v-container>
       </v-sheet>
@@ -182,7 +223,22 @@
     components: { UserRegisters },
     data() {
       return {
-        userId: ''
+        userId: '',
+        account: '',
+        me: false,
+        nome: false,
+        userinfo: {
+          username: '',
+          account: '',
+          password: '',
+          email: '',
+          state: '',
+          workingday: '',
+          position: '',
+          technology: [],
+          about: '',
+          prices: [{ item: '' }, { price: '' }]
+        }
       }
     },
     computed: {
@@ -201,6 +257,37 @@
         // 連到的是 actions 裡的 ownerlogout
         this.$store.dispatch('owner/ownerlogout')
       }
+    },
+    async created() {
+      this.nome = this.user._id === this.$route.params.id
+      this.me = this.user._id !== this.$route.params.id
+      try {
+        const { data } = await this.api.get('users/' + this.$route.params.id, {
+          headers: {
+            authorization: 'Bearer ' + this.user.token
+          }
+        })
+        this.userinfo = data.result
+        this.userinfo.password = ''
+        console.log(data.result)
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: '失敗',
+          text: '資料取得失敗'
+        })
+      }
     }
+    // // 進來要抓資料
+    // async created() {
+    //   if (!this.me) {
+    //     const { data } = await this.api.get('/portfolios/' + this.$route.params.id)
+    //     this.Account = data.result.user.account
+    //     console.log(data.result.user.account)
+    //   } else {
+    //     this.Account = this.user.account
+    //   }
+    // }
+    // 進來要抓資料
   }
 </script>

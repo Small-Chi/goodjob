@@ -14,9 +14,9 @@
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
   }
 
-  .centerLogo:hover {
-    transform: rotate(-10deg);
-  }
+  // .centerLogo:hover {
+  //   transform: rotate(-10deg);
+  // }
 
   .centerslogan {
     position: absolute;
@@ -67,7 +67,7 @@
     min-height: 250px;
     background: var(--color-deepblue);
     position: relative;
-    filter: drop-shadow(0px 0px 3px rgb(255, 255, 255));
+    filter: drop-shadow(0px 0px 3px var(--color-lightY));
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -77,7 +77,7 @@
 
   .gCard:hover {
     transform: translateY(-25px);
-    box-shadow: 0 20px 20px 1px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 10px 1px var(--color-lightY);
   }
 
   .circle {

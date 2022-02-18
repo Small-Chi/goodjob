@@ -33,13 +33,13 @@
           <div class="userList">
             <ul>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/userself">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" to="/user/portfolios">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/portfolios/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員作品</a>
                 </v-btn>
@@ -102,13 +102,13 @@
           <div class="ownerList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/ownerself">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/owner/cases">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員案件</a>
                 </v-btn>

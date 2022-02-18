@@ -13,11 +13,11 @@ router.get('/me', authO, getCases)
 // 訪客
 router.get('/visitor', getCasesOther)
 
+// 取得指定案件
+router.get('/:id', getCaseById)
 // 編輯案件內容
 router.patch('/:id', authO, content('multipart/form-data'), uploadC, updateCaesById)
 // 刪除案件
 router.delete('/:id', authO, deleteCase)
-// 取得指定案件
-router.get('/:id', getCaseById)
 
 export default router

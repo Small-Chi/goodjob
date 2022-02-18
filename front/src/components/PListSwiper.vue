@@ -1,9 +1,11 @@
 <template>
   <div class="listswiper">
     <div class="name">
-      <v-avatar size="90" class="me-2 avatarSwipwer">
-        <v-img :src="'https://source.boringavatars.com/beam/120/' + portfolio.account"></v-img>
-      </v-avatar>
+      <router-link :to="`/user/${portfolio._id}/userself/`">
+        <v-avatar size="90" class="me-2 avatarSwipwer">
+          <v-img :src="'https://source.boringavatars.com/beam/120/' + portfolio.account"></v-img>
+        </v-avatar>
+      </router-link>
       <div class="nametext">
         <h3>{{ portfolio.username }}</h3>
         <div class="goodIcon">
