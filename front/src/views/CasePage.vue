@@ -9,7 +9,7 @@
         <div class="tag">{{ category.big }}</div>
         <div class="tag">{{ category.small }}</div>
       </div>
-      <v-btn class="cardBtn" min-width="80" min-height="40" style="padding: 0" color="var(--color-red)">
+      <v-btn class="cardBtn" min-width="80" min-height="40" style="padding: 0" color="var(--color-red)" @click="addfavorite">
         <v-icon size="22" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
         <div class="heartNum">收藏</div>
       </v-btn>
@@ -84,6 +84,11 @@
         category: { big: '', small: '' },
         description: '',
         ownerId: null
+      }
+    },
+    methods: {
+      async addfavorite() {
+        this.$store.dispatch('user/addfavorite', this.$route.params.cid)
       }
     },
     async created() {

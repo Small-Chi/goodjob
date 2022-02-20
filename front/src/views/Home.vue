@@ -42,7 +42,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userfavorite/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext1">收藏案件</a>
                 </v-btn>
@@ -68,7 +68,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
@@ -111,7 +111,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext1">收藏作品</a>
                 </v-btn>
@@ -137,7 +137,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/chats">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊

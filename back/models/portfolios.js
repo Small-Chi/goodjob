@@ -87,6 +87,11 @@ const portfolioSchema = new mongoose.Schema(
       type: mongoose.ObjectId,
       ref: 'users'
     }
+    // 按收藏的業主
+    // ownerf: {
+    //   type: [mongoose.ObjectId],
+    //   ref: 'owners'
+    // }
   },
   { versionKey: false }
 )

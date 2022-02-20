@@ -6,7 +6,7 @@ export default () => {
     ownername: '',
     role: 0,
     email: '',
-    favorite: [],
+    favorite: 0,
     purview: 0
   }
 }

@@ -10,7 +10,9 @@ import {
   getInfo,
   updateInfo,
   getPortfolios,
-  userself
+  userself,
+  addFavorite,
+  getFavorite
   // addCart,
   // getCart,
   // updateCart
@@ -32,6 +34,10 @@ router.delete('/logout', auth, logout)
 router.get('/me', auth, getInfo)
 // 找專業的頁面使用 不需要登入就能看見
 router.get('/visitor', getPortfolios)
+// 收入收藏
+router.post('/me/favorite', auth, addFavorite)
+// 取得自己的收藏清單
+router.get('/me/favorite', auth, getFavorite)
 
 // 訪客
 router.get('/:id', userself)

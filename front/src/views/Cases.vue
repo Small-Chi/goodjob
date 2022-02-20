@@ -1,6 +1,17 @@
 <template>
   <div class="contentleftC">
     <div class="row setRow">
+      <div class="search">
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = ''">全部案件</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '平面設計'">平面設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '網頁設計'">網頁設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '室內設計'">室內設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '手作設計'">手作設計</v-btn>
+        <div class="div200">
+          <v-btn icon class="searchIcon"><v-icon size="30" color="var(--color-white)">mdi-magnify</v-icon></v-btn>
+          <v-text-field @keydown.enter="filterItemsS()"></v-text-field>
+        </div>
+      </div>
       <div class="col-4" v-if="me">
         <div class="cardLine">
           <!-- 新增卡片按鈕 -->
@@ -10,7 +21,7 @@
         </div>
       </div>
       <!-- 要長出卡片的迴圈 -->
-      <div class="col-4" v-for="(item, index) in cases" :key="index">
+      <div class="col-4" v-for="(item, index) in filterItems" :key="index">
         <div>
           <!-- 卡片呈現 -->
           <v-card class="card mx-auto card-item" max-width="350" min-width="350" color="var(--color-lightblue)">
@@ -63,19 +74,7 @@
               <v-chip>
                 {{ item.category.small }}
               </v-chip>
-              <v-spacer></v-spacer>
-              <!-- <v-btn icon @click="show = !show" color="var(--color-white)">
-                <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-              </v-btn> -->
             </v-card-actions>
-            <!-- <v-expand-transition> -->
-            <!-- <div v-if="show">
-                <v-divider></v-divider>
-                <v-card-text class="textWhite">
-                  {{ `5` }}
-                </v-card-text>
-              </div> -->
-            <!-- </v-expand-transition> -->
           </v-card>
         </div>
       </div>
@@ -259,6 +258,7 @@
         widgets: false,
         show: false,
         cases: [],
+        filter: '',
         form: {
           casename: '',
           size: '',
@@ -456,6 +456,14 @@
             text: '取得案件失敗'
           })
         }
+      }
+    },
+    computed: {
+      filterItems() {
+        return this.cases.filter(item => {
+          if (this.filter === '') return true
+          return item.category.big === this.filter
+        })
       }
     },
     async created() {

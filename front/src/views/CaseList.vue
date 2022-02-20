@@ -45,7 +45,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userfavorite/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext1">收藏案件</a>
                 </v-btn>
@@ -71,7 +71,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
@@ -114,7 +114,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext1">收藏作品</a>
                 </v-btn>
@@ -140,7 +140,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/chats">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
@@ -168,7 +168,19 @@
       <v-sheet id="scrolling-techniques-4" class="overflow-y-auto" max-height="100vh">
         <v-container fluid style="background-color: var(--color-blue); padding: 0px; height: 100vh">
           <!-- 內容 -->
-          <div class="psidebar"></div>
+          <div class="psidebar">
+            <div class="search">
+              <template>
+                <v-text-field @keydown.enter="additem"></v-text-field>
+                <v-btn icon class="searchIcon"><v-icon size="30" color="var(--color-white)">mdi-magnify</v-icon></v-btn>
+              </template>
+              <v-btn rounded width="100%" class="Listbtn mt-5" @click="filter = ''">全部案件</v-btn>
+              <v-btn rounded width="100%" class="Listbtn" @click="filter = '平面設計'">平面設計</v-btn>
+              <v-btn rounded width="100%" class="Listbtn" @click="filter = '網頁設計'">網頁設計</v-btn>
+              <v-btn rounded width="100%" class="Listbtn" @click="filter = '室內設計'">室內設計</v-btn>
+              <v-btn rounded width="100%" class="Listbtn" @click="filter = '手作設計'">手作設計</v-btn>
+            </div>
+          </div>
           <div class="content"></div>
           <div class="main">
             <CaseListCard v-for="casedata in cases" :key="casedata._id" :casedata="casedata" />
@@ -212,6 +224,12 @@
       },
       owner() {
         return this.$store.getters['owner/owner']
+      },
+      filterItems() {
+        return this.portfolios.filter(item => {
+          if (this.filter === '') return true
+          return item.category.big === this.filter
+        })
       }
     },
     methods: {

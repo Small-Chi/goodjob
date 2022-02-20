@@ -9,7 +9,7 @@
         <div class="tag">{{ category.big }}</div>
         <div class="tag">{{ category.small }}</div>
       </div>
-      <v-btn class="cardBtn" min-width="80" min-height="40" style="padding: 0" color="var(--color-red)">
+      <v-btn class="cardBtn" min-width="80" min-height="40" style="padding: 0" color="var(--color-red)" @click="addfavorite">
         <v-icon size="22" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
         <div class="heartNum">收藏</div>
       </v-btn>
@@ -71,6 +71,34 @@
         userId: null,
         sell: false
       }
+    },
+    methods: {
+      addfavorite() {
+        this.$store.dispatch('owner/addfavorite', this.$route.params.pid)
+        console.log(this.$route.params.pid)
+      }
+      //  async addfavorite() {
+      //   try {
+      //     if (this.owner.isownerLogin) {
+      //       await this.api.patch('/me/favorite' + this.$route.params.pid, {
+      //         headers: {
+      //           authorization: 'Bearer ' + this.owner.token
+      //         }
+      //       })
+      //       this.$swal({
+      //         icon: 'success',
+      //         title: '成功',
+      //         text: '已加入收藏'
+      //       })
+      //     }
+      //   } catch (error) {
+      //     this.$swal({
+      //       icon: 'error',
+      //       title: '錯誤',
+      //       text: error.response.data.message
+      //     })
+      //   }
+      // }
     },
     async created() {
       try {

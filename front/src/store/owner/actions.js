@@ -6,7 +6,6 @@ export const ownerlogin = async ({ commit }, form) => {
   try {
     const { data } = await api.post('/owners/login', form)
     commit('login', data.result)
-    router.push('/')
     swal.fire({
       icon: 'success',
       title: '成功',
@@ -55,5 +54,40 @@ export const ownergetInfo = async ({ commit, state }) => {
     commit('getInfo', data.result)
   } catch (error) {
     commit('logout')
+  }
+}
+
+export const addfavorite = async ({ commit, state }, data) => {
+  if (state.token.length === 0) {
+    swal.fire({
+      icon: 'error',
+      title: '錯誤',
+      text: '請先登入'
+    })
+    return
+  }
+  try {
+    const { data: resData } = await api.post(
+      '/owners/me/favorite',
+      { portfolio: data },
+      {
+        headers: {
+          authorization: 'Bearer ' + state.token
+        }
+      }
+    )
+    commit('updateFavorite', resData.result)
+    swal.fire({
+      icon: 'success',
+      title: '成功',
+      text: '加入收藏成功'
+    })
+  } catch (error) {
+    console.log(error)
+    swal.fire({
+      icon: 'error',
+      title: '錯誤',
+      text: '加入收藏失敗'
+    })
   }
 }

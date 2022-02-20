@@ -2,6 +2,17 @@
   <!-- 作品 Card 清單 -->
   <div class="contentleft">
     <div class="row setRow">
+      <div class="search">
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = ''">全部作品</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '平面設計'">平面設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '網頁設計'">網頁設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '室內設計'">室內設計</v-btn>
+        <v-btn rounded width="150px" class="Listbtn" @click="filter = '手作設計'">手作設計</v-btn>
+        <div class="div200">
+          <v-btn icon class="searchIcon"><v-icon size="30" color="var(--color-white)">mdi-magnify</v-icon></v-btn>
+          <v-text-field @keydown.enter="filterItemsS()"></v-text-field>
+        </div>
+      </div>
       <div class="col-4" v-if="me">
         <div class="cardLine">
           <!-- 新增卡片按鈕 -->
@@ -11,7 +22,7 @@
         </div>
       </div>
       <!-- 要長出卡片的迴圈 -->
-      <div class="col-4" v-for="(item, index) in portfolios" :key="index">
+      <div class="col-4" v-for="(item, index) in filterItems" :key="index">
         <div>
           <!-- 卡片呈現 -->
           <v-card class="card mx-auto card-item" max-width="350" color="var(--color-lightblue)">
@@ -206,6 +217,7 @@
         show: false,
         valid: true,
         portfolios: [],
+        filter: '',
         form: {
           pname: '',
           size: '',
@@ -392,6 +404,14 @@
             text: '取得作品失敗'
           })
         }
+      }
+    },
+    computed: {
+      filterItems() {
+        return this.portfolios.filter(item => {
+          if (this.filter === '') return true
+          return item.category.big === this.filter
+        })
       }
     },
     async created() {

@@ -10,7 +10,9 @@ import {
   getInfo,
   updateInfo,
   getCases,
-  ownerself
+  ownerself,
+  addFavorite,
+  getFavorite
   // addCart,
   // getCart,
   // updateCart
@@ -33,6 +35,10 @@ router.get('/me', authO, getInfo)
 
 // 找專業的頁面 不需要登入就能看見
 router.get('/visitor', getCases)
+// 收入收藏
+router.post('/me/favorite', authO, addFavorite)
+// 取得自己的收藏清單
+router.get('/me/favorite', authO, getFavorite)
 
 // 訪客
 router.get('/:id', ownerself)

@@ -8,28 +8,20 @@
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
             <div class="heartNum">0</div>
           </v-btn>
-          <dir class="d-flex">
-            <div class="col-1 ms-1 me-2">
-              <router-link :to="`/owner/${casedata.owner}/ownerself/`">
-                <v-avatar size="70" class="me-2 avatarSwipwer">
-                  <v-img :src="'https://source.boringavatars.com/beam/120/' + casedata.account"></v-img>
-                </v-avatar>
-              </router-link>
-            </div>
-            <div class="col-10">
-              <v-card-title class="ctext1 mb-1" style="margin-left: 10px; padding-top: 5px">
-                <h3 class="textWhite ms-n1">{{ `◔` }}</h3>
-                <h3 class="textlightY ms-2">{{ new Date(casedata.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
-              </v-card-title>
-              <v-card-subtitle class="ctext1 d-flex" style="margin-left: 10px">
-                <h3 class="textWhite">{{ ` $ ` }}</h3>
-                <h3 class="textlightY ms-2">{{ casedata.price }}</h3>
-                <!-- <div class="textWhite sell">
+          <div class="col-10">
+            <v-card-title class="ctext1 mb-1" style="margin-left: 10px; padding-top: 5px">
+              <h3 class="textWhite ms-n1">{{ `◔` }}</h3>
+              <h3 class="textlightY ms-2">{{ new Date(casedata.endingday).toLocaleDateString().replace(/\//g, '-') }}</h3>
+            </v-card-title>
+            <v-card-subtitle class="ctext1 d-flex" style="margin-left: 10px">
+              <h3 class="textWhite">{{ ` $ ` }}</h3>
+              <h3 class="textlightY ms-2">{{ casedata.price }}</h3>
+              <!-- <div class="textWhite sell">
               {{ casedata.sell ? '公開' : '隱藏' }}
             </div> -->
-              </v-card-subtitle>
-            </div>
-          </dir>
+            </v-card-subtitle>
+          </div>
+
           <v-card-actions style="background: white" class="flex-wrap">
             <v-card-text>
               <router-link :to="`/owner/${casedata.owner}/casePage/` + casedata._id">
@@ -66,6 +58,30 @@
       <div class="swiper-button-next" slot="button-next"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>
     </swiper>
+    <div class="ms-1 me-2 catdBottom">
+      <router-link :to="`/owner/${casedata.owner}/ownerself/`">
+        <v-avatar size="90" class="me-5 caseava">
+          <v-img :src="'https://source.boringavatars.com/beam/120/' + casedata.account"></v-img>
+        </v-avatar>
+      </router-link>
+      <div class="nametext">
+        <h3 class="mb-3 pb-2" style="border-bottom: 1px solid var(--color-lightY)">{{ casedata.ownername }}</h3>
+        <div class="goodIcon">
+          <h4 class="mb-2 me-3">
+            <v-icon class="ms-2 me-1" color="var(--color-white)">mdi-charity</v-icon>
+            <span>156</span>
+          </h4>
+          <h4 class="mb-2 me-3">
+            <v-icon class="ms-2 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
+            <span>156</span>
+          </h4>
+          <h4 class="mb-2 me-3">
+            <v-icon class="ms-2 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
+            <span>156</span>
+          </h4>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

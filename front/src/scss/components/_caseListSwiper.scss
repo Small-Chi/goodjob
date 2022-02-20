@@ -1,12 +1,13 @@
 .Clistswiper {
   background: var(--color-deepbule);
   width: 473px;
-  height: 425px;
+  height: 520px;
   margin-top: 50px;
   border-radius: 10px;
   position: relative;
   display: flex;
   // background: red;
+  flex-direction: column;
   margin-bottom: -60px;
   .card {
     width: 350px;
@@ -148,6 +149,37 @@
   .swiper-pagination-custom,
   .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: 0;
+  }
+
+  .caseava {
+    margin-left: 80px;
+  }
+
+  .catdBottom {
+    display: flex;
+    width: 370px;
+  }
+
+  .nametext {
+    text-align: center;
+    margin-top: 0;
+    color: var(--color-lightY);
+    // background: red;
+  }
+  .goodIcon {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-lightY);
+    h4 {
+      line-height: 25px;
+      position: relative;
+      span {
+        position: relative;
+        top: 2px;
+      }
+    }
   }
 }
 

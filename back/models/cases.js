@@ -120,6 +120,11 @@ const caseSchema = new mongoose.Schema(
     deal: {
       type: [mongoose.ObjectId],
       ref: 'users,owners'
+    },
+    // 按收藏的接案者
+    userf: {
+      type: [mongoose.ObjectId],
+      ref: 'users'
     }
   },
   { versionKey: false }

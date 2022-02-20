@@ -113,7 +113,7 @@
                           </v-col>
                           <v-col cols="6" class="d-flex align-center">
                             <v-text-field v-model="prices.price" prefix="$"></v-text-field>
-                            <v-btn fab text v-if="index !== 0" @click="remove(index)"><v-icon>mdi-delete-forever</v-icon></v-btn>
+                            <v-btn fab text v-if="index !== 0" @click="remove(index)"><v-icon>mdi-delete</v-icon></v-btn>
                             <v-btn fab text v-else @click="additem"><v-icon>mdi-plus</v-icon></v-btn>
                           </v-col>
                         </v-row>

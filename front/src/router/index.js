@@ -84,6 +84,24 @@ const routes = [
               login: true,
               title: 'goodjob | 指定作品'
             }
+          },
+          {
+            path: 'userfavorite',
+            name: 'Userfavorite',
+            component: () => import(/* webpackChunkName: "userfavorite" */ '../views/Userfavorite.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 收藏案件'
+            }
+          },
+          {
+            path: 'userchats',
+            name: 'UserChats',
+            component: () => import(/* webpackChunkName: "userchats" */ '../views/UserChats.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 訊息'
+            }
           }
         ]
       },
@@ -120,7 +138,16 @@ const routes = [
             component: () => import(/* webpackChunkName: "casePage" */ '../views/CasePage.vue'),
             meta: {
               login: true,
-              title: 'goodjob | 指定作品'
+              title: 'goodjob | 指定案件'
+            }
+          },
+          {
+            path: 'ownerfavorite',
+            name: 'Ownerfavorite',
+            component: () => import(/* webpackChunkName: "ownerfavorite" */ '../views/Ownerfavorite.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 收藏作品'
             }
           }
         ]

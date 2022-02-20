@@ -7,10 +7,18 @@
         </v-avatar>
       </router-link>
       <div class="nametext">
-        <h3>{{ portfolio.username }}</h3>
+        <h3 class="mb-3 pb-2" style="border-bottom: 1px solid var(--color-lightY)">{{ portfolio.username }}</h3>
         <div class="goodIcon">
-          <h4>
+          <h4 class="mb-2">
             <v-icon color="var(--color-white)">mdi-charity</v-icon>
+            <span>156</span>
+          </h4>
+          <h4 class="mb-2">
+            <v-icon color="var(--color-white)">mdi-thumb-up</v-icon>
+            <span>156</span>
+          </h4>
+          <h4 class="mb-2">
+            <v-icon color="var(--color-white)">mdi-thumb-down</v-icon>
             <span>156</span>
           </h4>
         </div>
