@@ -4,27 +4,51 @@
     <div class="content">
       <template>
         <div style="width: 100%">
-          <v-select :items="slots" label="案件類別" class="mb-5"></v-select>
-          <v-simple-table :items="cases">
+          <v-select :items="slots" label="搜尋類別" class="mb-5"></v-select>
+          <v-simple-table>
             <template>
               <thead>
                 <tr>
                   <th class="text-center">發案者</th>
-                  <th class="text-center">案件</th>
+                  <th class="text-center">案件類別</th>
                   <th class="text-center">預算</th>
                   <th class="text-center">結案日期</th>
                   <th class="text-center">成交量/評價</th>
-                  <th class="text-center">移除</th>
+                  <th class="text-center">訊息/移除</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(item, index) in cases" :key="index">
-                  <td>{{ cases }}</td>
-                  <td>{{ item.casename }}</td>
-                  <td>{{ item.casename }}</td>
-                  <td>{{ item.casename }}</td>
-                  <td>{{ item.casename }}</td>
-                  <td>123</td>
+                  <td class="text-center">
+                    <router-link :to="`/owner/${item.owner._id}/ownerself/`">
+                      <v-avatar size="40" class="me-2 avatarBtn">
+                        <v-img :src="'https://source.boringavatars.com/beam/120/' + item.owner.account"></v-img>
+                      </v-avatar>
+                      <span style="color: var(--color-lightY)">{{ item.owner.ownername }}</span>
+                    </router-link>
+                  </td>
+
+                  <td class="text-center">
+                    <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">{{ item.category.small }}</router-link>
+                  </td>
+
+                  <td class="text-center">{{ item.price }}</td>
+                  <td class="text-center">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</td>
+                  <td class="text-center">
+                    <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
+                    <span style="color: var(--color-lightY)">156</span>
+                    <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
+                    <span style="color: var(--color-lightY)">156</span>
+                    <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
+                    <span style="color: var(--color-lightY)">156</span>
+                  </td>
+                  <td class="text-center">
+                    <router-link :to="`/user/${user._id}/userchats/`">
+                      <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
+                    </router-link>
+                    <v-icon color="var(--color-white)" class="favIcon" @click="workingCase(index)">mdi-format-list-bulleted</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD" @click="deletefav(index)">mdi-delete</v-icon>
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -80,6 +104,63 @@
         ]
       }
     },
+    methods: {
+      async deletefav(index) {
+        try {
+          await this.api.patch(
+            '/users/me/favorite',
+            { case: this.cases[index]._id },
+            {
+              headers: {
+                authorization: 'Bearer ' + this.user.token
+              }
+            }
+          )
+          this.cases.splice(index, 1)
+          this.$store.commit('user/updateFavorite', this.user.favorite - 1)
+          this.$swal({
+            icon: 'success',
+            title: '成功',
+            text: '修改收藏成功'
+          })
+        } catch (error) {
+          console.log(error)
+          this.$swal({
+            icon: 'error',
+            title: '失敗',
+            text: '修改收藏失敗'
+          })
+        }
+      },
+      async workingCase(index) {
+        if (this.user.isuserLogin) {
+          try {
+            await this.api.patch(
+              'cases/progress/' + this.cases[index]._id,
+              { progress: 1 },
+              {
+                headers: {
+                  authorization: 'Bearer ' + this.user.token
+                }
+              }
+            )
+            this.$swal({
+              icon: 'success',
+              title: '成功',
+              text: '加入進行中清單'
+            })
+          } catch (error) {
+            console.log(error)
+            this.$swal({
+              icon: 'error',
+              title: '失敗',
+              text: '修改收藏失敗'
+            })
+          }
+        }
+      }
+    },
+
     async created() {
       try {
         const { data } = await this.api.get('/users/me/favorite', {

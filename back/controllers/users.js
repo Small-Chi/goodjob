@@ -250,8 +250,26 @@ export const addFavorite = async (req, res) => {
 
 export const getFavorite = async (req, res) => {
   try {
-    const { favorite } = await users.findById(req.user._id, 'favorite').populate('favorite.cases')
+    const { favorite } = await users.findById(req.user._id, 'favorite').populate({
+      path: 'favorite',
+      populate: {
+        path: 'owner'
+      }
+    })
     res.status(200).send({ success: true, message: '', result: favorite })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const deletefav = async (req, res) => {
+  try {
+    const idx = req.user.favorite.findIndex(item => item.toString() === req.body.case)
+    if (idx > -1) {
+      req.user.favorite.splice(idx, 1)
+    }
+    await req.user.save()
+    res.status(200).send({ success: true, message: '' })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }

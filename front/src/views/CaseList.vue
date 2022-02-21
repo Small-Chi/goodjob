@@ -51,11 +51,11 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userworking/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext1">
                     進
-                    <span class="mg">行</span>
+                    <span class="mx-1">行</span>
                     中
                   </a>
                 </v-btn>
@@ -65,7 +65,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext1">
                     已
-                    <span class="mg">結</span>
+                    <span class="mx-1">結</span>
                     案
                   </a>
                 </v-btn>
@@ -75,7 +75,7 @@
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
-                    <span style="margin-left: 20px; margin-right: 20px"></span>
+                    <span class="ms-8"></span>
                     息
                   </a>
                 </v-btn>
@@ -140,7 +140,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/chats">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊

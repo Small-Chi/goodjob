@@ -51,7 +51,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${$route.params.id}/userworking/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext1">
                     進
@@ -180,7 +180,7 @@
           <!-- 內容 -->
           <div class="sidebar">
             <v-avatar size="180" class="avatarSidebar">
-              <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
+              <v-img :src="'https://source.boringavatars.com/beam/120/' + userinfo.account"></v-img>
             </v-avatar>
           </div>
           <div class="content"></div>
@@ -205,7 +205,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome" :to="`/user/${$route.params.id}/userworking/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-format-list-bulleted</v-icon>
                   <a class="textWhite ctext2">
                     進
@@ -225,7 +225,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome" to="/chats">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome" :to="`/user/${user._id}/userchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext2">
                     訊

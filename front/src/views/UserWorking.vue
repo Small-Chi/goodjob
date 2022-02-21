@@ -9,33 +9,31 @@
             <template>
               <thead>
                 <tr>
-                  <th class="text-center">設計師</th>
-                  <th class="text-center">作品類別</th>
-                  <th class="text-center">報價</th>
-                  <th class="text-center">作品風格</th>
+                  <th class="text-center">發案者</th>
+                  <th class="text-center">案件類別</th>
+                  <th class="text-center">預算</th>
+                  <th class="text-center">結案日期</th>
                   <th class="text-center">成交量/評價</th>
                   <th class="text-center">訊息/移除</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in portfolios" :key="index">
+                <tr v-for="(item, index) in work" :key="index">
                   <td class="text-center">
-                    <router-link :to="`/user/${item.user._id}/userself/`">
+                    <router-link :to="`/owner/${item.owner._id}/ownerself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
-                        <v-img :src="'https://source.boringavatars.com/beam/120/' + item.user.account"></v-img>
+                        <v-img :src="'https://source.boringavatars.com/beam/120/' + item.owner.account"></v-img>
                       </v-avatar>
-                      <span style="color: var(--color-lightY)">{{ item.user.username }}</span>
+                      <span style="color: var(--color-lightY)">{{ item.owner.ownername }}</span>
                     </router-link>
                   </td>
+
                   <td class="text-center">
-                    <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">{{ item.category.small }}</router-link>
+                    <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">{{ item.category.small }}</router-link>
                   </td>
+
                   <td class="text-center">{{ item.price }}</td>
-                  <td class="text-center" style="padding: 10px">
-                    <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">
-                      <v-img :src="item.image" style="width: 250px" class="mx-auto"></v-img>
-                    </router-link>
-                  </td>
+                  <td class="text-center">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</td>
                   <td class="text-center">
                     <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
@@ -45,10 +43,10 @@
                     <span style="color: var(--color-lightY)">156</span>
                   </td>
                   <td class="text-center">
-                    <router-link :to="`/owner/${owner._id}/ownerchats/`">
-                      <v-icon color="var(--color-white)" class="me-2 favIcon">mdi-message-outline</v-icon>
+                    <router-link :to="`/user/${user._id}/userchats/`">
+                      <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
-                    <v-icon color="var(--color-white)" class="favIconD" @click="deletefav(index)">mdi-delete</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD" @click="NoworkCase(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -64,8 +62,9 @@
   export default {
     data() {
       return {
-        portfolios: [],
+        cases: [],
         search: null,
+        work: [],
         slots: [
           '海報/DM',
           '書籍/手冊',
@@ -106,50 +105,66 @@
       }
     },
     methods: {
-      async deletefav(index) {
-        try {
-          await this.api.patch(
-            '/owners/me/favorite',
-            { portfolio: this.portfolios[index]._id },
-            {
-              headers: {
-                authorization: 'Bearer ' + this.owner.token
+      async NoworkCase(index) {
+        if (this.user.isuserLogin) {
+          try {
+            await this.api.patch(
+              'cases/Nprogress/' + this.cases[index]._id,
+              { progress: 0 },
+              {
+                headers: {
+                  authorization: 'Bearer ' + this.user.token
+                }
               }
+            )
+            this.$swal({
+              icon: 'success',
+              title: '成功',
+              text: '刪除項目'
+            })
+            this.getNew()
+          } catch (error) {
+            console.log(error)
+            this.$swal({
+              icon: 'error',
+              title: '失敗',
+              text: '刪除失敗'
+            })
+          }
+        }
+      },
+      async getNew() {
+        try {
+          const { data } = await this.api.get('/users/me/favorite', {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
             }
-          )
-          this.portfolios.splice(index, 1)
-          this.$store.commit('owner/updateFavorite', this.owner.favorite - 1)
-          this.$swal({
-            icon: 'success',
-            title: '成功',
-            text: '修改收藏成功'
           })
+          this.cases = data.result
+          this.work = this.cases.filter(c => {
+            return c.progress === 1
+          })
+          console.log(data.result)
         } catch (error) {
-          console.log(error)
           this.$swal({
             icon: 'error',
             title: '失敗',
-            text: '修改收藏失敗'
+            text: '取得收藏失敗'
           })
         }
       }
     },
-    // computed: {
-    //   filterItems() {
-    //     return this.portfolios.filter(item => {
-    //       if (this.filter === '') return true
-    //       return item.category.small === this.filter
-    //     })
-    //   }
-    // },
     async created() {
       try {
-        const { data } = await this.api.get('/owners/me/favorite', {
+        const { data } = await this.api.get('/users/me/favorite', {
           headers: {
-            authorization: 'Bearer ' + this.owner.token
+            authorization: 'Bearer ' + this.user.token
           }
         })
-        this.portfolios = data.result
+        this.cases = data.result
+        this.work = this.cases.filter(c => {
+          return c.progress === 1
+        })
         console.log(data.result)
       } catch (error) {
         this.$swal({

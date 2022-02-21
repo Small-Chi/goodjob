@@ -95,6 +95,15 @@ const routes = [
             }
           },
           {
+            path: 'userworking',
+            name: 'UserWorking',
+            component: () => import(/* webpackChunkName: "userworking" */ '../views/UserWorking.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 案件進行中'
+            }
+          },
+          {
             path: 'userchats',
             name: 'UserChats',
             component: () => import(/* webpackChunkName: "userchats" */ '../views/UserChats.vue'),
@@ -148,6 +157,15 @@ const routes = [
             meta: {
               login: true,
               title: 'goodjob | 收藏作品'
+            }
+          },
+          {
+            path: 'ownerchats',
+            name: 'OwnerChats',
+            component: () => import(/* webpackChunkName: "ownerchats" */ '../views/OwnerChats.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 訊息'
             }
           }
         ]

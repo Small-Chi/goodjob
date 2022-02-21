@@ -12,7 +12,8 @@ import {
   getPortfolios,
   userself,
   addFavorite,
-  getFavorite
+  getFavorite,
+  deletefav
   // addCart,
   // getCart,
   // updateCart
@@ -38,6 +39,8 @@ router.get('/visitor', getPortfolios)
 router.post('/me/favorite', auth, addFavorite)
 // 取得自己的收藏清單
 router.get('/me/favorite', auth, getFavorite)
+// 修改收藏清單
+router.patch('/me/favorite', auth, deletefav)
 
 // 訪客
 router.get('/:id', userself)

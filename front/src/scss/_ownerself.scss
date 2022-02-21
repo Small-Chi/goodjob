@@ -32,8 +32,8 @@
     left: 0;
   }
   .messageIcon {
-    color: var(--color-lightY) !important;
-    background-color: var(--color-lightblue);
+    color: var(--color-blue) !important;
+    background-color: var(--color-lightY);
     position: relative;
     margin-left: -70px;
     width: 60px !important;
@@ -44,6 +44,8 @@
 
   .messageIcon:hover {
     transform: translateY(-8px);
+    color: var(--color-lightY) !important;
+    background-color: var(--color-red);
   }
   .score {
     // border: 1px solid white;
@@ -52,7 +54,7 @@
     flex-wrap: wrap;
   }
   .scoreitem {
-    width: 250px;
+    width: 240px;
     // border: 1px solid wheat;
     display: flex;
     justify-content: center;

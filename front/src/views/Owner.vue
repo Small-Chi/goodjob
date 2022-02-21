@@ -140,7 +140,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-blue)" class="memBtn" to="/chats">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
@@ -180,7 +180,7 @@
           <!-- 內容 -->
           <div class="sidebar">
             <v-avatar size="180" class="avatarSidebar">
-              <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
+              <v-img :src="'https://source.boringavatars.com/beam/120/' + ownerinfo.account"></v-img>
             </v-avatar>
           </div>
           <div class="content"></div>
@@ -225,7 +225,7 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome" to="/chats">
+                <v-btn depressed exact color="var(--color-blue)" class="memBtn" v-if="nome" :to="`/owner/${owner._id}/ownerchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext2">
                     訊

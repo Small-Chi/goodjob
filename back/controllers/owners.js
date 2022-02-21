@@ -246,63 +246,28 @@ export const addFavorite = async (req, res) => {
   }
 }
 
-// 收藏
-// export const addFavorite = async (req, res) => {
-//   try {
-//     // 檢查是不是已經喜歡
-//     // 儲存此人按收藏的所有作品id
-//     const owner = await owners.findById(req.owner.id, 'favorite')
-//     // 儲存了這個作品所有按讚人id
-//     const portfolio = await portfolios.findById(req.body._id, 'ownerf')
-//     // 判斷此人按收藏的陣列裡是否已包含這個作品的id
-//     const data = owner.favorite
-//       .map(f => f.portfolios)
-//       .toString()
-//       .includes(req.body._id)
-//     // 如果owner favorite陣列裡已經有這個作品 id 就移除
-//     if (data === true) {
-//       await owners.findByIdAndUpdate(req.owner.id, {
-//         // 刪除陣列元素
-//         $pull: {
-//           // 欄位名稱
-//           favorite: {
-//             // 刪除條件
-//             portfolios: req.body._id
-//           }
-//         }
-//       })
-//       await portfolios.findByIdAndUpdate(req.body._id, {
-//         $pull: {
-//           ownerf: {
-//             owners: req.owner.id
-//           }
-//         }
-//       })
-//       res.status(200).send({ success: true, message: '取消收藏' })
-//     } else {
-//       // 尚未收藏 就將作品 push 到owner favorite
-//       owner.favorite.push({ portfolios: req.body._id })
-//       portfolio.owners.push({ owners: req.owner.id })
-//       owner.save({ validateBeforeSave: false })
-//       portfolio.save({ validateBeforeSave: false })
-//       res.status(200).send({ success: true, message: '加入收藏' })
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     if (error.name === 'ValidationError') {
-//       const key = Object.keys(error.errors)[0]
-//       const message = error.errors[key].message
-//       res.status(400).send({ success: false, message: message })
-//     } else {
-//       res.status(500).send({ success: false, message: '伺服器錯誤' })
-//     }
-//   }
-// }
-
 export const getFavorite = async (req, res) => {
   try {
-    const { favorite } = await owners.findById(req.owner._id, 'favorite').populate('favorite.portfolios')
+    const { favorite } = await owners.findById(req.owner._id, 'favorite').populate({
+      path: 'favorite',
+      populate: {
+        path: 'user'
+      }
+    })
     res.status(200).send({ success: true, message: '', result: favorite })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const deletefav = async (req, res) => {
+  try {
+    const idx = req.owner.favorite.findIndex(item => item.toString() === req.body.portfolio)
+    if (idx > -1) {
+      req.owner.favorite.splice(idx, 1)
+    }
+    await req.owner.save()
+    res.status(200).send({ success: true, message: '' })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }

@@ -1,9 +1,9 @@
 <template>
   <v-card color="var(--color-blue)">
-    <v-card class="mb-5 p-0" color="var(--color-blue)" style="border: 1px solid var(--color-chatblue)">
+    <v-card class="mb-5 p-0" color="var(--color-blue)" style="border: 1px solid rgba(145, 167, 226, 0.5)">
       <div class="chatup"></div>
     </v-card>
-    <v-card color="var(--color-blue)" class="d-flex justify-space-between align-end">
+    <v-card color="var(--color-blue)" class="d-flex justify-space-between align-end mt-n10" style="border: 1px solid rgba(145, 167, 226, 0.5)">
       <v-textarea name="input-7-1" v-model="text" class="ms-10 me-3 chatin" @click:append-outer="sendMessage" @keydown.enter="sendMessage"></v-textarea>
       <v-btn icon width="50" height="50" class="mesbtn" @click="sendMessage"><v-icon size="30" color="var(--color-chatblue)">mdi-send</v-icon></v-btn>
     </v-card>

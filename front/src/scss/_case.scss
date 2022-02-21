@@ -115,12 +115,19 @@
     width: 100%;
   }
 
+  .col-4 {
+    padding: 0;
+  }
+
   .cardLine {
     width: 350px;
     height: 340px;
     border: 1px dashed var(--color-white);
     border-radius: 5px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    // margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +177,8 @@
     // border: 1px solid red;
     margin-left: 50px;
     display: flex;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
   .div200 {
     width: 200px;
@@ -200,7 +208,7 @@
   }
   .searchIcon {
     position: absolute;
-    top: 0px;
+    top: 20px;
     right: 240px;
   }
   .v-btn.v-size--default {

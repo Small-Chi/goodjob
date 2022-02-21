@@ -3,6 +3,7 @@
   width: 473px;
   height: 520px;
   margin-top: 50px;
+  margin-left: -30px;
   border-radius: 10px;
   position: relative;
   display: flex;
@@ -157,6 +158,8 @@
 
   .catdBottom {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 370px;
   }
 

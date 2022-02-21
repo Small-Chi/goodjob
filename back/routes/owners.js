@@ -12,7 +12,8 @@ import {
   getCases,
   ownerself,
   addFavorite,
-  getFavorite
+  getFavorite,
+  deletefav
   // addCart,
   // getCart,
   // updateCart
@@ -39,6 +40,8 @@ router.get('/visitor', getCases)
 router.post('/me/favorite', authO, addFavorite)
 // 取得自己的收藏清單
 router.get('/me/favorite', authO, getFavorite)
+// 修改收藏清單
+router.patch('/me/favorite', authO, deletefav)
 
 // 訪客
 router.get('/:id', ownerself)

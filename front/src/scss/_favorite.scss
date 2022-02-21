@@ -32,7 +32,7 @@
     .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
     .v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
       font-size: 1.2rem;
-      color: var(--color-white);
+      color: var(--color-chatblue);
       background: var(--color-deepblue);
       border-bottom: 1px solid var(--color-white);
     }
@@ -70,6 +70,7 @@
       color: var(--color-chatblue);
     }
 
+    // 表標字級
     .theme--light.v-input input,
     .theme--light.v-input textarea {
       color: var(--color-lightY);
@@ -82,5 +83,41 @@
       color: var(--color-chatblue);
       caret-color: var(--color-chatblue);
     }
+
+    // 表內文色
+    .theme--light.v-data-table {
+      color: var(--color-white);
+      background: var(--volor-deepbule);
+    }
+
+    // 表高度
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+      height: 80px;
+    }
+
+    // 表內文字級
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+      font-size: 1rem;
+    }
+
+    .favIcon:hover {
+      color: var(--color-lightY) !important;
+    }
+
+    .favIconD:hover {
+      color: var(--color-red) !important;
+    }
   }
+  tbody {
+    tr:hover {
+      background-color: var(--color-blue) !important;
+    }
+  }
+}
+.v-application a {
+  color: var(--color-white) !important;
 }

@@ -94,9 +94,8 @@ const caseSchema = new mongoose.Schema(
     },
     progress: {
       // 0 = 無
-      // 1 = 收藏中
-      // 2 = 進行中
-      // 3 = 已結案
+      // 1 = 進行中
+      // 2 = 已結案
       type: Number,
       default: 0
     },
