@@ -75,6 +75,11 @@
                 {{ item.category.small }}
               </v-chip>
             </v-card-actions>
+            <!-- <v-fade-transition>
+              <v-overlay v-if="(progress = 1)" absolute color="var(--color-chatblue)">
+                <v-btn style="color: var(--color-white)">案件進行中</v-btn>
+              </v-overlay>
+            </v-fade-transition> -->
           </v-card>
         </div>
       </div>
@@ -250,6 +255,7 @@
     data() {
       return {
         me: false,
+        overlay: false,
         dialogSubmitting: false,
         dialog: false,
         reset: false,
@@ -274,7 +280,8 @@
           category: { big: '', small: '' },
           description: '',
           _id: '',
-          index: -1
+          index: -1,
+          progress: 0
         },
         categories: {
           平面設計: ['海報/DM', '書籍/手冊', '創作', 'CIS/VIS/ICON', '攝影', '產品/包裝', '插畫/漫畫', '簡報', '織品服裝設計', '其他'],

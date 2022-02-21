@@ -10,7 +10,8 @@ import {
   getCaseById,
   getCasesOther,
   workingCase,
-  NoworkCase
+  NoworkCase,
+  endCase
 } from '../controllers/cases.js'
 
 const router = express.Router()
@@ -31,5 +32,6 @@ router.delete('/:id', authO, deleteCase)
 // 編輯案件內容
 router.patch('/progress/:id', workingCase)
 router.patch('/Nprogress/:id', NoworkCase)
+router.patch('/Eprogress/:id', endCase)
 
 export default router

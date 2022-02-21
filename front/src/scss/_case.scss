@@ -217,6 +217,15 @@
     color: var(--color-blue);
   }
 
+  .theme--light.v-btn.v-btn--has-bg {
+    background-color: var(--color-white);
+  }
+
+  // overlay
+  .theme--dark.v-btn.v-btn--has-bg {
+    background-color: var(--color-deepblue);
+  }
+
   .Listbtn {
     transition: 0.3s;
     margin-bottom: 20px;

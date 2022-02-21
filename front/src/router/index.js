@@ -100,7 +100,16 @@ const routes = [
             component: () => import(/* webpackChunkName: "userworking" */ '../views/UserWorking.vue'),
             meta: {
               login: true,
-              title: 'goodjob | 案件進行中'
+              title: 'goodjob | 進行中的案件'
+            }
+          },
+          {
+            path: 'userdeal',
+            name: 'Userdeal',
+            component: () => import(/* webpackChunkName: "userdeal" */ '../views/Userdeal.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 結案頁面'
             }
           },
           {

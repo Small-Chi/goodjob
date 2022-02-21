@@ -10,7 +10,8 @@
               <thead>
                 <tr>
                   <th class="text-center">設計師</th>
-                  <th class="text-center">作品類別</th>
+                  <th class="text-center">作品名稱</th>
+                  <th class="text-center">類別</th>
                   <th class="text-center">報價</th>
                   <th class="text-center">作品風格</th>
                   <th class="text-center">成交量/評價</th>
@@ -28,8 +29,9 @@
                     </router-link>
                   </td>
                   <td class="text-center">
-                    <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">{{ item.category.small }}</router-link>
+                    <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">{{ item.pname }}</router-link>
                   </td>
+                  <td class="text-center">{{ item.category.small }}</td>
                   <td class="text-center">{{ item.price }}</td>
                   <td class="text-center" style="padding: 10px">
                     <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">

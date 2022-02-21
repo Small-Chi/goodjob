@@ -59,6 +59,10 @@
     .Listbtn:hover {
       background-color: var(--color-lightY) !important;
     }
+
+    .theme--light.v-btn.v-btn--has-bg {
+      background-color: var(--color-white);
+    }
   }
   .content {
     width: 75%;

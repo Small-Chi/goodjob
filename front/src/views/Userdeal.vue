@@ -19,7 +19,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in cases" :key="index">
+                <tr v-for="(item, index) in work" :key="index">
                   <td class="text-center">
                     <router-link :to="`/owner/${item.owner._id}/ownerself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
@@ -46,8 +46,7 @@
                     <router-link :to="`/user/${user._id}/userchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
-                    <v-icon color="var(--color-white)" class="favIcon" @click="workingCase(index)">mdi-format-list-bulleted</v-icon>
-                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="deletefav(index)">mdi-delete</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NoworkCase(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -65,6 +64,7 @@
       return {
         cases: [],
         search: null,
+        work: [],
         slots: [
           '海報/DM',
           '書籍/手冊',
@@ -105,39 +105,12 @@
       }
     },
     methods: {
-      async deletefav(index) {
-        try {
-          await this.api.patch(
-            '/users/me/favorite',
-            { case: this.cases[index]._id },
-            {
-              headers: {
-                authorization: 'Bearer ' + this.user.token
-              }
-            }
-          )
-          this.cases.splice(index, 1)
-          this.$store.commit('user/updateFavorite', this.user.favorite - 1)
-          this.$swal({
-            icon: 'success',
-            title: '成功',
-            text: '修改收藏成功'
-          })
-        } catch (error) {
-          console.log(error)
-          this.$swal({
-            icon: 'error',
-            title: '失敗',
-            text: '修改收藏失敗'
-          })
-        }
-      },
-      async workingCase(index) {
+      async NoworkCase(index) {
         if (this.user.isuserLogin) {
           try {
             await this.api.patch(
-              'cases/progress/' + this.cases[index]._id,
-              { progress: 1 },
+              'cases/Nprogress/' + this.cases[index]._id,
+              { progress: 0 },
               {
                 headers: {
                   authorization: 'Bearer ' + this.user.token
@@ -147,20 +120,67 @@
             this.$swal({
               icon: 'success',
               title: '成功',
-              text: '加入進行中清單'
+              text: '刪除項目'
             })
+            this.getNew()
           } catch (error) {
             console.log(error)
             this.$swal({
               icon: 'error',
               title: '失敗',
-              text: '修改收藏失敗'
+              text: '刪除失敗'
             })
           }
         }
+      },
+      async endCase(index) {
+        if (this.user.isuserLogin) {
+          try {
+            await this.api.patch(
+              'cases/Eprogress/' + this.cases[index]._id,
+              { progress: 2 },
+              {
+                headers: {
+                  authorization: 'Bearer ' + this.user.token
+                }
+              }
+            )
+            this.$swal({
+              icon: 'success',
+              title: '成功',
+              text: '結案'
+            })
+            this.getNew()
+          } catch (error) {
+            console.log(error)
+            this.$swal({
+              icon: 'error',
+              title: '失敗',
+              text: '加入結案清單失敗'
+            })
+          }
+        }
+      },
+      async getNew() {
+        try {
+          const { data } = await this.api.get('/users/me/favorite', {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.cases = data.result
+          this.work = this.cases.filter(c => {
+            return c.progress === 2
+          })
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '失敗',
+            text: '取得收藏失敗'
+          })
+        }
       }
     },
-
     async created() {
       try {
         const { data } = await this.api.get('/users/me/favorite', {
@@ -169,6 +189,9 @@
           }
         })
         this.cases = data.result
+        this.work = this.cases.filter(c => {
+          return c.progress === 2
+        })
       } catch (error) {
         this.$swal({
           icon: 'error',
