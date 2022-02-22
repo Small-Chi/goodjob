@@ -95,9 +95,9 @@ const routes = [
             }
           },
           {
-            path: 'userworking',
-            name: 'UserWorking',
-            component: () => import(/* webpackChunkName: "userworking" */ '../views/UserWorking.vue'),
+            path: 'userwantdo',
+            name: 'Userwantdo',
+            component: () => import(/* webpackChunkName: "userwantdo" */ '../views/Userwantdo.vue'),
             meta: {
               login: true,
               title: 'goodjob | 進行中的案件'
@@ -109,7 +109,7 @@ const routes = [
             component: () => import(/* webpackChunkName: "userdeal" */ '../views/Userdeal.vue'),
             meta: {
               login: true,
-              title: 'goodjob | 結案頁面'
+              title: 'goodjob | 案件狀態'
             }
           },
           {
@@ -166,6 +166,24 @@ const routes = [
             meta: {
               login: true,
               title: 'goodjob | 收藏作品'
+            }
+          },
+          {
+            path: 'ownercheck',
+            name: 'Ownercheck',
+            component: () => import(/* webpackChunkName: "ownercheck" */ '../views/Ownercheck.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 進行中的案件'
+            }
+          },
+          {
+            path: 'ownerdeal',
+            name: 'Ownerdeal',
+            component: () => import(/* webpackChunkName: "ownerdeal" */ '../views/Ownerdeal.vue'),
+            meta: {
+              login: true,
+              title: 'goodjob | 案件狀態'
             }
           },
           {

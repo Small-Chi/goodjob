@@ -46,7 +46,7 @@
                     <router-link :to="`/user/${user._id}/userchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
-                    <v-icon color="var(--color-white)" class="favIcon" @click="workingCase(index)">mdi-format-list-bulleted</v-icon>
+                    <v-icon color="var(--color-white)" class="favIcon" @click="wantDo(index)">mdi-file-move-outline</v-icon>
                     <v-icon color="var(--color-white)" class="favIconD ms-5" @click="deletefav(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
@@ -132,29 +132,32 @@
           })
         }
       },
-      async workingCase(index) {
+      // 丟 user 的 ID 進去
+      async wantDo(index) {
+        console.log(this.cases[index]._id)
         if (this.user.isuserLogin) {
           try {
             await this.api.patch(
-              'cases/progress/' + this.cases[index]._id,
-              { progress: 1 },
+              'cases/deal/' + this.cases[index]._id,
+              { deal: this.user._id },
               {
                 headers: {
                   authorization: 'Bearer ' + this.user.token
                 }
               }
             )
+
             this.$swal({
               icon: 'success',
               title: '成功',
-              text: '加入進行中清單'
+              text: '投稿成功'
             })
           } catch (error) {
             console.log(error)
             this.$swal({
               icon: 'error',
               title: '失敗',
-              text: '修改收藏失敗'
+              text: '投稿失敗'
             })
           }
         }
@@ -169,6 +172,7 @@
           }
         })
         this.cases = data.result
+        // console.log(data.result)
       } catch (error) {
         this.$swal({
           icon: 'error',

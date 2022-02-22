@@ -19,7 +19,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in work" :key="index">
+                <tr v-for="(item, index) in wantdo" :key="index">
                   <td class="text-center">
                     <router-link :to="`/owner/${item.owner._id}/ownerself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
@@ -46,8 +46,8 @@
                     <router-link :to="`/user/${user._id}/userchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
-                    <v-icon color="var(--color-white)" class="favIcon" @click="endCase(index)">mdi-charity</v-icon>
-                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NoworkCase(index)">mdi-delete</v-icon>
+                    <!-- <v-icon color="var(--color-white)" class="favIcon" @click="endCase(index)">mdi-charity</v-icon> -->
+                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NwantDo(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -66,6 +66,8 @@
         cases: [],
         search: null,
         work: [],
+        wantdo: [],
+        wantdodo: [],
         slots: [
           '海報/DM',
           '書籍/手冊',
@@ -106,12 +108,14 @@
       }
     },
     methods: {
-      async NoworkCase(index) {
+      // 刪除項目 = 把自己的 id 拿出來
+      async NwantDo(index) {
+        console.log(this.cases[index]._id)
         if (this.user.isuserLogin) {
           try {
             await this.api.patch(
-              'cases/Nprogress/' + this.cases[index]._id,
-              { progress: 0 },
+              'cases/dealN/' + this.wantdo[index]._id,
+              {},
               {
                 headers: {
                   authorization: 'Bearer ' + this.user.token
@@ -121,7 +125,7 @@
             this.$swal({
               icon: 'success',
               title: '成功',
-              text: '刪除項目'
+              text: '刪除成功'
             })
             this.getNew()
           } catch (error) {
@@ -129,50 +133,19 @@
             this.$swal({
               icon: 'error',
               title: '失敗',
-              text: '刪除失敗'
-            })
-          }
-        }
-      },
-      async endCase(index) {
-        if (this.user.isuserLogin) {
-          try {
-            await this.api.patch(
-              'cases/Eprogress/' + this.cases[index]._id,
-              { progress: 2 },
-              {
-                headers: {
-                  authorization: 'Bearer ' + this.user.token
-                }
-              }
-            )
-            this.$swal({
-              icon: 'success',
-              title: '成功',
-              text: '結案'
-            })
-            this.getNew()
-          } catch (error) {
-            console.log(error)
-            this.$swal({
-              icon: 'error',
-              title: '失敗',
-              text: '加入結案清單失敗'
+              text: '投稿失敗'
             })
           }
         }
       },
       async getNew() {
         try {
-          const { data } = await this.api.get('/users/me/favorite', {
-            headers: {
-              authorization: 'Bearer ' + this.user.token
-            }
-          })
+          const { data } = await this.api.get('/cases/wantdo')
           this.cases = data.result
-          this.work = this.cases.filter(c => {
-            return c.progress === 1
+          this.wantdo = this.cases.filter(c => {
+            return c.deal.includes(this.user._id)
           })
+          console.log(this.wantdo)
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -184,15 +157,15 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/users/me/favorite', {
-          headers: {
-            authorization: 'Bearer ' + this.user.token
-          }
-        })
+        console.log(this.wantdo)
+        const { data } = await this.api.get('/cases/wantdo')
+
         this.cases = data.result
-        this.work = this.cases.filter(c => {
-          return c.progress === 1
+        this.wantdo = this.cases.filter(c => {
+          return c.deal.includes(this.user._id) && c.deal.length < 2
         })
+
+        console.log(this.wantdo)
       } catch (error) {
         this.$swal({
           icon: 'error',

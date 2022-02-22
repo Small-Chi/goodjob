@@ -29,6 +29,7 @@ export const getCases = async (req, res) => {
 // 訪客
 export const getCasesOther = async (req, res) => {
   try {
+    console.log(req.query.owner)
     const result = await cases.find({ owner: req.query.owner, sell: true })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
@@ -111,10 +112,52 @@ export const deleteCase = async (req, res) => {
   }
 }
 
-export const workingCase = async (req, res) => {
+export const wantDo = async (req, res) => {
   try {
-    const data = { progress: 1 }
-    const result = await cases.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    // 找欄位
+    const deal = await cases.findById(req.params.id, 'deal')
+    console.log(deal)
+    deal.deal.push(req.body.deal)
+    deal.save({ validateBeforeSave: false })
+    res.status(200).send({ success: true, message: '', deal })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+// 投稿
+export const getWantdo = async (req, res) => {
+  try {
+    const result = await cases.find({ sell: true }).populate('owner', 'account')
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+// 返回未投稿
+export const NwantDo = async (req, res) => {
+  try {
+    console.log(req.user._id)
+    await cases.findByIdAndUpdate(req.params.id, {
+      // 刪除陣列元素
+      $pull: {
+        // 欄位名稱
+        deal: req.user._id
+      }
+    })
+    res.status(200).send({ success: true, message: '取消' })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+// 業者本人查看有投稿的 user
+export const getHasuser = async (req, res) => {
+  try {
+    const result = await cases.find({ owner: req.owner._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)
@@ -122,21 +165,42 @@ export const workingCase = async (req, res) => {
   }
 }
 
-export const NoworkCase = async (req, res) => {
+// 不同意投稿
+export const NoDo = async (req, res) => {
   try {
-    const data = { progress: 0 }
-    const result = await cases.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
-    res.status(200).send({ success: true, message: '', result })
+    await cases.findByIdAndUpdate(req.params.id, {
+      // 刪除陣列元素
+      $pull: {
+        // 欄位名稱
+        deal: req.body.userId
+      }
+    })
+    res.status(200).send({ success: true, message: '取消' })
   } catch (error) {
     console.log(error)
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
 
-export const endCase = async (req, res) => {
+// 業主丟ID進去
+export const cantDo = async (req, res) => {
   try {
-    const data = { progress: 2 }
-    const result = await cases.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    // 找欄位
+    const deal = await cases.findById(req.params.id, 'deal')
+    console.log(deal)
+    deal.deal.push(req.body.deal)
+    deal.save({ validateBeforeSave: false })
+    res.status(200).send({ success: true, message: '', deal })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+// 接案本人查看有投稿的 owner
+export const getHasowner = async (req, res) => {
+  try {
+    const result = await cases.find({ sell: true }).populate('owner', 'account')
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)

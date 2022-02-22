@@ -1,6 +1,7 @@
 import express from 'express'
 import content from '../middleware/content.js'
 import authO from '../middleware/authO.js'
+import auth from '../middleware/auth.js'
 import uploadC from '../middleware/uploadC.js'
 import {
   create,
@@ -9,9 +10,13 @@ import {
   deleteCase,
   getCaseById,
   getCasesOther,
-  workingCase,
-  NoworkCase,
-  endCase
+  wantDo,
+  getWantdo,
+  NwantDo,
+  getHasuser,
+  NoDo,
+  cantDo,
+  getHasowner
 } from '../controllers/cases.js'
 
 const router = express.Router()
@@ -23,6 +28,9 @@ router.get('/me', authO, getCases)
 // 訪客
 router.get('/visitor', getCasesOther)
 
+// 訪客
+router.get('/wantdo', getWantdo)
+
 // 取得指定案件
 router.get('/:id', getCaseById)
 // 編輯案件內容
@@ -30,8 +38,15 @@ router.patch('/:id', authO, content('multipart/form-data'), uploadC, updateCaesB
 // 刪除案件
 router.delete('/:id', authO, deleteCase)
 // 編輯案件內容
-router.patch('/progress/:id', workingCase)
-router.patch('/Nprogress/:id', NoworkCase)
-router.patch('/Eprogress/:id', endCase)
+router.patch('/deal/:id', auth, wantDo)
+router.patch('/dealN/:id', auth, NwantDo)
+router.patch('/dealNO/:id', authO, NoDo)
+router.patch('/dealO/:id', authO, cantDo)
+
+// 業主本人
+router.get('/me/hasuser', authO, getHasuser)
+
+// 接案本人
+router.get('/me/hasowner', auth, getHasowner)
 
 export default router

@@ -19,11 +19,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in agree" :key="index">
+                <tr v-for="(item, index) in whodo" :key="index">
                   <td class="text-center">
                     <router-link :to="`/owner/${item.owner._id}/ownerself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
-                        <v-img :src="'https://source.boringavatars.com/beam/120/' + item.owner.account"></v-img>
+                        <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
                       </v-avatar>
                       <span style="color: var(--color-lightY)">{{ item.owner.ownername }}</span>
                     </router-link>
@@ -43,11 +43,11 @@
                     <span style="color: var(--color-lightY)">156</span>
                   </td>
                   <td class="text-center">
-                    <router-link :to="`/user/${user._id}/userchats/`">
+                    <router-link :to="`/owner/${owner._id}/ownerchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
-                    <v-icon color="var(--color-white)" class="favIcon" @click="endCase(index)">mdi-charity</v-icon>
-                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NwantDo(index)">mdi-delete</v-icon>
+                    <v-icon color="var(--color-white)" class="favIcon" @click="cantDo(index)">mdi-charity</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NoDo(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -66,7 +66,8 @@
         cases: [],
         search: null,
         work: [],
-        agree: [],
+        whodo: [],
+        userwantdo: '',
         slots: [
           '海報/DM',
           '書籍/手冊',
@@ -107,24 +108,25 @@
       }
     },
     methods: {
-      // 刪除項目 = 把自己的 id 拿出來
-      async NwantDo(index) {
-        console.log(this.cases[index]._id)
-        if (this.user.isuserLogin) {
+      // 刪除項目 = 把 id 清空
+      async NoDo(index) {
+        if (this.owner.isownerLogin) {
           try {
+            const whouser = this.whodo[index].deal[0]
+            console.log(whouser)
             await this.api.patch(
-              'cases/dealN/' + this.wantdo[index]._id,
-              {},
+              'cases/dealNO/' + this.whodo[index]._id,
+              { userId: whouser },
               {
                 headers: {
-                  authorization: 'Bearer ' + this.user.token
+                  authorization: 'Bearer ' + this.owner.token
                 }
               }
             )
             this.$swal({
               icon: 'success',
               title: '成功',
-              text: '刪除成功'
+              text: '不同意投稿'
             })
             this.getNew()
           } catch (error) {
@@ -132,19 +134,52 @@
             this.$swal({
               icon: 'error',
               title: '失敗',
-              text: '投稿失敗'
+              text: '刪除失敗'
+            })
+          }
+        }
+      },
+      async cantDo(index) {
+        console.log(this.cases[index]._id)
+        if (this.owner.isownerLogin) {
+          try {
+            await this.api.patch(
+              'cases/dealO/' + this.cases[index]._id,
+              { deal: this.owner._id },
+              {
+                headers: {
+                  authorization: 'Bearer ' + this.owner.token
+                }
+              }
+            )
+            this.$swal({
+              icon: 'success',
+              title: '成功',
+              text: '同意進行'
+            })
+            this.getNew()
+          } catch (error) {
+            console.log(error)
+            this.$swal({
+              icon: 'error',
+              title: '失敗',
+              text: '同意失敗'
             })
           }
         }
       },
       async getNew() {
         try {
-          const { data } = await this.api.get('/cases/wantdo')
-          this.cases = data.result
-          this.wantdo = this.cases.filter(c => {
-            return c.deal.includes(this.user._id)
+          const { data } = await this.api.get('/cases/me/hasuser', {
+            headers: {
+              authorization: 'Bearer ' + this.owner.token
+            }
           })
-          console.log(this.wantdo)
+          this.cases = data.result
+          this.whodo = this.cases.filter(c => {
+            return c.deal.length > 0 && c.deal.length < 2
+          })
+          console.log(this.whodo)
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -156,16 +191,16 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/cases/me/hasowner', {
+        const { data } = await this.api.get('/cases/me/hasuser', {
           headers: {
-            authorization: 'Bearer ' + this.user.token
+            authorization: 'Bearer ' + this.owner.token
           }
         })
         this.cases = data.result
-        this.agree = this.cases.filter(c => {
-          return c.deal.length > 1
+        this.whodo = this.cases.filter(c => {
+          return c.deal.length > 0 && c.deal.length < 2
         })
-        console.log(this.agree)
+        console.log(this.whodo)
       } catch (error) {
         this.$swal({
           icon: 'error',
