@@ -87,6 +87,18 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0
     }
+    // good: {
+    //   type: Number,
+    //   default: 47
+    // },
+    // bad: {
+    //   type: Number,
+    //   default: 16
+    // },
+    // assess: {
+    //   type: Number,
+    //   default: 33
+    // }
   },
   { versionKey: false }
 )

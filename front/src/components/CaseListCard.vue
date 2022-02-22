@@ -59,7 +59,7 @@
       <div class="swiper-button-prev" slot="button-prev"></div>
     </swiper>
     <div class="ms-1 me-2 catdBottom">
-      <router-link :to="`/owner/${casedata.owner}/ownerself/`">
+      <router-link :to="`/owner/${casedata._id}/ownerself/`">
         <v-avatar size="90" class="me-5 caseava">
           <v-img :src="'https://source.boringavatars.com/beam/120/' + casedata.account"></v-img>
         </v-avatar>

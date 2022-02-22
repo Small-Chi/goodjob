@@ -9,7 +9,7 @@
             <template>
               <thead>
                 <tr>
-                  <th class="text-center">發案者</th>
+                  <th class="text-center">投稿者</th>
                   <th class="text-center">案件名稱</th>
                   <th class="text-center">類別</th>
                   <th class="text-center">結案日期</th>
@@ -23,7 +23,7 @@
                   <td class="text-center">
                     <router-link :to="`/owner/${item.owner._id}/ownerself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
-                        <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
+                        <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
                       </v-avatar>
                       <span style="color: var(--color-lightY)">{{ item.owner.ownername }}</span>
                     </router-link>

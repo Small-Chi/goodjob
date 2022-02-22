@@ -3,7 +3,7 @@
     <div class="content row">
       <div class="col d-flex">
         <span class="username">{{ userinfo.username }}</span>
-        <v-btn icon class="messageIcon" plain :to="`/user/${user._id}/userchats/`">
+        <v-btn icon class="messageIcon" plain>
           <v-icon size="40">mdi-message-outline</v-icon>
         </v-btn>
         <div class="score">
