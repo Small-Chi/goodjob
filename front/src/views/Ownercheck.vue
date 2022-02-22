@@ -12,9 +12,9 @@
                   <th class="text-center">發案者</th>
                   <th class="text-center">案件名稱</th>
                   <th class="text-center">類別</th>
-                  <th class="text-center">預算</th>
                   <th class="text-center">結案日期</th>
-                  <th class="text-center">成交量/評價</th>
+                  <th class="text-center">預算</th>
+                  <th class="text-center">需求風格</th>
                   <th class="text-center">訊息/狀態/移除</th>
                 </tr>
               </thead>
@@ -32,15 +32,20 @@
                     <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">{{ item.casename }}</router-link>
                   </td>
                   <td class="text-center">{{ item.category.small }}</td>
-                  <td class="text-center">{{ item.price }}</td>
                   <td class="text-center">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</td>
-                  <td class="text-center">
+                  <td class="text-center">{{ item.price }}</td>
+                  <!-- <td class="text-center">
                     <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
+                  </td> -->
+                  <td class="text-center" style="padding: 10px">
+                    <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">
+                      <v-img :src="item.image" style="width: 250px" class="mx-auto"></v-img>
+                    </router-link>
                   </td>
                   <td class="text-center">
                     <router-link :to="`/owner/${owner._id}/ownerchats/`">
@@ -144,7 +149,7 @@
         if (this.owner.isownerLogin) {
           try {
             await this.api.patch(
-              'cases/dealO/' + this.cases[index]._id,
+              'cases/dealO/' + this.whodo[index]._id,
               { deal: this.owner._id },
               {
                 headers: {

@@ -7,31 +7,31 @@
           <v-icon size="40">mdi-message-outline</v-icon>
         </v-btn>
         <div class="score">
-          <div class="scoreitems">
+          <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <span class="num">1000</span>
-              <span class="numtitle">
-                <v-icon color="var(--color-lightY)">mdi-charity</v-icon>
-                成交案量
-              </span>
+              <v-btn icon width="50" height="50" class="mb-n2" @click="assess += 1">
+                <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-charity</v-icon>
+              </v-btn>
+              <span class="num">{{ assess }}</span>
+              <span class="numtitle">成交案量</span>
             </div>
           </div>
-          <div class="scoreitems">
+          <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <span class="num">1000</span>
-              <span class="numtitle">
-                <v-icon color="var(--color-lightY)">mdi-thumb-up</v-icon>
-                好評
-              </span>
+              <v-btn icon width="50" height="50" class="mb-n2" @click="good += 1">
+                <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-thumb-up</v-icon>
+              </v-btn>
+              <span class="num">{{ good }}</span>
+              <span class="numtitle">好評</span>
             </div>
           </div>
-          <div class="scoreitems">
+          <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <span class="num">1000</span>
-              <span class="numtitle">
-                <v-icon color="var(--color-lightY)">mdi-thumb-down</v-icon>
-                差評
-              </span>
+              <v-btn icon width="50" height="50" class="mb-n2" @click="bad += 1">
+                <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-thumb-down</v-icon>
+              </v-btn>
+              <span class="num">{{ bad }}</span>
+              <span class="numtitle">差評</span>
             </div>
           </div>
         </div>
@@ -225,6 +225,9 @@
   export default {
     data() {
       return {
+        good: 0,
+        bad: 0,
+        assess: 0,
         dialog: false,
         me: false,
         form: {
@@ -344,7 +347,6 @@
             }
           })
           this.userinfo = data.result
-          // this.$emit('showText', data)
           this.userinfo.password = ''
           console.log(data.result)
         }

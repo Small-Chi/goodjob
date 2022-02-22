@@ -12,9 +12,9 @@
                   <th class="text-center">設計師</th>
                   <th class="text-center">作品名稱</th>
                   <th class="text-center">類別</th>
+                  <th class="text-center">製作天數</th>
                   <th class="text-center">報價</th>
                   <th class="text-center">作品風格</th>
-                  <th class="text-center">成交量/評價</th>
                   <th class="text-center">訊息/移除</th>
                 </tr>
               </thead>
@@ -32,20 +32,21 @@
                     <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">{{ item.pname }}</router-link>
                   </td>
                   <td class="text-center">{{ item.category.small }}</td>
+                  <td class="text-center">{{ item.workingday }}</td>
                   <td class="text-center">{{ item.price }}</td>
                   <td class="text-center" style="padding: 10px">
                     <router-link :to="`/user/${item.user._id}/portfolioPage/` + item._id">
                       <v-img :src="item.image" style="width: 250px" class="mx-auto"></v-img>
                     </router-link>
                   </td>
-                  <td class="text-center">
+                  <!-- <td class="text-center">
                     <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
-                  </td>
+                  </td> -->
                   <td class="text-center">
                     <router-link :to="`/owner/${owner._id}/ownerchats/`">
                       <v-icon color="var(--color-white)" class="me-2 favIcon">mdi-message-outline</v-icon>

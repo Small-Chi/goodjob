@@ -399,14 +399,14 @@
           this.$swal({
             icon: 'success',
             title: '成功',
-            text: '刪除商品成功'
+            text: '刪除案件成功'
           })
           this.getCases()
         } catch (error) {
           this.$swal({
             icon: 'error',
             title: '錯誤',
-            text: '刪除商品失敗'
+            text: '刪除案件失敗'
           })
         }
       },

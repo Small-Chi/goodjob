@@ -52,7 +52,13 @@
     // width: 900px;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 60px;
   }
+
+  .scoreIcon:hover {
+    color: var(--color-red) !important;
+  }
+
   .scoreitem {
     width: 240px;
     // border: 1px solid wheat;
@@ -68,7 +74,7 @@
   }
   .numtitle {
     font-size: 24px;
-    margin-top: -10px;
+    margin-top: -5px;
     font-weight: bold;
   }
   .fw-300 {

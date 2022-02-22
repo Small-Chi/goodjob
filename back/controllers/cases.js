@@ -197,7 +197,7 @@ export const cantDo = async (req, res) => {
   }
 }
 
-// 接案本人查看有投稿的 owner
+// 接案本人查看有同意的 owner
 export const getHasowner = async (req, res) => {
   try {
     const result = await cases.find({ sell: true }).populate('owner', 'account')

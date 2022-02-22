@@ -31,7 +31,7 @@
         <v-card class="card mx-auto card-portfolio" max-width="350" color="var(--color-lightblue)">
           <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
-            <div class="heartNum">0</div>
+            <div class="heartNum">{{ owner.favorite }}</div>
           </v-btn>
           <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>

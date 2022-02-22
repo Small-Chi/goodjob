@@ -6,7 +6,7 @@
         <v-card class="card mx-auto card-casedata" max-width="350" min-width="350" color="var(--color-lightblue)">
           <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
-            <div class="heartNum">0</div>
+            <div class="heartNum">{{ user.favorite }}</div>
           </v-btn>
           <div class="col-10">
             <v-card-title class="ctext1 mb-1" style="margin-left: 10px; padding-top: 5px">

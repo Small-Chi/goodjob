@@ -12,9 +12,9 @@
                   <th class="text-center">發案者</th>
                   <th class="text-center">案件名稱</th>
                   <th class="text-center">類別</th>
-                  <th class="text-center">預算</th>
                   <th class="text-center">結案日期</th>
-                  <th class="text-center">成交量/評價</th>
+                  <th class="text-center">預算</th>
+                  <th class="text-center">需求風格</th>
                   <th class="text-center">訊息/狀態/移除</th>
                 </tr>
               </thead>
@@ -32,22 +32,27 @@
                     <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">{{ item.casename }}</router-link>
                   </td>
                   <td class="text-center">{{ item.category.small }}</td>
-                  <td class="text-center">{{ item.price }}</td>
                   <td class="text-center">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</td>
-                  <td class="text-center">
+                  <td class="text-center">{{ item.price }}</td>
+                  <!-- <td class="text-center">
                     <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
+                  </td> -->
+                  <td class="text-center" style="padding: 10px">
+                    <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">
+                      <v-img :src="item.image" style="width: 250px" class="mx-auto"></v-img>
+                    </router-link>
                   </td>
                   <td class="text-center">
                     <router-link :to="`/user/${user._id}/userchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
                     <v-icon color="var(--color-white)" class="favIcon" @click="endCase(index)">mdi-charity</v-icon>
-                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NwantDo(index)">mdi-delete</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="deletefav(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -107,44 +112,47 @@
       }
     },
     methods: {
-      // 刪除項目 = 把自己的 id 拿出來
-      async NwantDo(index) {
-        console.log(this.cases[index]._id)
-        if (this.user.isuserLogin) {
-          try {
-            await this.api.patch(
-              'cases/dealN/' + this.wantdo[index]._id,
-              {},
-              {
-                headers: {
-                  authorization: 'Bearer ' + this.user.token
-                }
+      // 刪除項目含收藏
+      async deletefav(index) {
+        try {
+          await this.api.patch(
+            '/users/me/favorite',
+            { case: this.agree[index]._id },
+            {
+              headers: {
+                authorization: 'Bearer ' + this.user.token
               }
-            )
-            this.$swal({
-              icon: 'success',
-              title: '成功',
-              text: '刪除成功'
-            })
-            this.getNew()
-          } catch (error) {
-            console.log(error)
-            this.$swal({
-              icon: 'error',
-              title: '失敗',
-              text: '投稿失敗'
-            })
-          }
+            }
+          )
+          this.cases.splice(index, 1)
+          this.$store.commit('user/updateFavorite', this.user.favorite - 1)
+          this.$swal({
+            icon: 'success',
+            title: '成功',
+            text: '已從收藏列表中刪除'
+          })
+          this.getNew()
+        } catch (error) {
+          console.log(error)
+          this.$swal({
+            icon: 'error',
+            title: '失敗',
+            text: '修改失敗'
+          })
         }
       },
       async getNew() {
         try {
-          const { data } = await this.api.get('/cases/wantdo')
-          this.cases = data.result
-          this.wantdo = this.cases.filter(c => {
-            return c.deal.includes(this.user._id)
+          const { data } = await this.api.get('/cases/me/hasowner', {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
           })
-          console.log(this.wantdo)
+          this.cases = data.result
+          this.agree = this.cases.filter(c => {
+            return c.deal.length > 1
+          })
+          console.log(this.agree)
         } catch (error) {
           this.$swal({
             icon: 'error',

@@ -12,9 +12,9 @@
                   <th class="text-center">發案者</th>
                   <th class="text-center">案件名稱</th>
                   <th class="text-center">類別</th>
-                  <th class="text-center">預算</th>
                   <th class="text-center">結案日期</th>
-                  <th class="text-center">成交量/評價</th>
+                  <th class="text-center">預算</th>
+                  <th class="text-center">需求風格</th>
                   <th class="text-center">訊息/狀態/移除</th>
                 </tr>
               </thead>
@@ -32,22 +32,27 @@
                     <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">{{ item.casename }}</router-link>
                   </td>
                   <td class="text-center">{{ item.category.small }}</td>
-                  <td class="text-center">{{ item.price }}</td>
                   <td class="text-center">{{ new Date(item.endingday).toLocaleDateString().replace(/\//g, '／') }}</td>
-                  <td class="text-center">
+                  <td class="text-center">{{ item.price }}</td>
+                  <!-- <td class="text-center">
                     <v-icon class="ms- me-1" color="var(--color-white)">mdi-charity</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-up</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
                     <v-icon class="ms-4 me-1" color="var(--color-white)">mdi-thumb-down</v-icon>
                     <span style="color: var(--color-lightY)">156</span>
+                  </td> -->
+                  <td class="text-center" style="padding: 10px">
+                    <router-link :to="`/owner/${item.owner._id}/casePage/` + item._id">
+                      <v-img :src="item.image" style="width: 250px" class="mx-auto"></v-img>
+                    </router-link>
                   </td>
                   <td class="text-center">
                     <router-link :to="`/owner/${owner._id}/ownerchats/`">
                       <v-icon color="var(--color-white)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
                     <v-icon color="var(--color-white)" class="favIcon" @click="cantDo(index)">mdi-charity</v-icon>
-                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="NoDo(index)">mdi-delete</v-icon>
+                    <v-icon color="var(--color-white)" class="favIconD ms-5" @click="deleteCase(index)">mdi-delete</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -107,42 +112,32 @@
       }
     },
     methods: {
-      // 刪除項目 = 把 id 清空
-      async NoDo(index) {
-        console.log(this.whodo[index]._id)
-        if (this.owner.isuserLogin) {
-          try {
-            await this.api.patch(
-              'cases/dealNO/' + this.whodo[index]._id,
-              {},
-              {
-                headers: {
-                  authorization: 'Bearer ' + this.owner.token
-                }
-              }
-            )
-            this.$swal({
-              icon: 'success',
-              title: '成功',
-              text: '不同意投稿'
-            })
-            this.getNew()
-          } catch (error) {
-            console.log(error)
-            this.$swal({
-              icon: 'error',
-              title: '失敗',
-              text: '刪除失敗'
-            })
-          }
+      async deleteCase(index) {
+        try {
+          await this.api.delete('/cases/' + this.whodo[index]._id, {
+            headers: {
+              authorization: 'Bearer ' + this.owner.token
+            }
+          })
+          this.$swal({
+            icon: 'success',
+            title: '成功',
+            text: '案件已刪除'
+          })
+          this.getNew()
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: '案件刪除失敗'
+          })
         }
       },
       async cantDo(index) {
-        console.log(this.cases[index]._id)
         if (this.owner.isownerLogin) {
           try {
             await this.api.patch(
-              'cases/dealO/' + this.cases[index]._id,
+              'cases/dealO/' + this.whodo[index]._id,
               { deal: this.owner._id },
               {
                 headers: {
@@ -150,12 +145,12 @@
                 }
               }
             )
-
             this.$swal({
               icon: 'success',
               title: '成功',
               text: '同意進行'
             })
+            this.getNew()
           } catch (error) {
             console.log(error)
             this.$swal({
@@ -175,7 +170,7 @@
           })
           this.cases = data.result
           this.whodo = this.cases.filter(c => {
-            return c.deal.length > 0
+            return c.deal.length > 1
           })
           console.log(this.cases)
         } catch (error) {
