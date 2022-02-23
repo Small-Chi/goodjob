@@ -118,13 +118,13 @@ const caseSchema = new mongoose.Schema(
     // 按鈕其中一人點了以後id會進來這個陣列，判斷 1.裡面有沒有人，有的話就不要重複 push。2.兩個人的 id 都進去就轉成結案狀態。
     deal: {
       type: [mongoose.ObjectId],
-      ref: 'users,owners'
-    },
-    // 按收藏的接案者
-    userf: {
-      type: [mongoose.ObjectId],
       ref: 'users'
     }
+    // 按收藏的接案者
+    // userf: {
+    //   type: [mongoose.ObjectId],
+    //   ref: 'users'
+    // }
   },
   { versionKey: false }
 )

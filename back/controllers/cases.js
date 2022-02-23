@@ -197,10 +197,21 @@ export const cantDo = async (req, res) => {
   }
 }
 
-// 接案本人查看有同意的 owner
+// 接案人查看有同意的 owner
 export const getHasowner = async (req, res) => {
   try {
     const result = await cases.find({ sell: true }).populate('owner', 'account')
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+// 業主本人查看同意的案子
+export const getAgreen = async (req, res) => {
+  try {
+    const result = await cases.find({ owner: req.owner._id })
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)

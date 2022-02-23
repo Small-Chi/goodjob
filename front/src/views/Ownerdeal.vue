@@ -9,7 +9,7 @@
             <template>
               <thead>
                 <tr>
-                  <th class="text-center">發案者</th>
+                  <th class="text-center">投稿者</th>
                   <th class="text-center">案件名稱</th>
                   <th class="text-center">類別</th>
                   <th class="text-center">結案日期</th>
@@ -19,9 +19,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in whodo" :key="index">
+                <tr v-for="(item, index) in agree" :key="index">
                   <td class="text-center">
-                    <router-link :to="`/owner/${item.owner._id}/ownerself/`">
+                    <router-link :to="`/user/${item.deal[0]._id}/userself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
                         <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
                       </v-avatar>
@@ -71,7 +71,7 @@
         cases: [],
         search: null,
         work: [],
-        whodo: [],
+        agree: [],
         slots: [
           '海報/DM',
           '書籍/手冊',
@@ -114,7 +114,7 @@
     methods: {
       async deleteCase(index) {
         try {
-          await this.api.delete('/cases/' + this.whodo[index]._id, {
+          await this.api.delete('/cases/' + this.agree[index]._id, {
             headers: {
               authorization: 'Bearer ' + this.owner.token
             }
@@ -137,7 +137,7 @@
         if (this.owner.isownerLogin) {
           try {
             await this.api.patch(
-              'cases/dealO/' + this.whodo[index]._id,
+              'cases/dealO/' + this.agree[index]._id,
               { deal: this.owner._id },
               {
                 headers: {
@@ -169,7 +169,7 @@
             }
           })
           this.cases = data.result
-          this.whodo = this.cases.filter(c => {
+          this.agree = this.cases.filter(c => {
             return c.deal.length > 1
           })
           console.log(this.cases)
@@ -184,15 +184,16 @@
     },
     async created() {
       try {
-        const { data } = await this.api.get('/cases/me/hasuser', {
+        const { data } = await this.api.get('/cases/me/agreen', {
           headers: {
             authorization: 'Bearer ' + this.owner.token
           }
         })
         this.cases = data.result
-        this.whodo = this.cases.filter(c => {
+        this.agree = this.cases.filter(c => {
           return c.deal.length > 1
         })
+
         console.log(this.cases)
       } catch (error) {
         this.$swal({

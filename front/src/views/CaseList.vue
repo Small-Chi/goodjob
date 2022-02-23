@@ -100,13 +100,13 @@
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext1">會員資訊</a>
+                  <a class="textWhite ctext1">業主資訊</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">會員案件</a>
+                  <a class="textWhite ctext1">業主案件</a>
                 </v-btn>
               </li>
               <li>
@@ -175,7 +175,9 @@
           </div>
           <div class="content"></div>
           <div class="main">
-            <CaseListCard v-for="casedata in cases" :key="casedata._id" :casedata="casedata" />
+            <div v-for="casedata in filterItems" :key="casedata._id">
+              <CaseListCard v-if="casedata.cases.length > 0" :casedata="casedata" />
+            </div>
           </div>
         </v-container>
       </v-sheet>
@@ -193,7 +195,8 @@
     components: { UserRegisters, CaseListCard },
     data() {
       return {
-        cases: []
+        cases: [],
+        filter: ''
       }
     },
     async created() {
@@ -218,9 +221,12 @@
         return this.$store.getters['owner/owner']
       },
       filterItems() {
-        return this.portfolios.filter(item => {
-          if (this.filter === '') return true
-          return item.category.big === this.filter
+        return JSON.parse(JSON.stringify(this.cases)).map(item => {
+          item.cases = item.cases.filter(c => {
+            if (this.filter === '') return true
+            return c.category.big === this.filter
+          })
+          return item
         })
       }
     },

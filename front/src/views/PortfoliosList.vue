@@ -101,13 +101,13 @@
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext1">會員資訊</a>
+                  <a class="textWhite ctext1">業主資訊</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">會員案件</a>
+                  <a class="textWhite ctext1">業主案件</a>
                 </v-btn>
               </li>
               <li>
@@ -186,7 +186,9 @@
           </div>
           <div class="content"></div>
           <div class="main">
-            <PListSwiper v-for="portfolio in portfolios" :key="portfolio._id" :portfolio="portfolio" />
+            <div v-for="portfolio in filterItems" :key="portfolio._id">
+              <PListSwiper v-if="portfolio.portfolios.length > 0" :portfolio="portfolio" />
+            </div>
           </div>
         </v-container>
       </v-sheet>
@@ -229,9 +231,12 @@
         return this.$store.getters['owner/owner']
       },
       filterItems() {
-        return this.portfolios.filter(item => {
-          if (this.filter === '') return true
-          return item.category.big === this.filter
+        return JSON.parse(JSON.stringify(this.portfolios)).map(item => {
+          item.portfolios = item.portfolios.filter(p => {
+            if (this.filter === '') return true
+            return p.category.big === this.filter
+          })
+          return item
         })
       }
     },

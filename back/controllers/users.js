@@ -85,6 +85,7 @@ export const userself = async (req, res) => {
 }
 
 export const updateInfo = async (req, res) => {
+  console.log('23')
   const data = {
     username: req.body.username,
     account: req.body.account,
@@ -95,7 +96,10 @@ export const updateInfo = async (req, res) => {
     position: req.body.position,
     technology: req.body.technology,
     about: req.body.about,
-    prices: req.body.prices
+    prices: req.body.prices,
+    good: req.body.good,
+    bad: req.body.bad,
+    assess: req.body.assess
   }
   console.log(data)
   if (req.file) {

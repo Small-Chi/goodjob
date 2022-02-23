@@ -11,15 +11,15 @@
         <div class="goodIcon">
           <h4 class="mb-2">
             <v-icon color="var(--color-white)">mdi-charity</v-icon>
-            <span>156</span>
+            <span>75</span>
           </h4>
           <h4 class="mb-2">
             <v-icon color="var(--color-white)">mdi-thumb-up</v-icon>
-            <span>156</span>
+            <span>62</span>
           </h4>
           <h4 class="mb-2">
             <v-icon color="var(--color-white)">mdi-thumb-down</v-icon>
-            <span>156</span>
+            <span>13</span>
           </h4>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <v-card class="card mx-auto card-portfolio" max-width="350" color="var(--color-lightblue)">
           <v-btn class="cardBtn" min-width="50" min-height="20" style="padding: 0" color="var(--color-red)">
             <v-icon size="18" color="white" class="justify-content-center; Btn1Icon">mdi-heart</v-icon>
-            <div class="heartNum">{{ owner.favorite }}</div>
+            <div class="heartNum">{{ portfolio.favorite }}</div>
           </v-btn>
           <!-- <v-btn class="cardBtn2" min-width="40" min-height="20" style="padding: 0" color="var(--color-blue)">
               <v-icon size="18" color="white" class="justify-content-center; Btn2Icon">mdi-message-outline</v-icon>

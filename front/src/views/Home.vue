@@ -25,7 +25,7 @@
         </router-link>
         <!-- 登入 -->
         <UserRegisters />
-        <div class="avatars me-6" v-if="user.isuserLogin" id="user">
+        <div class="avatars me-6" v-if="user.isuserLogin && !user.isAdmin" id="user">
           <!-- 會員資料 -->
           <div class="userList">
             <ul>
@@ -97,13 +97,13 @@
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext1">會員資訊</a>
+                  <a class="textWhite ctext1">業主資訊</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">會員案件</a>
+                  <a class="textWhite ctext1">業主案件</a>
                 </v-btn>
               </li>
               <li>
@@ -152,6 +152,55 @@
           </div>
           <v-avatar size="40" class="me-2">
             <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
+          </v-avatar>
+          <v-icon class="textWhite down">mdi-chevron-down</v-icon>
+        </div>
+        <div class="avatars me-6" v-if="user.isAdmin" id="owner">
+          <!-- 管理員資料 -->
+          <div class="adminList">
+            <ul>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-outline</v-icon>
+                  <a class="ctext1">會員管理</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-folder-outline</v-icon>
+                  <a class="ctext1">業主管理</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-heart-outline</v-icon>
+                  <a class="ctext1">首頁維護</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
+                  <a class="ctext1">
+                    訊
+                    <span class="ms-8"></span>
+                    息
+                  </a>
+                </v-btn>
+              </li>
+              <!-- <li>
+                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
+                  <a class="textWhite ctext1">
+                    行
+                    <span class="mg">事</span>
+                    曆
+                  </a>
+                </v-btn>
+              </li> -->
+            </ul>
+          </div>
+          <v-avatar size="40" class="me-2">
+            <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account + `17`"></v-img>
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>

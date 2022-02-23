@@ -82,6 +82,18 @@ const ownerSchema = new mongoose.Schema(
       // -1 = 封鎖
       type: Number,
       default: 0
+    },
+    good: {
+      type: Number,
+      default: 0
+    },
+    bad: {
+      type: Number,
+      default: 0
+    },
+    assess: {
+      type: Number,
+      default: 0
     }
   },
   { versionKey: false }

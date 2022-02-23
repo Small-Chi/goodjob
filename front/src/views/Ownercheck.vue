@@ -21,9 +21,9 @@
               <tbody>
                 <tr v-for="(item, index) in whodo" :key="index">
                   <td class="text-center">
-                    <router-link :to="`/owner/${item.owner._id}/ownerself/`">
+                    <router-link :to="`/user/${item.deal[0]._id}/userself/`">
                       <v-avatar size="40" class="me-2 avatarBtn">
-                        <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
+                        <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
                       </v-avatar>
                       <span style="color: var(--color-lightY)">{{ item.owner.ownername }}</span>
                     </router-link>
@@ -205,7 +205,7 @@
         this.whodo = this.cases.filter(c => {
           return c.deal.length > 0 && c.deal.length < 2
         })
-        console.log(this.whodo)
+        console.log(this.cases)
       } catch (error) {
         this.$swal({
           icon: 'error',

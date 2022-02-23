@@ -14,9 +14,7 @@ import {
   addFavorite,
   getFavorite,
   deletefav
-  // addCart,
-  // getCart,
-  // updateCart
+  // getCasef
 } from '../controllers/owners.js'
 
 const router = express.Router()
@@ -36,6 +34,10 @@ router.get('/me', authO, getInfo)
 
 // 找專業的頁面 不需要登入就能看見
 router.get('/visitor', getCases)
+
+// 案件頁面-本人
+// router.get('/me/f', authO, getCasef)
+
 // 收入收藏
 router.post('/me/favorite', authO, addFavorite)
 // 取得自己的收藏清單

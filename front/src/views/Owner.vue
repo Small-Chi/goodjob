@@ -100,13 +100,13 @@
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext1">會員資訊</a>
+                  <a class="textWhite ctext1">業主資訊</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext1">會員案件</a>
+                  <a class="textWhite ctext1">業主案件</a>
                 </v-btn>
               </li>
               <li>
@@ -177,13 +177,13 @@
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${$route.params.id}/ownerself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
-                  <a class="textWhite ctext2">會員資訊</a>
+                  <a class="textWhite ctext2">業主資訊</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${$route.params.id}/cases/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
-                  <a class="textWhite ctext2">會員案件</a>
+                  <a class="textWhite ctext2">業主案件</a>
                 </v-btn>
               </li>
               <li>

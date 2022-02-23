@@ -16,7 +16,8 @@ import {
   getHasuser,
   NoDo,
   cantDo,
-  getHasowner
+  getHasowner,
+  getAgreen
 } from '../controllers/cases.js'
 
 const router = express.Router()
@@ -43,8 +44,11 @@ router.patch('/dealN/:id', auth, NwantDo)
 router.patch('/dealNO/:id', authO, NoDo)
 router.patch('/dealO/:id', authO, cantDo)
 
-// 業主本人
+// 業主本人，看是誰投稿
 router.get('/me/hasuser', authO, getHasuser)
+
+// 業主本人，看進行結案
+router.get('/me/agreen', authO, getAgreen)
 
 // 接案本人
 router.get('/me/hasowner', auth, getHasowner)

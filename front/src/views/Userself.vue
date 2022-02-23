@@ -9,28 +9,28 @@
         <div class="score">
           <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <v-btn icon width="50" height="50" class="mb-n2" @click="assess += 1">
+              <v-btn icon width="50" height="50" class="mb-n2" style="pointer-events: none">
                 <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-charity</v-icon>
               </v-btn>
-              <span class="num">{{ assess }}</span>
+              <span class="num">{{ userinfo.good + userinfo.bad }}</span>
               <span class="numtitle">成交案量</span>
             </div>
           </div>
           <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <v-btn icon width="50" height="50" class="mb-n2" @click="good += 1">
+              <v-btn icon width="50" height="50" class="mb-n2" @click="scoreG()">
                 <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-thumb-up</v-icon>
               </v-btn>
-              <span class="num">{{ good }}</span>
+              <span class="num">{{ userinfo.good }}</span>
               <span class="numtitle">好評</span>
             </div>
           </div>
           <div class="scoreitems mt-n7">
             <div class="scoreitem">
-              <v-btn icon width="50" height="50" class="mb-n2" @click="bad += 1">
+              <v-btn icon width="50" height="50" class="mb-n2" @click="scoreB()">
                 <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-thumb-down</v-icon>
               </v-btn>
-              <span class="num">{{ bad }}</span>
+              <span class="num">{{ userinfo.bad }}</span>
               <span class="numtitle">差評</span>
             </div>
           </div>
@@ -225,9 +225,11 @@
   export default {
     data() {
       return {
-        good: 0,
-        bad: 0,
-        assess: 0,
+        score: {
+          good: 33,
+          assess: 47,
+          bad: 14
+        },
         dialog: false,
         me: false,
         form: {
@@ -263,6 +265,31 @@
     },
     computed: {},
     methods: {
+      scoreG() {
+        this.score.good++
+        this.editscore()
+      },
+      scoreB() {
+        this.score.bad++
+        this.editscore()
+      },
+      async editscore() {
+        try {
+          await this.api.patch('/users/info', this.score, {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+          this.getUser()
+        } catch (error) {
+          this.$swal({
+            icon: 'error',
+            title: '錯誤',
+            text: error.response.data.message
+          })
+        }
+        this.dialog = false
+      },
       // 更新會員資料
       async updateInfo() {
         this.form = {

@@ -95,7 +95,10 @@ export const updateInfo = async (req, res) => {
     position: req.body.position,
     technology: req.body.technology,
     about: req.body.about,
-    prices: req.body.prices
+    prices: req.body.prices,
+    good: req.body.good,
+    bad: req.body.bad,
+    assess: req.body.assess
   }
   console.log(data)
   if (req.file) {
@@ -176,7 +179,7 @@ export const getCases = async (req, res) => {
       },
       {
         $lookup: {
-          from: 'owners',
+          from: 'users',
           localField: 'cases._id',
           foreignField: 'favorite',
           as: 'cases.favorite'
@@ -272,3 +275,68 @@ export const deletefav = async (req, res) => {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
+
+// export const getCasef = async (req, res) => {
+//   try {
+//     const query = [
+//       {
+//         $match: {
+//           _id: 'asd'
+//         }
+//       },
+//       {
+//         $lookup: {
+//           from: 'cases',
+//           localField: '_id',
+//           foreignField: 'owner',
+//           as: 'cases'
+//         }
+//       },
+//       {
+//         $unwind: {
+//           path: '$cases',
+//           preserveNullAndEmptyArrays: true
+//         }
+//       },
+//       {
+//         $lookup: {
+//           from: 'users',
+//           localField: 'cases._id',
+//           foreignField: 'favorite',
+//           as: 'cases.favorite'
+//         }
+//       },
+//       {
+//         $addFields: {
+//           'cases.favorite': {
+//             $size: '$cases.favorite'
+//           }
+//         }
+//       },
+//       {
+//         $group: {
+//           _id: '$_id',
+//           account: {
+//             $first: '$account'
+//           },
+//           cases: {
+//             $addToSet: '$cases'
+//           },
+//           good: {
+//             $first: '$good'
+//           },
+//           bad: {
+//             $first: '$bad'
+//           },
+//           ownername: {
+//             $first: '$ownername'
+//           }
+//         }
+//       }
+//     ]
+//     const result = await owners.aggregate(query)
+//     res.status(200).send({ success: true, message: '', result })
+//   } catch (error) {
+//     res.status(500).send({ success: false, message: '伺服器錯誤' })
+//   }
+// }

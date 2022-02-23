@@ -263,6 +263,7 @@
             title: '錯誤',
             text: '缺少名稱或作品照片'
           })
+          this.dialogSubmitting = false
           return
         }
         const fd = new FormData()
@@ -314,6 +315,7 @@
             text: error.response.data.message
           })
         }
+        this.dialogSubmitting = false
       },
       editPortfolio(index) {
         this.form = {
