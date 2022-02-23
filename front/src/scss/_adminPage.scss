@@ -1,32 +1,117 @@
-#adminPage {
-  body {
-    background-color: var(--color-blue);
+// nav-------------------------
+.adminList {
+  position: absolute;
+  padding: 15px;
+  top: 35px;
+  right: -50px;
+  background-color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+
+  .adlisttext {
+    color: var(--color-blue) !important;
   }
-  background-color: var(--color-blue) !important;
+  .memBtn:hover .memIcon {
+    color: var(--color-red) !important;
+  }
+  .memBtn:hover a {
+    color: var(--color-red) !important;
+  }
+  .mg {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.navAD {
+  position: relative;
+  top: 20px;
+  color: var(--color-blue) !important;
+  border-right: 2px solid var(--color-blue);
+  a {
+    color: var(--color-blue) !important;
+    font-weight: 700;
+  }
+
+  a:hover {
+    color: var(--color-red) !important;
+  }
+}
+
+.adavatars {
+  height: 30px;
+  position: relative;
+  top: 11px;
+  cursor: pointer;
+}
+
+.adavatars:hover .down {
+  color: var(--color-red) !important;
+}
+
+// 登入紐
+.adlogin {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+.adlogin:hover {
+  color: var(--color-red) !important;
+}
+
+#owner:hover .adminList {
+  display: block;
+  animation: divAnimation 0.3s linear forwards;
+}
+
+#owner {
+  padding-bottom: 50px;
+}
+
+@keyframes divAnimation {
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+// ---------------------------------------------
+
+// AdminHome
+#AdminHome {
   .Usersolgon {
-    // border: 1px solid var(--color-white);
+    background-color: var(--color-blue);
     width: 135px;
     height: 36px;
     position: relative;
     top: 13px;
+    z-index: -1;
   }
   .sidebar {
     width: 400px;
     height: 100vh;
     filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
-    background: var(--color-blue);
+    background: var(--color-deepwhite);
     position: fixed;
   }
   .content {
     width: 75%;
     height: 100vh;
-    background: var(--color-deepblue);
+    background: var(--color-white);
     margin-left: 400px;
   }
   .avatarSidebar {
     position: relative;
     top: 100px;
     left: 110px;
+  }
+
+  .adlisttextB {
+    color: var(--color-blue) !important;
+    font-weight: 700;
   }
   .selfmeanu {
     width: 200px;
@@ -42,70 +127,138 @@
     }
 
     .memBtn:hover .memIcon {
-      color: var(--color-lightY) !important;
+      color: var(--color-red) !important;
     }
     .memBtn:hover a {
-      color: var(--color-lightY) !important;
+      color: var(--color-red) !important;
     }
     .mg {
       margin-left: 10px;
       margin-right: 10px;
     }
   }
-  .selfmeanu2 {
-    width: 210px;
-    height: 450px;
-    // border: 1px solid red;
-    position: absolute;
-    top: 400px;
-    left: 100px;
-    .meanutitle {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+}
+
+// AdminUser
+#adminuser {
+  // 主要內容的區域
+  background-color: var(--color-wihte);
+  // border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 76.5%;
+  height: 95vh;
+  margin-left: 450px;
+  margin-top: -95vh;
+  padding-top: 3%;
+  padding-left: 2%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  // display: flex;
+  justify-content: start;
+  color: var(--color-white);
+
+  .content {
+    position: relative;
+    width: 76.5%;
+    height: 80vh !important;
+    top: 0;
+    left: -400px;
+    height: 150px;
+    display: flex;
+
+    // 表標
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > th,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
+      font-size: 1.2rem;
+      color: var(--color-blue);
+      font-weight: 700;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-blue);
     }
-    .name {
-      border-bottom: 1px solid var(--color-lightY);
+
+    .mdi-menu-down::before {
+      color: var(--color-ddeepY);
+    }
+
+    .mdi-close::before {
+      color: var(--color-ddeepY);
+    }
+
+    // .theme--light.v-input {
+    //   color: var(--color-white);
+    // }
+
+    .theme--light.v-messages {
+      color: var(--color-ddeepY) !important;
+    }
+
+    .v-select__selections {
+      color: var(--color-ddeepY) !important;
+    }
+
+    .theme--light.v-label {
+      color: var(--color-ddeepY);
+    }
+
+    .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+      border: 1px solid var(--color-ddeepY) !important;
+    }
+
+    .v-text-field fieldset,
+    .v-text-field .v-input__control {
+      color: var(--color-ddeepY);
+    }
+
+    // input字級
+    .theme--light.v-input input,
+    .theme--light.v-input textarea {
+      color: var(--color-blue);
+      font-size: 25px;
+      margin-bottom: 10px;
       text-align: center;
-      padding-bottom: 5px;
-      // margin-top: -10px;
-    }
-    .position {
-      background-color: var(--color-white);
-      border-radius: 50px;
-      height: 28px;
-      padding: 5px 10px;
-      line-height: 20px;
       font-weight: 700;
     }
-    .nameh2 {
-      font-size: 30px;
-      font-weight: 700;
+
+    .v-application .primary--text {
+      color: var(--color-chatblue);
+      caret-color: var(--color-chatblue);
     }
-    .meanu {
-      color: var(--color-white);
-      margin-top: 10px;
-      font-size: 18px;
-      .itemIcon {
-        position: relative;
-        top: -3px;
-      }
-      .num {
-        text-align: right;
-        font-weight: 300;
-        color: var(--color-lightY);
-      }
-      .pricetitle {
-        border-top: 1px solid var(--color-white);
-        text-align: center;
-        font-weight: 700;
-      }
-      .priceMenu {
-        // background: red;
-        height: 250px;
-        overflow-y: auto;
-        overflow-x: hidden;
-      }
+
+    // 表內文色
+    .theme--light.v-data-table {
+      color: var(--color-blue);
+      background: var(--color-white);
+    }
+
+    // 表高度
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+      height: 80px;
+    }
+
+    // 表內文字級
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+      font-size: 1rem;
+    }
+
+    .favIcon:hover {
+      color: var(--color-lightY) !important;
+    }
+
+    .favIcon:active {
+      color: var(--color-lightY) !important;
+    }
+
+    .favIconD:hover {
+      color: var(--color-red) !important;
+    }
+  }
+  tbody {
+    tr:hover {
+      background-color: var(--color-deepwhite) !important;
     }
   }
 }

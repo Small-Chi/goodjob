@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Front from '../views/Front.vue'
+// import store from '../store/'
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,7 @@ const routes = [
       {
         path: 'portfoliosList',
         name: 'PortfoliosList',
-        component: () => import(/* webpackChunkName: "userlogin" */ '../views/PortfoliosList.vue'),
+        component: () => import(/* webpackChunkName: "PortfoliosList" */ '../views/PortfoliosList.vue'),
         meta: {
           login: true,
           title: 'goodjob | 找專業'
@@ -34,7 +35,7 @@ const routes = [
       {
         path: 'caseList',
         name: 'CaseList',
-        component: () => import(/* webpackChunkName: "ownerlogin" */ '../views/CaseList.vue'),
+        component: () => import(/* webpackChunkName: "CaseList" */ '../views/CaseList.vue'),
         meta: {
           login: true,
           title: 'goodjob | 找案件'
@@ -43,7 +44,7 @@ const routes = [
       {
         path: 'news',
         name: 'News',
-        component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
+        component: () => import(/* webpackChunkName: "News" */ '../views/News.vue'),
         meta: {
           login: true,
           title: 'goodjob | 知識庫'
@@ -52,7 +53,7 @@ const routes = [
       {
         path: 'user/:id',
         name: 'User',
-        component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+        component: () => import(/* webpackChunkName: "User" */ '../views/User.vue'),
         meta: {
           login: true,
           title: 'goodjob | 會員專區'
@@ -61,7 +62,7 @@ const routes = [
           {
             path: 'userself',
             name: 'Userself',
-            component: () => import(/* webpackChunkName: "userself" */ '../views/Userself.vue'),
+            component: () => import(/* webpackChunkName: "Userself" */ '../views/Userself.vue'),
             meta: {
               login: true,
               title: 'goodjob | 會員資料'
@@ -70,7 +71,7 @@ const routes = [
           {
             path: 'portfolios',
             name: 'Portfolios',
-            component: () => import(/* webpackChunkName: "portfolios" */ '../views/Portfolios.vue'),
+            component: () => import(/* webpackChunkName: "Portfolios" */ '../views/Portfolios.vue'),
             meta: {
               login: true,
               title: 'goodjob | 我的作品'
@@ -79,7 +80,7 @@ const routes = [
           {
             path: 'portfolioPage/:pid',
             name: 'PortfolioPage',
-            component: () => import(/* webpackChunkName: "portfolioPage" */ '../views/PortfolioPage.vue'),
+            component: () => import(/* webpackChunkName: "PortfolioPage" */ '../views/PortfolioPage.vue'),
             meta: {
               login: true,
               title: 'goodjob | 指定作品'
@@ -88,7 +89,7 @@ const routes = [
           {
             path: 'userfavorite',
             name: 'Userfavorite',
-            component: () => import(/* webpackChunkName: "userfavorite" */ '../views/Userfavorite.vue'),
+            component: () => import(/* webpackChunkName: "Userfavorite" */ '../views/Userfavorite.vue'),
             meta: {
               login: true,
               title: 'goodjob | 收藏案件'
@@ -97,7 +98,7 @@ const routes = [
           {
             path: 'userwantdo',
             name: 'Userwantdo',
-            component: () => import(/* webpackChunkName: "userwantdo" */ '../views/Userwantdo.vue'),
+            component: () => import(/* webpackChunkName: "Userwantdo" */ '../views/Userwantdo.vue'),
             meta: {
               login: true,
               title: 'goodjob | 進行中的案件'
@@ -106,7 +107,7 @@ const routes = [
           {
             path: 'userdeal',
             name: 'Userdeal',
-            component: () => import(/* webpackChunkName: "userdeal" */ '../views/Userdeal.vue'),
+            component: () => import(/* webpackChunkName: "Userdeal" */ '../views/Userdeal.vue'),
             meta: {
               login: true,
               title: 'goodjob | 案件狀態'
@@ -115,7 +116,7 @@ const routes = [
           {
             path: 'userchats',
             name: 'UserChats',
-            component: () => import(/* webpackChunkName: "userchats" */ '../views/UserChats.vue'),
+            component: () => import(/* webpackChunkName: "UserChats" */ '../views/UserChats.vue'),
             meta: {
               login: true,
               title: 'goodjob | 訊息'
@@ -126,7 +127,7 @@ const routes = [
       {
         path: 'owner/:id',
         name: 'Owner',
-        component: () => import(/* webpackChunkName: "owner" */ '../views/Owner.vue'),
+        component: () => import(/* webpackChunkName: "Owner" */ '../views/Owner.vue'),
         meta: {
           login: true,
           title: 'goodjob | 會員專區'
@@ -135,7 +136,7 @@ const routes = [
           {
             path: 'ownerself',
             name: 'Ownerself',
-            component: () => import(/* webpackChunkName: "ownerself" */ '../views/Ownerself.vue'),
+            component: () => import(/* webpackChunkName: "Ownerself" */ '../views/Ownerself.vue'),
             meta: {
               login: true,
               title: 'goodjob | 會員資料'
@@ -144,7 +145,7 @@ const routes = [
           {
             path: 'cases',
             name: 'Cases',
-            component: () => import(/* webpackChunkName: "cases" */ '../views/Cases.vue'),
+            component: () => import(/* webpackChunkName: "Cases" */ '../views/Cases.vue'),
             meta: {
               login: true,
               title: 'goodjob | 我的案件'
@@ -153,7 +154,7 @@ const routes = [
           {
             path: 'casePage/:cid',
             name: 'CasePage',
-            component: () => import(/* webpackChunkName: "casePage" */ '../views/CasePage.vue'),
+            component: () => import(/* webpackChunkName: "CasePage" */ '../views/CasePage.vue'),
             meta: {
               login: true,
               title: 'goodjob | 指定案件'
@@ -162,7 +163,7 @@ const routes = [
           {
             path: 'ownerfavorite',
             name: 'Ownerfavorite',
-            component: () => import(/* webpackChunkName: "ownerfavorite" */ '../views/Ownerfavorite.vue'),
+            component: () => import(/* webpackChunkName: "Ownerfavorite" */ '../views/Ownerfavorite.vue'),
             meta: {
               login: true,
               title: 'goodjob | 收藏作品'
@@ -171,7 +172,7 @@ const routes = [
           {
             path: 'ownercheck',
             name: 'Ownercheck',
-            component: () => import(/* webpackChunkName: "ownercheck" */ '../views/Ownercheck.vue'),
+            component: () => import(/* webpackChunkName: "Ownercheck" */ '../views/Ownercheck.vue'),
             meta: {
               login: true,
               title: 'goodjob | 進行中的案件'
@@ -180,7 +181,7 @@ const routes = [
           {
             path: 'ownerdeal',
             name: 'Ownerdeal',
-            component: () => import(/* webpackChunkName: "ownerdeal" */ '../views/Ownerdeal.vue'),
+            component: () => import(/* webpackChunkName: "Ownerdeal" */ '../views/Ownerdeal.vue'),
             meta: {
               login: true,
               title: 'goodjob | 案件狀態'
@@ -189,7 +190,7 @@ const routes = [
           {
             path: 'ownerchats',
             name: 'OwnerChats',
-            component: () => import(/* webpackChunkName: "ownerchats" */ '../views/OwnerChats.vue'),
+            component: () => import(/* webpackChunkName: "OwnerChats" */ '../views/OwnerChats.vue'),
             meta: {
               login: true,
               title: 'goodjob | 訊息'
@@ -198,23 +199,84 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
+    meta: {
+      login: true,
+      admin: true,
+      title: 'goodjob外包網 | 管理系統'
+    },
+    children: [
+      {
+        path: 'adminUser',
+        name: 'AdminUser',
+        component: () => import(/* webpackChunkName: "AdminUser" */ '../views/AdminUser.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理系統 | 會員管理'
+        }
+      },
+      {
+        path: 'adminOwner',
+        name: 'AdminOwner',
+        component: () => import(/* webpackChunkName: "AdminOwner" */ '../views/AdminOwner.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理系統 | 業主管理'
+        }
+      },
+      {
+        path: 'adminWork',
+        name: 'AdminWork',
+        component: () => import(/* webpackChunkName: "AdminWork" */ '../views/AdminWork.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理系統 | 網頁維護'
+        }
+      },
+      {
+        path: 'adminChats',
+        name: 'AdminChats',
+        component: () => import(/* webpackChunkName: "AdminChats" */ '../views/AdminChats.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理系統 | 訊息'
+        }
+      }
+    ]
   }
-  // {
-  //   path: '/register',
-  //   name: 'Register',
-  //   component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
-  //   meta: {
-  //     title: '註冊 | goodjob'
-  //   }
-  // }
 ]
 
 const router = new VueRouter({
   routes
 })
 
+// // 路由守衛
+
+// router.beforeEach((to, from, next) => {
+//   const user = store.getters['user/user']
+//   // 如果要去的那頁需要登入，並且使用者沒有登錄
+//   if (to.meta.login && !user.isLogin) {
+//     next('/login')
+//     // 如果要去的那頁需要管理員身分，並且使用者沒有權限
+//   } else if (to.meta.admin && !user.isAdmin) {
+//     // 回首頁
+//     next('/')
+//   } else {
+//     next()
+//   }
+// })
+
 router.afterEach((to, from) => {
   document.title = to.meta.title
+  window.scrollTo({ top: 0 })
 })
 
 export default router

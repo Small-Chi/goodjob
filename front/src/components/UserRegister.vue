@@ -306,6 +306,7 @@
         }
       },
       userlogin() {
+        console.log(this.form)
         this.$store.dispatch('user/userlogin', this.form)
       },
       ownerlogin() {

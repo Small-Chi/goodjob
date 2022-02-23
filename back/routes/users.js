@@ -1,6 +1,7 @@
 import express from 'express'
 import content from '../middleware/content.js'
 import auth from '../middleware/auth.js'
+import admin from '../middleware/admin.js'
 
 import {
   register,
@@ -13,7 +14,8 @@ import {
   userself,
   addFavorite,
   getFavorite,
-  deletefav
+  deletefav,
+  getUser
   // addCart,
   // getCart,
   // updateCart
@@ -33,6 +35,10 @@ router.post('/extend', auth, extend)
 router.delete('/logout', auth, logout)
 // 拿取自己的資料
 router.get('/me', auth, getInfo)
+
+// 管理員拿取全部 user 資料
+router.get('/admin', auth, admin, getUser)
+
 // 找專業的頁面使用 不需要登入就能看見
 router.get('/visitor', getPortfolios)
 // 收入收藏

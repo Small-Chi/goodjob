@@ -160,27 +160,27 @@
           <div class="adminList">
             <ul>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerself/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminUser`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-outline</v-icon>
-                  <a class="ctext1">會員管理</a>
+                  <a class="ctext1 adlisttext">會員管理</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
-                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-folder-outline</v-icon>
-                  <a class="ctext1">業主管理</a>
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-tie-outline</v-icon>
+                  <a class="ctext1 adlisttext">業主管理</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
-                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-heart-outline</v-icon>
-                  <a class="ctext1">首頁維護</a>
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-application-cog-outline Michael Irigoyen @mririgo</v-icon>
+                  <a class="ctext1 adlisttext">網頁維護</a>
                 </v-btn>
               </li>
               <li>
                 <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
-                  <a class="ctext1">
+                  <a class="ctext1 adlisttext">
                     訊
                     <span class="ms-8"></span>
                     息
