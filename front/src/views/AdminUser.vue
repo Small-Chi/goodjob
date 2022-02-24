@@ -1,5 +1,4 @@
 <template>
-  <!-- 找專業的頁面 -->
   <div id="adminuser">
     <div class="content">
       <template>
@@ -12,6 +11,7 @@
                   <th class="text-center">會員</th>
                   <th class="text-center">名稱</th>
                   <th class="text-center">帳號</th>
+                  <th class="text-center">職業類別</th>
                   <th class="text-center">成交量/評價</th>
                   <th class="text-center">訊息</th>
                   <th class="text-center">權限</th>
@@ -26,17 +26,38 @@
                       </v-avatar>
                     </router-link>
                   </td>
-                  <td class="text-center">{{ item.username }}</td>
+                  <td class="text-center" style="font-weight: 700">
+                    <router-link :to="`/user/${item._id}/userself/`">{{ item.username }}</router-link>
+                  </td>
                   <td class="text-center">{{ item.account }}</td>
-                  <td class="text-center">{{ item.assess }}{{ item.good }}{{ item.bad }}</td>
+                  <td class="text-center">{{ item.position }}</td>
                   <td class="text-center">
-                    <router-link :to="`/user/${item._id}/userchats/`">
+                    <div class="userscore d-flex justify-center">
+                      <div class="scoreitem ms-3">
+                        <v-icon right>mdi-charity</v-icon>
+                        {{ item.assess }}
+                      </div>
+                      <div class="scoreitem ms-3">
+                        <v-icon right>mdi-thumb-up</v-icon>
+                        {{ item.good }}
+                      </div>
+                      <div class="scoreitem ms-3">
+                        <v-icon right>mdi-thumb-down</v-icon>
+                        {{ item.bad }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <router-link :to="`/admin/adminChats`">
                       <v-icon color="var(--color-blue)" class="me-1 favIcon">mdi-message-outline</v-icon>
                     </router-link>
                   </td>
                   <td class="text-center">
-                    <v-icon color="var(--color-blue)" class="favIcon">mdi-charity</v-icon>
-                    <v-icon color="var(--color-blue)" class="favIconD ms-5">mdi-delete</v-icon>
+                    <v-item-group>
+                      <v-item v-slot="{ active, toggle }">
+                        <v-icon size="23" color="var(--color-blue)" class="favIconD" @click="toggle">{{ active ? 'mdi-block-helper' : 'mdi-check' }}</v-icon>
+                      </v-item>
+                    </v-item-group>
                   </td>
                 </tr>
               </tbody>

@@ -14,14 +14,14 @@
       <div class="chatlist">
         <v-card rounded class="mx-auto" max-width="300" tile>
           <v-list rounded color="var(--color-deepwhite)" class="list">
-            <v-subheader>會員列表</v-subheader>
+            <v-subheader>業主列表</v-subheader>
             <v-list-item-group v-model="selected" color="var(--color-chatdeepblue)">
-              <v-list-item v-for="user in getuser" :key="user.username" class="mb-3">
+              <v-list-item v-for="owner in getowner" :key="owner.username" class="mb-3">
                 <v-avatar size="40" class="me-5">
-                  <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
+                  <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
                 </v-avatar>
                 <v-list-item-content>
-                  <v-list-item-title v-text="user.username"></v-list-item-title>
+                  <v-list-item-title v-text="owner.ownername"></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -41,17 +41,18 @@
     components: { AdminChat },
     data() {
       return {
-        getuser: []
+        getowner: []
       }
     },
     async created() {
       try {
-        const { data } = await this.api.get('/users/admin', {
+        console.log(this.user.token)
+        const { data } = await this.api.get('/owners/admin', {
           headers: {
             authorization: 'Bearer ' + this.user.token
           }
         })
-        this.getuser = data.result
+        this.getowner = data.result
       } catch (error) {
         this.$swal({
           icon: 'error',

@@ -249,6 +249,16 @@ const routes = [
           admin: true,
           title: '管理系統 | 訊息'
         }
+      },
+      {
+        path: 'adminChatsO',
+        name: 'AdminChatsO',
+        component: () => import(/* webpackChunkName: "AdminChatsO" */ '../views/AdminChatsO.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '管理系統 | 訊息'
+        }
       }
     ]
   }

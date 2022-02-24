@@ -28,30 +28,30 @@
         </router-link>
         <!-- 登入 -->
         <UserRegisters />
-        <div class="avatars me-6" v-if="user.isuserLogin" id="user">
+        <div class="avatars me-6" v-if="user.isuserLogin && !user.isAdmin" id="user">
           <!-- 會員資料 -->
           <div class="userList">
             <ul>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userself/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userself/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-account-outline</v-icon>
                   <a class="textWhite ctext1">會員資訊</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/portfolios/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/portfolios/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-folder-outline</v-icon>
                   <a class="textWhite ctext1">會員作品</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userfavorite/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userfavorite/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-heart-outline</v-icon>
                   <a class="textWhite ctext1">收藏案件</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userwantdo/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userwantdo/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-file-move-outline</v-icon>
                   <a class="textWhite ctext1">
                     已
@@ -61,13 +61,13 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userdeal/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userdeal/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
                   <a class="textWhite ctext1">進行結案</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userchats/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/user/${user._id}/userchats/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-message-outline</v-icon>
                   <a class="textWhite ctext1">
                     訊
@@ -77,7 +77,7 @@
                 </v-btn>
               </li>
               <!-- <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn">
+                <v-btn depressed color="var(--color-blue)" class="memBtn">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
                   <a class="textWhite ctext1">
                     行
@@ -88,7 +88,7 @@
               </li> -->
             </ul>
           </div>
-          <v-avatar size="40" class="me-2 avatarBtn">
+          <v-avatar size="40" class="me-2">
             <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account"></v-img>
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
@@ -122,9 +122,13 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerdeal/`">
+                <v-btn depressed color="var(--color-blue)" class="memBtn" :to="`/owner/${owner._id}/ownerdeal/`">
                   <v-icon class="memIcon me-3" color="var(--color-white)">mdi-charity</v-icon>
-                  <a class="textWhite ctext1">進行結案</a>
+                  <a class="textWhite ctext1">
+                    已
+                    <span class="mx-1">結</span>
+                    案
+                  </a>
                 </v-btn>
               </li>
               <li>
@@ -151,6 +155,55 @@
           </div>
           <v-avatar size="40" class="me-2">
             <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
+          </v-avatar>
+          <v-icon class="textWhite down">mdi-chevron-down</v-icon>
+        </div>
+        <div class="avatars me-6" v-if="user.isAdmin" id="owner">
+          <!-- 管理員資料 -->
+          <div class="adminList">
+            <ul>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminUser`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-outline</v-icon>
+                  <a class="ctext1 adlisttext">會員管理</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminOwner`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-tie-outline</v-icon>
+                  <a class="ctext1 adlisttext">業主管理</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminWork`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-application-cog-outline Michael Irigoyen @mririgo</v-icon>
+                  <a class="ctext1 adlisttext">網頁維護</a>
+                </v-btn>
+              </li>
+              <li>
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminChats`">
+                  <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
+                  <a class="ctext1 adlisttext">
+                    訊
+                    <span class="ms-8"></span>
+                    息
+                  </a>
+                </v-btn>
+              </li>
+              <!-- <li>
+                <v-btn depressed color="var(--color-blue)" class="memBtn">
+                  <v-icon class="memIcon me-3" color="var(--color-white)">mdi-calendar-month-outline</v-icon>
+                  <a class="textWhite ctext1">
+                    行
+                    <span class="mg">事</span>
+                    曆
+                  </a>
+                </v-btn>
+              </li> -->
+            </ul>
+          </div>
+          <v-avatar size="40" class="me-2">
+            <v-img :src="'https://source.boringavatars.com/beam/120/' + user.account + `17`"></v-img>
           </v-avatar>
           <v-icon class="textWhite down">mdi-chevron-down</v-icon>
         </div>

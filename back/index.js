@@ -7,6 +7,7 @@ import ownersRouter from './routes/owners.js'
 import portfoliosRouter from './routes/portfolios.js'
 import casesRouter from './routes/cases.js'
 import chatsRoute from './routes/chats.js'
+import pagesRoute from './routes/pages.js'
 // import ordersRouter from './routes/orders.js'
 
 mongoose.connect(process.env.DB_URL, () => {
@@ -40,6 +41,7 @@ app.use('/owners', ownersRouter)
 app.use('/portfolios', portfoliosRouter)
 app.use('/cases', casesRouter)
 app.use('/chats', chatsRoute)
+app.use('/pages', pagesRoute)
 
 app.all('*', (req, res) => {
   res.status(404).send({ success: false, message: '找不到' })

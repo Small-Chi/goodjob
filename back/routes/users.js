@@ -15,7 +15,8 @@ import {
   addFavorite,
   getFavorite,
   deletefav,
-  getUser
+  getUser,
+  updateScroe
   // addCart,
   // getCart,
   // updateCart
@@ -25,6 +26,9 @@ const router = express.Router()
 
 // 註冊
 router.post('/', content('application/json'), register)
+
+// 按讚
+router.patch('/visitor', updateScroe)
 // 更改會員資料
 router.patch('/info', auth, updateInfo)
 // 登入

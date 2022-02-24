@@ -39,19 +39,19 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminOwner`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-tie-outline</v-icon>
                   <a class="ctext1 adlisttext">業主管理</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminWork`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-application-cog-outline Michael Irigoyen @mririgo</v-icon>
                   <a class="ctext1 adlisttext">網頁維護</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminChats`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
                   <a class="ctext1 adlisttext">
                     訊
@@ -88,25 +88,25 @@
           <div class="selfmeanu">
             <ul>
               <li>
-                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/user/${$route.params.id}/userself/`">
+                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/admin/adminUser`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-outline</v-icon>
                   <a class="adlisttextB ctext2">會員管理</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/user/${$route.params.id}/portfolios/`">
+                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/admin/adminOwner`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-tie-outline</v-icon>
                   <a class="adlisttextB ctext2">業主管理</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/user/${$route.params.id}/userfavorite/`">
+                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/admin/adminWork`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-application-cog-outline Michael Irigoyen @mririgo</v-icon>
                   <a class="adlisttextB ctext2">網頁維護</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/user/${user._id}/userchats/`">
+                <v-btn depressed exact color="var(--color-deepwhite)" class="memBtn" :to="`/admin/adminChats`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
                   <a class="adlisttextB ctext2">
                     訊

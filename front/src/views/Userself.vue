@@ -36,7 +36,7 @@
           </div>
         </div>
         <!-- 編輯紐 -->
-        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()">
+        <v-btn icon class="editBtn" style="padding: 0; background-color: var(--color-deepblue)" @click="updateInfo()" v-if="me">
           <v-icon size="30" color="var(--color-white)" class="justify-content-center; editIcon">mdi-pencil-outline</v-icon>
         </v-btn>
         <!-- 表單 -->
@@ -275,11 +275,7 @@
       },
       async editscore() {
         try {
-          await this.api.patch('/users/info', this.score, {
-            headers: {
-              authorization: 'Bearer ' + this.user.token
-            }
-          })
+          await this.api.patch('/users/visitor' + this.$route.params.id, this.score)
           this.getUser()
         } catch (error) {
           this.$swal({
@@ -288,7 +284,6 @@
             text: error.response.data.message
           })
         }
-        this.dialog = false
       },
       // 更新會員資料
       async updateInfo() {

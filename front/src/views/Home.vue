@@ -9,7 +9,7 @@
         scroll-target="#scrolling-techniques-4"
         max-height="70"
         class="textWhite"
-        style="z-index: 2"
+        style="z-index: 5"
       >
         <v-img class="logo1 me-n2 ms-8" max-width="115" src="../assets/images/logo.png"></v-img>
         <div class="solgon rounded-pill ms-n5">
@@ -166,19 +166,19 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/cases/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminOwner`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-account-tie-outline</v-icon>
                   <a class="ctext1 adlisttext">業主管理</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerfavorite/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminWork`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-application-cog-outline Michael Irigoyen @mririgo</v-icon>
                   <a class="ctext1 adlisttext">網頁維護</a>
                 </v-btn>
               </li>
               <li>
-                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/owner/${owner._id}/ownerchats/`">
+                <v-btn depressed color="var(--color-white)" class="memBtn" :to="`/admin/adminChats`">
                   <v-icon class="memIcon me-3" color="var(--color-blue)">mdi-message-outline</v-icon>
                   <a class="ctext1 adlisttext">
                     訊
