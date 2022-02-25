@@ -5,6 +5,9 @@ const pageSchema = new mongoose.Schema(
     image: {
       type: String
     },
+    username: {
+      type: String
+    },
     date: {
       type: Date
     }

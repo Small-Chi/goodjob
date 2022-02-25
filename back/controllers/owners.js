@@ -349,3 +349,26 @@ export const getOwner = async (req, res) => {
     res.status(500).send({ success: false, message: '伺服器錯誤' })
   }
 }
+
+export const updateScroe = async (req, res) => {
+  const data = {
+    good: req.body.good,
+    bad: req.body.bad,
+    assess: req.body.assess
+  }
+  try {
+    const result = await owners.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
+    res.status(200).send({ success: false, message: '', result })
+  } catch (error) {
+    console.log(error)
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '找不到' })
+    } else if (error.name === 'ValidationError') {
+      const key = Object.keys(error.errors)[0]
+      console.log(error)
+      res.status(400).send({ sucess: false, message: error.errors[key].name })
+    } else {
+      res.status(500).send({ sucess: false, message: '伺服器錯誤' })
+    }
+  }
+}

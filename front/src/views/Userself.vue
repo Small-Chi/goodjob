@@ -12,7 +12,7 @@
               <v-btn icon width="50" height="50" class="mb-n2" style="pointer-events: none">
                 <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-charity</v-icon>
               </v-btn>
-              <span class="num">{{ userinfo.good + userinfo.bad }}</span>
+              <span class="num">{{ userinfo.assess }}</span>
               <span class="numtitle">成交案量</span>
             </div>
           </div>
@@ -226,9 +226,9 @@
     data() {
       return {
         score: {
-          good: 33,
-          assess: 47,
-          bad: 14
+          good: 0,
+          assess: 0,
+          bad: 0
         },
         dialog: false,
         me: false,
@@ -275,8 +275,21 @@
       },
       async editscore() {
         try {
-          await this.api.patch('/users/visitor' + this.$route.params.id, this.score)
-          this.getUser()
+          console.log(this.score)
+          console.log(this.$route.params.id)
+          this.score.assess = this.score.good + this.score.bad
+          if (this.user._id !== this.$route.params.id) {
+            await this.api.patch('/users/visitor/' + this.$route.params.id, this.score)
+            const { data } = await this.api.get('users/' + this.$route.params.id, {
+              headers: {
+                authorization: 'Bearer ' + this.user.token
+              }
+            })
+            this.userinfo = data.result
+            this.userinfo.password = ''
+            this.score = { good: this.userinfo.good, bad: this.userinfo.bad, assess: this.userinfo.assess }
+            console.log(data.result)
+          }
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -370,6 +383,7 @@
           })
           this.userinfo = data.result
           this.userinfo.password = ''
+          this.score = { good: this.userinfo.good, bad: this.userinfo.bad, assess: this.userinfo.assess }
           console.log(data.result)
         }
       } catch (error) {

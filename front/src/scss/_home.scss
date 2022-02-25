@@ -45,6 +45,35 @@
     filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
   }
 
+  .centerslogan3 {
+    position: absolute;
+    top: 400px;
+    font-size: 30px;
+    font-weight: 700;
+    z-index: 3;
+    filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+  }
+
+  .centerslogan3::after {
+    content: '';
+    position: absolute;
+    top: 23px;
+    left: -310px;
+    width: 300px;
+    height: 1px;
+    background-color: var(--color-white);
+  }
+
+  .centerslogan3::before {
+    content: '';
+    position: absolute;
+    top: 23px;
+    right: -310px;
+    width: 300px;
+    height: 1px;
+    background-color: var(--color-white);
+  }
+
   .dark {
     width: 100%;
     height: 100vh;
@@ -61,16 +90,68 @@
     z-index: 3;
   }
 
+  .goBtnDiv {
+    // background: red;
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+
+    .goBtnl {
+      border-radius: 10px 0px 0px 10px;
+      background: rgba(0, 0, 0, 0) !important;
+      border: 1.5px dashed var(--color-white);
+      color: var(--color-white);
+      font-size: 1.5rem;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+
+    .goBtnr {
+      border-radius: 0px 10px 10px 0px;
+      background: rgba(0, 0, 0, 0) !important;
+      border: 1.5px dashed var(--color-white);
+      color: var(--color-white);
+      font-size: 1.5rem;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+    .v-btn__content {
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .goBtnl:hover {
+      border-radius: 10px 10px 10px 10px;
+      border: 1px solid var(--color-lightY);
+      color: var(--color-lightY);
+      transform: scale(1.1);
+    }
+
+    .goBtnr:hover {
+      border-radius: 10px 10px 10px 10px;
+      border: 1px solid var(--color-chatblue);
+      color: var(--color-chatblue);
+      transform: scale(1.1);
+    }
+
+    .goBtnl:hover .gotextY {
+      color: var(--color-lightY);
+    }
+
+    .goBtnr:hover .gotextB {
+      color: var(--color-chatblue);
+    }
+  }
+
   .goodcard {
     position: absolute;
     width: 70%;
     // height: 350px;
-    top: 58%;
+    top: 85%;
     z-index: 1;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
     z-index: 3;
+    // background: red;
   }
 
   .gCard {

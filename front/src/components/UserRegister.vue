@@ -77,7 +77,9 @@
             <!-- 接案方註冊單 -->
             <v-dialog v-model="dialog4" fullscreen hide-overlay transition="dialog-bottom-transition">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="var(--color-white)" dark v-bind="attrs" v-on="on" class="btn2 textBlue rounded-0" plain max-height="20">成為接案者</v-btn>
+                <v-btn color="var(--color-white)" dark v-bind="attrs" v-on="on" class="btn2 textBlue rounded-0" plain max-height="20" style="font-weight: 700">
+                  成為接案者
+                </v-btn>
               </template>
               <v-card>
                 <v-toolbar color="var(--color-blue)" style="color: var(--color-white)">

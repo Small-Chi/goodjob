@@ -224,9 +224,28 @@
               </div>
               <h1 class="centerslogan textWhite" v-animate-css="'fadeInUp'">
                 專為
-                <span style="color: var(--color-lightY)">設計領域</span>
+                <span style="color: var(--color-lightY); margin-left: auto">設計領域</span>
                 打造的外包網
+                <br />
               </h1>
+              <h1 class="centerslogan3 textWhite" v-animate-css="'fadeInUp'">
+                立即體驗
+                <br />
+              </h1>
+              <v-row class="goBtnDiv">
+                <div class="col-6" style="padding: 0">
+                  <v-btn class="goBtnl" height="210" width="210" to="/portfoliosList">
+                    <span style="font-weight: 700">找專業</span>
+                    <p class="mt-1 gotextY">| 設計師作品區 |</p>
+                  </v-btn>
+                </div>
+                <div class="col-6" style="padding: 0">
+                  <v-btn class="goBtnr" height="210" width="210" to="/caseList">
+                    <span style="font-weight: 700">找案件</span>
+                    <p class="mt-1 gotextB">| 業主發案區 |</p>
+                  </v-btn>
+                </div>
+              </v-row>
               <v-row class="goodcard">
                 <v-col class="gCard">
                   <div class="circle">
@@ -253,15 +272,7 @@
             </div>
           </section>
 
-          <div id="section2">
-            <div class="header d-flex align-center">
-              <v-img class="logo2 ms-12" max-width="115" src="../assets/images/logo.png" style="z-index: 1"></v-img>
-              <div class="solgon2 rounded-pill d-flex justify-end align-center ms-n13">
-                <div class="ctext1 me-7 textWhite">找專業</div>
-              </div>
-              <v-spacer></v-spacer>
-            </div>
-          </div>
+          <div id="section2"></div>
         </v-container>
       </v-sheet>
     </v-card>

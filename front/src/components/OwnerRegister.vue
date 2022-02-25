@@ -1,7 +1,16 @@
 <template>
   <v-dialog v-model="dialog5" fullscreen hide-overlay transition="dialog-bottom-transition">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="var(--color-white)" dark v-bind="attrs" v-on="on" class="btn2 textBlue rounded-0" plain max-height="20" style="border-left: 0">
+      <v-btn
+        color="var(--color-white)"
+        dark
+        v-bind="attrs"
+        v-on="on"
+        class="btn2 textBlue rounded-0"
+        plain
+        max-height="20"
+        style="border-left: 0; font-weight: 700"
+      >
         成為發案者
       </v-btn>
     </template>

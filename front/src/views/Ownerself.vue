@@ -12,7 +12,7 @@
               <v-btn icon width="50" height="50" class="mb-n2" style="pointer-events: none">
                 <v-icon class="scoreIcon" color="var(--color-lightY)">mdi-charity</v-icon>
               </v-btn>
-              <span class="num">{{ ownerinfo.good + ownerinfo.bad }}</span>
+              <span class="num">{{ ownerinfo.assess }}</span>
               <span class="numtitle">成交案量</span>
             </div>
           </div>
@@ -226,9 +226,9 @@
     data() {
       return {
         score: {
-          good: 31,
-          assess: 49,
-          bad: 18
+          good: 0,
+          assess: 0,
+          bad: 0
         },
         dialog: false,
         me: false,
@@ -275,12 +275,21 @@
       },
       async editscore() {
         try {
-          await this.api.patch('/owners/info', this.score, {
-            headers: {
-              authorization: 'Bearer ' + this.owner.token
-            }
-          })
-          this.getOwner()
+          console.log(this.score)
+          console.log(this.$route.params.id)
+          this.score.assess = this.score.good + this.score.bad
+          if (this.owner._id !== this.$route.params.id) {
+            await this.api.patch('/owners/visitor/' + this.$route.params.id, this.score)
+            const { data } = await this.api.get('owners/' + this.$route.params.id, {
+              headers: {
+                authorization: 'Bearer ' + this.owner.token
+              }
+            })
+            this.ownerinfo = data.result
+            this.ownerinfo.password = ''
+            this.score = { good: this.ownerinfo.good, bad: this.ownerinfo.bad, assess: this.ownerinfo.assess }
+            console.log(data.result)
+          }
         } catch (error) {
           this.$swal({
             icon: 'error',
@@ -288,7 +297,6 @@
             text: error.response.data.message
           })
         }
-        this.dialog = false
       },
       // 更新會員資料
       async updateInfo() {
@@ -374,6 +382,7 @@
           })
           this.ownerinfo = data.result
           this.ownerinfo.password = ''
+          this.score = { good: this.ownerinfo.good, bad: this.ownerinfo.bad, assess: this.ownerinfo.assess }
           console.log(data.result)
         }
       } catch (error) {

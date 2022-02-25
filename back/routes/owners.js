@@ -16,13 +16,17 @@ import {
   addFavorite,
   getFavorite,
   deletefav,
-  getOwner
+  getOwner,
+  updateScroe
 } from '../controllers/owners.js'
 
 const router = express.Router()
 
 // 註冊
 router.post('/', content('application/json'), register)
+
+// 按讚
+router.patch('/visitor/:id', updateScroe)
 // 更改會員資料
 router.patch('/info', authO, updateInfo)
 // 登入

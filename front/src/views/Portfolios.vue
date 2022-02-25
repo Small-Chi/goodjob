@@ -307,6 +307,7 @@
             title: '完成'
           })
           this.getPortfolios()
+          this.resetForm()
         } catch (error) {
           console.log(error)
           this.$swal({
@@ -356,12 +357,12 @@
           })
         }
       },
-      resetForm(event) {
+      resetForm() {
         this.dialog = false
-        if (this.dialogSubmitting) {
-          event.preventDefault()
-          return
-        }
+        // if (this.dialogSubmitting) {
+        //   event.preventDefault()
+        //   return
+        // }
         this.form = {
           pname: '',
           size: '',

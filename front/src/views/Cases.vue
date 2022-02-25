@@ -316,6 +316,7 @@
             title: '錯誤',
             text: '缺少名稱或作品照片'
           })
+          this.dialogSubmitting = false
           return
         }
         const fd = new FormData()
@@ -359,6 +360,7 @@
             title: '完成'
           })
           this.getCases()
+          this.resetForm()
         } catch (error) {
           console.log(error)
           this.$swal({
@@ -367,6 +369,7 @@
             text: error.response.data.message
           })
         }
+        this.dialogSubmitting = false
       },
       editCase(index) {
         this.form = {
@@ -410,12 +413,12 @@
           })
         }
       },
-      resetForm(event) {
+      resetForm() {
         this.dialog = false
-        if (this.dialogSubmitting) {
-          event.preventDefault()
-          return
-        }
+        // if (this.dialogSubmitting) {
+        //   event.preventDefault()
+        //   return
+        // }
         this.form = {
           casename: '',
           size: '',

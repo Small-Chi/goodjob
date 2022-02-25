@@ -14,14 +14,14 @@
       <div class="chatlist">
         <v-card rounded class="mx-auto" max-width="300" tile>
           <v-list rounded color="var(--color-deepwhite)" class="list">
-            <v-subheader>業主列表</v-subheader>
+            <v-subheader style="font-weight: 700">業主列表</v-subheader>
             <v-list-item-group v-model="selected" color="var(--color-chatdeepblue)">
               <v-list-item v-for="owner in getowner" :key="owner.username" class="mb-3">
                 <v-avatar size="40" class="me-5">
                   <v-img :src="'https://source.boringavatars.com/beam/120/' + owner.account"></v-img>
                 </v-avatar>
                 <v-list-item-content>
-                  <v-list-item-title v-text="owner.ownername"></v-list-item-title>
+                  <v-list-item-title v-text="owner.ownername" style="font-weight: 700"></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>

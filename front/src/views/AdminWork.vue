@@ -16,16 +16,20 @@
 
       <div class="row">
         <v-card class="adminAdd col-3 mx-5 my-5">
-          <v-btn depressed icon class="addBtn" height="80" width="80" @click.stop="dialog = true">
-            <v-icon size="45" class="addpuls" @click="dialog = true">mdi-plus</v-icon>
+          <v-btn depressed icon class="addBtn" height="60" width="60" @click.stop="dialog = true">
+            <v-icon size="35" class="addpuls" @click="dialog = true">mdi-plus</v-icon>
           </v-btn>
         </v-card>
-        <v-card class="imgcol col-3 mx-5 my-5" v-for="(item, index) in pages" :key="index" style="padding: 0">
-          <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteImg(item._id)">
-            <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
-          </v-btn>
-          <v-img :src="item.image" class="imgcontent"></v-img>
-        </v-card>
+        <div class="card col-3 mx-5 my-5" v-for="(item, index) in pages" :key="index">
+          <v-card class="imgcol" style="padding: 0">
+            <v-btn icon class="cardBtn3" max-width="20" max-height="20" style="padding: 0; background-color: var(--color-red)" @click="deleteImg(item._id)">
+              <v-icon size="10" color="white" class="justify-content-center; Btn3Icon">mdi-close</v-icon>
+            </v-btn>
+            <v-img :src="item.image" class="imgcontent"></v-img>
+          </v-card>
+          <span class="item" style="font-weight: 700">{{ item.username }}</span>
+          <span class="item">{{ new Date(item.date).toLocaleDateString().replace(/\//g, '／') }}</span>
+        </div>
       </div>
     </div>
 
@@ -45,6 +49,12 @@
             placeholder="點擊或拖曳檔案至此"
           ></img-inputer>
         </v-col>
+        <v-col cols="12 d-flex justify-center mt-5 mb-n5">
+          <v-col cols="12 d-flex justify-center" sm="5">
+            <v-icon class="me-2">mdi-account-outline</v-icon>
+            <v-text-field label="作者名稱" v-model="form.username"></v-text-field>
+          </v-col>
+        </v-col>
         <v-col cols="12 d-flex justify-center">
           <v-col cols="12 d-flex justify-center" sm="5">
             <v-menu ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="358px">
@@ -62,7 +72,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn text color="primary" @click="dialog = false">取消</v-btn>
+          <v-btn text color="primary" @click="resetForm">取消</v-btn>
 
           <v-btn text color="primary" @click="submitModal" :disabled="dialogSubmitting">上傳</v-btn>
         </v-card-actions>
@@ -81,7 +91,8 @@
         menu: false,
         form: {
           image: null,
-          date: ''
+          date: '',
+          username: ''
         },
         swiperOptions: {
           pagination: {
@@ -136,6 +147,7 @@
             text: '新增輪播圖片成功'
           })
           this.getNewimage()
+          this.resetForm()
         } catch (error) {
           console.log(error)
           this.$swal({
@@ -176,6 +188,15 @@
             title: '錯誤',
             text: '取得圖片失敗'
           })
+        }
+      },
+      resetForm() {
+        this.dialog = false
+        this.dialogSubmitting = false
+        this.form = {
+          image: null,
+          date: '',
+          username: ''
         }
       }
     },
