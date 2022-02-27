@@ -1,3 +1,9 @@
+@mixin xs {
+  @media (max-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
 @mixin sm {
   @media (max-width: $breakpoint-sm) {
     @content;
@@ -10,358 +16,191 @@
   }
 }
 
-@mixin lg {
-  @media (min-width: $breakpoint-lg) {
-    @content;
-  }
-}
-
-@include lg {
-  // NAV 導覽列--------------------------------------------------
-  .navA {
-    position: relative;
-    top: 20px;
-    border-right: 2px solid var(--color-white);
-    a:hover {
-      color: var(--color-lightY) !important;
-    }
-  }
-
-  .logo1 {
-    position: relative;
-    top: 8px;
-  }
-
-  .solgon {
-    // border: 1px solid var(--color-white);
-    width: 210px;
-    height: 36px;
-    position: relative;
-    top: 13px;
-  }
-
-  // 登入紐
-  .login {
-    font-size: 20px;
-    font-weight: 500;
-    // border: 1px solid var(--color-white) !important;
-    margin-top: 14px;
-  }
-
-  .login:hover {
-    color: var(--color-lightY) !important;
-    // border: 1px solid var(--color-lightY) !important;
-  }
-
-  .overflowY {
-    overflow-y: none !important;
-  }
-
-  // xs sidebar 的選單紐
-  input[type='checkbox'] {
-    display: none;
-  }
-
-  .btn1 {
-    font-size: 20px;
-    font-weight: 500;
-    background-color: var(--color-blue) !important;
-    border: 1px solid var(--color-blue) !important;
-  }
-
-  .btn1:hover {
-    color: var(--color-lightY) !important;
-    background-color: var(--color-deepblue) !important;
-    border: 1px solid var(--color-deepblue) !important;
-  }
-
-  .btn2 {
-    font-size: 17px !important;
-    font-weight: 700;
-    color: var(--color-blue) !important;
-    border-left: 1px solid var(--color-blue);
-    border-right: 1px solid var(--color-blue);
-  }
-
-  .btn2:hover {
-    color: var(--color-red) !important;
-  }
-
-  .savebtn {
-    pointer-events: none;
-  }
-
-  .savebtn:hover {
-    text-decoration: underline;
-  }
-
-  .avatars {
-    height: 30px;
-    position: relative;
-    top: 11px;
-    cursor: pointer;
-  }
-
-  .avatars:hover .down {
-    color: var(--color-lightY) !important;
-  }
-
-  .userList {
-    position: absolute;
-    padding: 15px;
-    top: 35px;
-    right: -50px;
-    background-color: var(--color-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-    filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
-    .memBtn:hover .memIcon {
-      color: var(--color-lightY) !important;
-    }
-    .memBtn:hover a {
-      color: var(--color-lightY) !important;
-    }
-    .mg {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
-
-  #user:hover .userList {
-    display: block;
-    animation: divAnimation 0.3s linear forwards;
-  }
-
-  #user {
-    padding-bottom: 50px;
-  }
-
-  .ownerList {
-    position: absolute;
-    padding: 15px;
-    top: 35px;
-    right: -50px;
-    background-color: var(--color-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-    filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
-    .memBtn:hover .memIcon {
-      color: var(--color-lightY) !important;
-    }
-    .memBtn:hover a {
-      color: var(--color-lightY) !important;
-    }
-    .mg {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
-
-  #owner:hover .ownerList {
-    display: block;
-    animation: divAnimation 0.3s linear forwards;
-  }
-
-  #owner {
-    padding-bottom: 50px;
-  }
-
-  @keyframes divAnimation {
-    100% {
-      transform: translateY(10px);
-    }
-  }
-}
-
 @include xs {
   // 導覽列--------------------------------------------------------
-  .NAVbar {
-    height: 50px !important;
-    background-color: var(--color-blue) !important;
-  }
-  .navA {
-    position: relative;
-    top: 10px;
-    border-right: 1px solid var(--color-white);
-    a:hover {
-      color: var(--color-lightY) !important;
-    }
-  }
+  // .NAVbar {
+  //   height: 50px !important;
+  //   background-color: var(--color-blue) !important;
+  // }
+  // .navA {
+  //   position: relative;
+  //   top: 10px;
+  //   border-right: 1px solid var(--color-white);
+  //   a:hover {
+  //     color: var(--color-lightY) !important;
+  //   }
+  // }
 
-  .logo1 {
-    position: relative;
-    top: 4px;
-    width: 65px !important;
-  }
+  // .logo1 {
+  //   position: relative;
+  //   top: 4px;
+  //   width: 65px !important;
+  // }
 
-  .solgon {
-    display: none;
-  }
+  // .solgon {
+  //   display: none;
+  // }
 
-  // 登入紐
-  .login {
-    margin-top: 4px;
-    margin-left: -26px;
-    margin-right: -20px;
-  }
+  // // 登入紐
+  // .login {
+  //   margin-top: 4px;
+  //   margin-left: -26px;
+  //   margin-right: -20px;
+  // }
 
-  .login:hover {
-    color: var(--color-lightY) !important;
-    // border: 1px solid var(--color-lightY) !important;
-  }
+  // .login:hover {
+  //   color: var(--color-lightY) !important;
+  //   // border: 1px solid var(--color-lightY) !important;
+  // }
 
-  .overflowY {
-    overflow-y: none !important;
-  }
+  // .overflowY {
+  //   overflow-y: none !important;
+  // }
 
-  .btn1 {
-    font-size: 20px;
-    font-weight: 500;
-    background-color: var(--color-blue) !important;
-    border: 1px solid var(--color-blue) !important;
-    margin-bottom: 20px;
-  }
+  // .btn1 {
+  //   font-size: 20px;
+  //   font-weight: 500;
+  //   background-color: var(--color-blue) !important;
+  //   border: 1px solid var(--color-blue) !important;
+  //   margin-bottom: 20px;
+  // }
 
-  .btn1:hover {
-    color: var(--color-lightY) !important;
-    background-color: var(--color-deepblue) !important;
-    border: 1px solid var(--color-deepblue) !important;
-  }
+  // .btn1:hover {
+  //   color: var(--color-lightY) !important;
+  //   background-color: var(--color-deepblue) !important;
+  //   border: 1px solid var(--color-deepblue) !important;
+  // }
 
-  .btn2 {
-    font-size: 17px !important;
-    font-weight: 700;
-    color: var(--color-blue) !important;
-    border-left: 1px solid var(--color-blue);
-    border-right: 1px solid var(--color-blue);
-    margin-top: -40px;
-  }
+  // .btn2 {
+  //   font-size: 17px !important;
+  //   font-weight: 700;
+  //   color: var(--color-blue) !important;
+  //   border-left: 1px solid var(--color-blue);
+  //   border-right: 1px solid var(--color-blue);
+  //   margin-top: -40px;
+  // }
 
-  .btn2:hover {
-    color: var(--color-red) !important;
-  }
+  // .btn2:hover {
+  //   color: var(--color-red) !important;
+  // }
 
-  .savebtn {
-    pointer-events: none;
-  }
+  // .savebtn {
+  //   pointer-events: none;
+  // }
 
-  .savebtn:hover {
-    text-decoration: underline;
-  }
+  // .savebtn:hover {
+  //   text-decoration: underline;
+  // }
 
-  .avatars {
-    height: 30px;
-    position: relative;
-    top: 2px;
-    cursor: pointer;
-  }
+  // .avatars {
+  //   height: 30px;
+  //   position: relative;
+  //   top: 2px;
+  //   cursor: pointer;
+  // }
 
-  .homeAva {
-    display: none !important;
-  }
+  // .homeAva {
+  //   display: none !important;
+  // }
 
-  .down {
-    display: none !important;
-  }
+  // .down {
+  //   display: none !important;
+  // }
 
-  .userList {
-    display: none;
+  // .userList {
+  //   display: none;
 
-    .memBtn:hover .memIcon {
-      color: var(--color-lightY) !important;
-    }
-    .memBtn:hover a {
-      color: var(--color-lightY) !important;
-    }
-    .mg {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
+  //   .memBtn:hover .memIcon {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .memBtn:hover a {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .mg {
+  //     margin-left: 10px;
+  //     margin-right: 10px;
+  //   }
+  // }
 
-  .ownerList {
-    display: none;
+  // .ownerList {
+  //   display: none;
 
-    .memBtn:hover .memIcon {
-      color: var(--color-lightY) !important;
-    }
-    .memBtn:hover a {
-      color: var(--color-lightY) !important;
-    }
-    .mg {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
+  //   .memBtn:hover .memIcon {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .memBtn:hover a {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .mg {
+  //     margin-left: 10px;
+  //     margin-right: 10px;
+  //   }
+  // }
 
-  // user sidebar 選單紐 --------------------
-  .xsMenuBtn {
-    margin-top: 4px;
-    margin-left: -26px;
-    margin-right: -20px;
-    position: absolute;
-    top: 0px;
-    cursor: pointer;
-  }
+  // // user sidebar 選單紐 --------------------
+  // .xsMenuBtn {
+  //   margin-top: 4px;
+  //   margin-left: -26px;
+  //   margin-right: -20px;
+  //   position: absolute;
+  //   top: 0px;
+  //   cursor: pointer;
+  // }
 
-  .xsMenuBtn:hover {
-    color: var(--color-lightY) !important;
-    // border: 1px solid var(--color-lightY) !important;
-  }
+  // .xsMenuBtn:hover {
+  //   color: var(--color-lightY) !important;
+  //   // border: 1px solid var(--color-lightY) !important;
+  // }
 
-  input[type='checkbox'] {
-    display: none;
-  }
+  // input[type='checkbox'] {
+  //   display: none;
+  // }
 
-  input[type='checkbox']:checked + #usersidebar {
-    right: 0;
-    opacity: 1;
-  }
+  // input[type='checkbox']:checked + #usersidebar {
+  //   right: 0;
+  //   opacity: 1;
+  // }
 
-  #usersidebar {
-    height: 100vh;
-    width: 60%;
-    position: fixed;
-    background-color: var(--color-blue);
-    filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
-    flex-direction: column;
-    top: 0;
-    right: -100%;
-    opacity: 0;
-    transition: 0.5s;
+  // #usersidebar {
+  //   height: 100vh;
+  //   width: 60%;
+  //   position: fixed;
+  //   background-color: var(--color-blue);
+  //   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+  //   flex-direction: column;
+  //   top: 0;
+  //   right: -100%;
+  //   opacity: 0;
+  //   transition: 0.5s;
 
-    .closeX:hover {
-      color: var(--color-lightY) !important;
-      transform: rotate(90deg);
-      cursor: pointer;
-    }
+  //   .closeX:hover {
+  //     color: var(--color-lightY) !important;
+  //     transform: rotate(90deg);
+  //     cursor: pointer;
+  //   }
 
-    .sidebarAva {
-      // background: red;
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .ctext1 {
-        font-size: 20px;
-      }
-      .memBtn {
-        margin-bottom: 15px;
-      }
-      .sideline {
-        width: 100%;
-        height: 1px;
-        background: var(--color-white) !important;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-    }
-  }
+  //   .sidebarAva {
+  //     // background: red;
+  //     margin-top: 10px;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     flex-direction: column;
+  //     .ctext1 {
+  //       font-size: 20px;
+  //     }
+  //     .memBtn {
+  //       margin-bottom: 15px;
+  //     }
+  //     .sideline {
+  //       width: 100%;
+  //       height: 1px;
+  //       background: var(--color-white) !important;
+  //       margin-top: 20px;
+  //       margin-bottom: 20px;
+  //     }
+  //   }
+  // }
 
   // owner sidebar-------------------------
   input[type='checkbox'] {

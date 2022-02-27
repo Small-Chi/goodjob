@@ -137,6 +137,36 @@
           })
         }
       },
+      // // 丟 user 的 ID 進去
+      //   async wantDo(index) {
+      //   console.log(this.cases[index]._id)
+      //   if (this.user.isuserLogin) {
+      //     try {
+      //       await this.api.patch(
+      //         'cases/deal/' + this.cases[index]._id,
+      //         { users: this.user._id },
+      //         {
+      //           headers: {
+      //             authorization: 'Bearer ' + this.user.token
+      //           }
+      //         }
+      //       )
+
+      //       this.$swal({
+      //         icon: 'success',
+      //         title: '成功',
+      //         text: '投稿成功'
+      //       })
+      //     } catch (error) {
+      //       console.log(error)
+      //       this.$swal({
+      //         icon: 'error',
+      //         title: '失敗',
+      //         text: '投稿失敗'
+      //       })
+      //     }
+      //   }
+      // }
       // 丟 user 的 ID 進去
       async wantDo(index) {
         console.log(this.cases[index]._id)

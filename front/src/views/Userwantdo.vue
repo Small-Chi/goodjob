@@ -170,6 +170,11 @@
           return c.deal.includes(this.user._id) && c.deal.length < 2
         })
 
+        // console.log(this.cases[1].deal[0].users)
+        // this.wantdo = this.cases.filter(c => {
+        //   return c.users.length > 0
+        // })
+
         console.log(this.wantdo)
       } catch (error) {
         this.$swal({

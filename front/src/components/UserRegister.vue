@@ -1,6 +1,6 @@
 <template>
   <div class="ms-6">
-    <v-btn color="rgba(0,0,0,0)" @click="dialog = true" class="textWhite login ms-n6" plain v-if="!user.isuserLogin && !owner.isownerLogin">
+    <v-btn color="rgba(0,0,0,0)" @click="dialog = true" class="textWhite login ms-xl-n6" plain v-if="!user.isuserLogin && !owner.isownerLogin">
       <v-icon>mdi-login-variant</v-icon>
       <!-- 登入 -->
     </v-btn>

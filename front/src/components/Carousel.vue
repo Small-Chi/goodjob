@@ -1,10 +1,10 @@
 <template>
   <swiper ref="mySwiper" :options="swiperOptions" class="swcontent" style="height: 100%">
     <swiper-slide v-for="(item, index) in pages" :key="index">
-      <img class="sideItem" :src="item.image" />
+      <div class="Img">
+        <img class="sideItem" :src="item.image" />
+      </div>
     </swiper-slide>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
 </template>
 

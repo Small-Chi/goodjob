@@ -136,6 +136,30 @@ export const getWantdo = async (req, res) => {
   }
 }
 
+// export const wantDo = async (req, res) => {
+//   try {
+//     // 找欄位
+//     const deal = await cases.findById(req.params.id, 'deal')
+//     console.log(deal)
+//     deal.deal.push({ users: req.user.id })
+//     deal.save({ validateBeforeSave: false })
+//     res.status(200).send({ success: true, message: '', deal })
+//   } catch (error) {
+//     console.log(error)
+//     res.status(500).send({ success: false, message: '伺服器錯誤' })
+//   }
+// }
+
+// // 投稿
+// export const getWantdo = async (req, res) => {
+//   try {
+//     const result = await cases.find({ sell: true })
+//     res.status(200).send({ success: true, message: '', result })
+//   } catch (error) {
+//     res.status(500).send({ success: false, message: '伺服器錯誤' })
+//   }
+// }
+
 // 返回未投稿
 export const NwantDo = async (req, res) => {
   try {
@@ -211,7 +235,7 @@ export const getHasowner = async (req, res) => {
 // 業主本人查看同意的案子
 export const getAgreen = async (req, res) => {
   try {
-    const result = await cases.find({ owner: req.owner._id })
+    const result = await cases.find({ owner: req.owner._id }).populate('deal', 'account')
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     console.log(error)

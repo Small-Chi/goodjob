@@ -1,0 +1,422 @@
+@mixin sm {
+  @media (max-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@include lg {
+  #home {
+    background-color: var(--color-blue) !important;
+  }
+
+  .NAVbar {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  .swcontent {
+    width: 100%;
+  }
+
+  .sideItem {
+    width: 100%;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    .centerLogo {
+      position: absolute;
+      top: 0;
+      margin-top: 120px;
+      width: 300px;
+      z-index: 3;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+
+    // .centerLogo:hover {
+    //   transform: rotate(-10deg);
+    // }
+
+    .centerslogan {
+      position: absolute;
+      top: 280px;
+      font-size: 60px;
+      font-weight: 700;
+      z-index: 3;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+
+    .centerslogan2 {
+      position: absolute;
+      top: 450px;
+      font-size: 70px;
+      font-weight: 700;
+      z-index: 1;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+
+    .centerslogan3 {
+      position: absolute;
+      top: 400px;
+      font-size: 30px;
+      font-weight: 700;
+      z-index: 3;
+      filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+    }
+
+    .centerslogan3::after {
+      content: '';
+      position: absolute;
+      top: 23px;
+      left: -310px;
+      width: 300px;
+      height: 1px;
+      background-color: var(--color-white);
+    }
+
+    .centerslogan3::before {
+      content: '';
+      position: absolute;
+      top: 23px;
+      right: -310px;
+      width: 300px;
+      height: 1px;
+      background-color: var(--color-white);
+    }
+
+    .dark {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .goBtnDiv {
+      // background: red;
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+
+      .goBtnl {
+        width: 210px !important;
+        height: 210px !important;
+        border-radius: 10px 0px 0px 10px;
+        background: rgba(0, 0, 0, 0) !important;
+        border: 1.5px dashed var(--color-white);
+        color: var(--color-white);
+        font-size: 1.5rem;
+        filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+      }
+
+      .goBtnr {
+        width: 210px !important;
+        height: 210px !important;
+        border-radius: 0px 10px 10px 0px;
+        background: rgba(0, 0, 0, 0) !important;
+        border: 1.5px dashed var(--color-white);
+        color: var(--color-white);
+        font-size: 1.5rem;
+        filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+      }
+      .v-btn__content {
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .goBtnl:hover {
+        border-radius: 10px 10px 10px 10px;
+        border: 1px solid var(--color-lightY);
+        color: var(--color-lightY);
+        transform: scale(1.1);
+      }
+
+      .goBtnr:hover {
+        border-radius: 10px 10px 10px 10px;
+        border: 1px solid var(--color-chatblue);
+        color: var(--color-chatblue);
+        transform: scale(1.1);
+      }
+
+      .goBtnl:hover .gotextY {
+        color: var(--color-lightY);
+      }
+
+      .goBtnr:hover .gotextB {
+        color: var(--color-chatblue);
+      }
+    }
+
+    .goodcard {
+      position: absolute;
+      width: 70%;
+      // height: 350px;
+      top: 85%;
+      left: 370px;
+      z-index: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      z-index: 3;
+      // background: red;
+    }
+
+    .gCard {
+      width: 25%;
+      min-height: 250px;
+      background: var(--color-deepblue);
+      position: relative;
+      filter: drop-shadow(0px 0px 3px var(--color-lightY));
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-left: 5%;
+      margin-right: 5%;
+      z-index: 3;
+    }
+
+    .gCard:hover {
+      transform: translateY(-25px);
+      box-shadow: 0 5px 10px 1px var(--color-lightY);
+      z-index: 3;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--color-lightY);
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .homeIcon-1 {
+      color: var(--color-blue) !important;
+      font-size: 70px !important;
+    }
+
+    .homeIcon-2 {
+      color: var(--color-blue) !important;
+      font-size: 60px !important;
+    }
+
+    .homeIcon-3 {
+      color: var(--color-blue) !important;
+      font-size: 55px !important;
+    }
+    .gText {
+      margin-top: 55px;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-lightY);
+    }
+    p {
+      font-size: 16px;
+      line-height: 2rem;
+      color: var(--color-white);
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+  }
+
+  #section2 {
+    height: 100vh;
+    .header {
+      height: 80px;
+      border-bottom: 1px solid white;
+    }
+    .solgon2 {
+      // border: 1px solid var(--color-white);
+      width: 140px;
+      height: 36px;
+      position: relative;
+    }
+  }
+
+  // NAV 導覽列--------------------------------------------------
+
+  // .navA {
+  //   position: relative;
+  //   top: 20px;
+  //   border-right: 2px solid var(--color-white);
+  //   a:hover {
+  //     color: var(--color-lightY) !important;
+  //   }
+  // }
+
+  // .logo1 {
+  //   position: relative;
+  //   top: 8px;
+  // }
+
+  // .solgon {
+  //   // border: 1px solid var(--color-white);
+  //   width: 210px;
+  //   height: 36px;
+  //   position: relative;
+  //   top: 13px;
+  // }
+
+  // // 登入紐
+  // .login {
+  //   font-size: 20px;
+  //   font-weight: 500;
+  //   // border: 1px solid var(--color-white) !important;
+  //   margin-top: 14px;
+  // }
+
+  // .login:hover {
+  //   color: var(--color-lightY) !important;
+  //   // border: 1px solid var(--color-lightY) !important;
+  // }
+
+  // .overflowY {
+  //   overflow-y: none !important;
+  // }
+
+  // // xs sidebar 的選單紐
+  // input[type='checkbox'] {
+  //   display: none;
+  // }
+
+  // .btn1 {
+  //   font-size: 20px;
+  //   font-weight: 500;
+  //   background-color: var(--color-blue) !important;
+  //   border: 1px solid var(--color-blue) !important;
+  // }
+
+  // .btn1:hover {
+  //   color: var(--color-lightY) !important;
+  //   background-color: var(--color-deepblue) !important;
+  //   border: 1px solid var(--color-deepblue) !important;
+  // }
+
+  // .btn2 {
+  //   font-size: 17px !important;
+  //   font-weight: 700;
+  //   color: var(--color-blue) !important;
+  //   border-left: 1px solid var(--color-blue);
+  //   border-right: 1px solid var(--color-blue);
+  // }
+
+  // .btn2:hover {
+  //   color: var(--color-red) !important;
+  // }
+
+  // .savebtn {
+  //   pointer-events: none;
+  // }
+
+  // .savebtn:hover {
+  //   text-decoration: underline;
+  // }
+
+  // .avatars {
+  //   height: 30px;
+  //   position: relative;
+  //   top: 11px;
+  //   cursor: pointer;
+  // }
+
+  // .avatars:hover .down {
+  //   color: var(--color-lightY) !important;
+  // }
+
+  // .userList {
+  //   position: absolute;
+  //   padding: 15px;
+  //   top: 35px;
+  //   right: -50px;
+  //   background-color: var(--color-blue);
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   display: none;
+  //   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+  //   .memBtn:hover .memIcon {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .memBtn:hover a {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .mg {
+  //     margin-left: 10px;
+  //     margin-right: 10px;
+  //   }
+  // }
+
+  // #user:hover .userList {
+  //   display: block;
+  //   animation: divAnimation 0.3s linear forwards;
+  // }
+
+  // #user {
+  //   padding-bottom: 50px;
+  // }
+
+  // .ownerList {
+  //   position: absolute;
+  //   padding: 15px;
+  //   top: 35px;
+  //   right: -50px;
+  //   background-color: var(--color-blue);
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   display: none;
+  //   filter: drop-shadow(0px 5px 3px rgb(0, 0, 0));
+  //   .memBtn:hover .memIcon {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .memBtn:hover a {
+  //     color: var(--color-lightY) !important;
+  //   }
+  //   .mg {
+  //     margin-left: 10px;
+  //     margin-right: 10px;
+  //   }
+  // }
+
+  // #owner:hover .ownerList {
+  //   display: block;
+  //   animation: divAnimation 0.3s linear forwards;
+  // }
+
+  // #owner {
+  //   padding-bottom: 50px;
+  // }
+
+  // @keyframes divAnimation {
+  //   100% {
+  //     transform: translateY(10px);
+  //   }
+  // }
+}

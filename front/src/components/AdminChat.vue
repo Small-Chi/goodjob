@@ -96,9 +96,7 @@
             }
           )
           this.messages.push(data.result)
-        } catch (error) {
-          console.log(error)
-        }
+        } catch (error) {}
         this.sending = false
         this.text = ''
       }

@@ -67,11 +67,11 @@
           </v-avatar>
           <v-icon class="textBlue down">mdi-chevron-down</v-icon>
         </div>
-        <v-btn color="rgba(0,0,0,0)" class="textBlue adlogin ms-n6" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textBlue adlogin ms-n6 d-none d-md-flex" plain v-if="user.isuserLogin && !owner.isownerLogin" @click="userlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>
-        <v-btn color="rgba(0,0,0,0)" class="textBlue adlogin ms-n6" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
+        <v-btn color="rgba(0,0,0,0)" class="textBlue adlogin ms-n6 d-none d-md-flex" plain v-if="!user.isuserLogin && owner.isownerLogin" @click="ownerlogout">
           <v-icon class="me-2">mdi-logout-variant</v-icon>
           <!-- 登出 -->
         </v-btn>
